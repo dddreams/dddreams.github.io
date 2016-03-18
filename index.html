@@ -1,15 +1,114 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-cn">
   <head>
     <meta charset="UTF-8">
     <title>Zhiheng by dddreams</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free Web tutorials on HTML and CSS">
+    <meta name="shure" content="Hege Refsnes">
+    
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" type="text/css" href="./res/css/base.css">
   </head>
   <body>
-    哈哈，成功了！ yes  ,,
-  </body>
+    <div id="toper"></div>
+    <div id="top"></div>
+    <div id="nav">
+        <ul>
+            <li class="current">
+                <a href="#">首页</a>
+            </li>
+            <li>
+                <a href="#">java</a>
+            </li>
+            <li>
+                <a href="#">javascript</a>
+            </li>
+            <li>
+                <a href="#">python</a>
+            </li>
+            <li>
+                <a href="#">...</a>
+            </li>
+        </ul>
+    </div>
+    <div id="main">
+        <div id="content">
+            <div class="blogs">
+                <h4 class="blogs-title">
+                    <a href="#">苹果发公开信澄清公司对于系统加密的立场</a>
+                </h4>
+                <div>
+                    　去年 12 月份发生在圣博娜迪诺（San Bernardino）的枪击事件曾一度震惊全美，如今这个案子再一次被媒体炒了起来，原因就是苹果和 FBI 之间的掐架。按照美国地方法院的判决，苹果需要配合 FBI 一起解锁其中一名嫌犯的 iPhone，以便获得更多有价值的信息，然而苹果并不愿意这么做。
+                </div>
+                <h6>
+                    <span>
+                        Author：shure | Class：<a href="#">Java</a> | Comments：<a href="#">4</a> | Views：<a href="#">123</a> |
+                        Time: 2016-3-1 | <a href="#">All...</a>
+                    </span>
+                </h6>
+            </div>
+            <div class="blogs">
+                <h4 class="blogs-title">
+                    <a href="#">苹果发公开信澄清公司对于系统加密的立场</a>
+                </h4>
+                <div>
+                    　去年 12 月份发生在圣博娜迪诺（San Bernardino）的枪击事件曾一度震惊全美，如今这个案子再一次被媒体炒了起来，原因就是苹果和 FBI 之间的掐架。按照美国地方法院的判决，苹果需要配合 FBI 一起解锁其中一名嫌犯的 iPhone，以便获得更多有价值的信息，然而苹果并不愿意这么做。
+                </div>
+                <h6>
+                    <span>
+                        Author：shure | Class：<a href="#">Java</a> | Comments：<a href="#">4</a> | Views：<a href="#">123</a> |
+                        Time: 2016-3-1 | <a href="#">All...</a>
+                    </span>
+                </h6>
+            </div>
+        </div>
+        <div id="right">
+            <div id="pageViews">
+                views:<span>000</span>
+                totle:<span>000</span>
+            </div>
+            <div id="photo">
+                <img width="300px" height="235" src="./res/img/myself.jpg">
+            </div>
+            <div id="introduce">
+                <span style="margin-left:33px;">丁治恒，出生于1991年，英文名 shure，计算机专业，从事 Java 开发一年，目前就职于甘肃万维公司，进行前端开发，对 javascript , node.js 有广泛的兴趣。</span>
+            </div>
+            <div id="link">
+                <a href="https://github.com/dddreams" target="_blank">Github</a>
+                <a href="http://blog.csdn.net/u012989850" target="_blank">CSDN</a>
+                <a href="http://weibo.com/dddreams" target="_blank">Weibo</a>
+                <wb:follow-button uid="2602672852" type="red_1" width="67" height="24" ></wb:follow-button>
+            </div>
+            <div id="wechat">
+                <img src="./res/img/ddanswer.jpg" width="120px" height="120px">
+            </div>
+            <div id="order">
+                <h4>阅读排行</h4>
+                <ul>
+                    <li>11111111111</li>
+                    <li>11111111111</li>
+                    <li>11111111111</li>
+                    <li>11111111111</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="bottom"></div>
+</body>
+<script type="text/javascript" src="./res/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="./res/script/utils.js"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        $("#nav li").on("click",function(){
+            $(this).addClass("current").siblings().removeClass("current");
+        });
+    };
+</script>
+</body>
 </html>

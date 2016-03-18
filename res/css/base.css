@@ -1,0 +1,143 @@
+/**
+ *
+ */
+
+ body{
+ 	background-color:#F6F6F6;
+ 	margin: 0 auto;
+ }
+ #toper{
+ 	width: 100%;
+    background: #2f2f2f;
+    background: rgba(0,0,0,0.86);
+    height: 34px;
+    line-height: 1;
+    font-size: 13px;
+ }
+ #top{
+ 	margin: 0 auto;
+    width: 1060px;
+    height: 30px;
+    padding: 0 15px;
+    box-sizing: content-box;
+    position: relative;
+ }
+ #nav{
+ 	margin: 0 auto;
+    width: 1060px;
+    padding: 0 15px;
+    height: 31px;
+    box-sizing: content-box;
+    position: relative;
+    border-bottom: 1px solid #BCBCBC;
+ }
+ #main{
+ 	min-height: 450px;
+    margin: 0 auto;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 1060px;
+    padding: 15px;
+ }
+ #content{
+ 	float: left;
+    width: 728px;
+    margin: 0 0 0 0;
+    padding: 0;
+ }
+ #right{
+	float: right;
+    overflow: hidden;
+    width: 300px;
+    margin: 0;
+    margin: 0 0 15px 0;
+ }
+ #bottom{
+ 	width: 100%;
+    background: #2f2f2f;
+    background: rgba(0,0,0,0.86);
+    line-height: 1;
+    font-size: 13px;
+    height: 50px;
+    clear: both;
+ }
+
+#nav ul{
+	float: left;
+	list-style: none;
+	list-style-type: none;
+    list-style-position: outside;
+    margin: 4px 1px 1px 1px;
+    padding: 0 0 0 0;
+    word-break: break-all;
+}
+#nav ul li{
+	display: table-cell;
+    margin: 0;
+    padding: 0px 1px;
+}
+#nav ul li a{
+	padding: 4px 10px 5px;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #FFFFFF;
+    background: #9ea3a9;
+}
+#nav ul li a:hover {
+    color: #FFFFFF;
+    background: #f69c55;
+}
+#nav ul li.current a{
+	color: #FFFFFF;
+    background: #f69c55;
+}
+div.blogs{
+    padding: 10px 0px 0px 0px;
+    border-bottom: 1px solid #BCBCBC;
+}
+div.blogs:hover{
+    background: #FFF8DC;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: #F48024;
+}
+h4.blogs-title{
+    margin: 10px 0px 10px 5px;
+}
+.blogs h6{
+    margin:10px;
+    font-size:12px;
+}
+.blogs h6 span|a{
+    margin: 10px 10px;
+    font-weight: initial;
+    font-size: 15px;
+}
+#pageViews,#link,#introduce,#order,#wechat{
+    margin-bottom: 10px;
+    background: #D6D7DA;
+    padding: 8px;
+}
+#pageViews{
+    font-size: 20px;
+}
+#order h4{
+    margin: 0px;
+    border-bottom: 1px solid #BCBCBC;
+}
+#order ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+	list-style-type: none;
+    list-style-position: outside;
+}
+#order ul li{
+    padding-left: 5px;
+    padding-top: 5px;
+}
