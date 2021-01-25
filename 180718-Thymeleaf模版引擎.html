@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>SpringBoot-Thymeleaf模版引擎 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Spring Boot">
+    <meta name="description" content="上一节我们简单的认识了 Thymeleaf，并简单介绍了它与 Spring Boot 的结合，这一节来具体的看一下，Thymeleaf 是的语法和应用。 创建模版文件创建文件其实在上节中已经说过，这边在重复一遍，新建 HTML 文件，在头文件中添加 xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;1&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot-Thymeleaf模版引擎">
+<meta property="og:url" content="https://dddreams.github.io/180718-Thymeleaf模版引擎.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="上一节我们简单的认识了 Thymeleaf，并简单介绍了它与 Spring Boot 的结合，这一节来具体的看一下，Thymeleaf 是的语法和应用。 创建模版文件创建文件其实在上节中已经说过，这边在重复一遍，新建 HTML 文件，在头文件中添加 xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;1&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2020-01-03T05:09:15.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot-Thymeleaf模版引擎">
+<meta name="twitter:description" content="上一节我们简单的认识了 Thymeleaf，并简单介绍了它与 Spring Boot 的结合，这一节来具体的看一下，Thymeleaf 是的语法和应用。 创建模版文件创建文件其实在上节中已经说过，这边在重复一遍，新建 HTML 文件，在头文件中添加 xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;1&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringBoot-Thymeleaf模版引擎</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot-Thymeleaf模版引擎</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-04T10:07:00.000Z" itemprop="datePublished" class="page-time">
+  2019-01-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建模版文件"><span class="post-toc-text">创建模版文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#表达式语法"><span class="post-toc-text">表达式语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量表达式"><span class="post-toc-text">变量表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择或星号表达式"><span class="post-toc-text">选择或星号表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通用-Message-表达式"><span class="post-toc-text">通用 Message 表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#URL表达式"><span class="post-toc-text">URL表达式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#表达式支持的语法"><span class="post-toc-text">表达式支持的语法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#th-标签"><span class="post-toc-text">th 标签</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用的使用方法"><span class="post-toc-text">常用的使用方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关参考和链接"><span class="post-toc-text">相关参考和链接</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-180718-Thymeleaf模版引擎"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SpringBoot-Thymeleaf模版引擎</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-04 18:07:00" datetime="2019-01-04T10:07:00.000Z"  itemprop="datePublished">2019-01-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>上一节我们简单的认识了 Thymeleaf，并简单介绍了它与 Spring Boot 的结合，这一节来具体的看一下，Thymeleaf 是的语法和应用。</p>
+<h2 id="创建模版文件"><a href="#创建模版文件" class="headerlink" title="创建模版文件"></a>创建模版文件</h2><p>创建文件其实在上节中已经说过，这边在重复一遍，新建 <code>HTML</code> 文件，在头文件中添加 <code>xmlns:th=&quot;http://www.thymeleaf.org&quot;</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong>html 中的标签必须严格规范，标签必须闭合，即<code>&lt;div /&gt;</code>技术或者<code>&lt;/div&gt;</code>类似结束。</p>
+<h2 id="表达式语法"><a href="#表达式语法" class="headerlink" title="表达式语法"></a>表达式语法</h2><p>它们分为四类：</p>
+<ul>
+<li>1.变量表达式</li>
+<li>2.选择或星号表达式</li>
+<li>3.通用 Message 表达式</li>
+<li>4.URL表达式</li>
+</ul>
+<h3 id="变量表达式"><a href="#变量表达式" class="headerlink" title="变量表达式"></a>变量表达式</h3><p>ongl标准语法或者 Spring EL 表达式 <code>${user.userName}</code>，它们将以 html 标签的一个属性来表示</p>
+<h3 id="选择或星号表达式"><a href="#选择或星号表达式" class="headerlink" title="选择或星号表达式"></a>选择或星号表达式</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:object</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;user&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Name: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*</span></span></span><span class="template-variable">&#123;firstName&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Sebastian<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Surname: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*</span></span></span><span class="template-variable">&#123;lastName&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Pepper<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Nationality: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">*</span></span></span><span class="template-variable">&#123;nationality&#125;</span><span class="xml"><span class="tag">"&gt;</span>Saturn<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span></span><br><span class="line"><span class="xml">等价于</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Name: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;user.firstName&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Sebastian<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Surname: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;user.lastName&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Pepper<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Nationality: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;user.nationality&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Saturn<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">当然了，这两者可以混合使用</span></span><br><span class="line"><span class="xml">还有一种方式</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Name: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*</span></span></span><span class="template-variable">&#123;user.name&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Sebastian<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Surname: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*</span></span></span><span class="template-variable">&#123;user.surname&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Pepper<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Nationality: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"*</span></span></span><span class="template-variable">&#123;user.nationality&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Saturn<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="通用-Message-表达式"><a href="#通用-Message-表达式" class="headerlink" title="通用 Message 表达式"></a>通用 Message 表达式</h3><p>通用表达式允许我们从外部的配置文件（properties）中取值，用 Key，Value的形式。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#&#123;main.title&#125;  </span></span><br><span class="line"><span class="meta">#&#123;message.entrycreated($&#123;entryId&#125;)&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>可以在模板文件中找到这样的表达式代码：<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">th:text</span>=<span class="string">"#</span></span></span><span class="template-variable">&#123;header.address.city&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">th</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">th:text</span>=<span class="string">"#</span></span></span><span class="template-variable">&#123;header.address.country&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">th</span>&gt;</span>  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="URL表达式"><a href="#URL表达式" class="headerlink" title="URL表达式"></a>URL表达式</h3><p>URL表达式指的是把一个有用的上下文或回话信息添加到URL，这个过程经常被叫做URL重写。<br> <code>@{/order/list}</code><br>URL还可以设置参数：<br> <code>@{/order/details(id=${orderId})}</code><br>相对路径：<br> <code>@{../documents/report}</code></p>
+<h2 id="表达式支持的语法"><a href="#表达式支持的语法" class="headerlink" title="表达式支持的语法"></a>表达式支持的语法</h2><p><strong>字面（Literals）</strong></p>
+<ul>
+<li>文本文字（Text literals）: ‘one text’, ‘Another one!’,…</li>
+<li>数字文本（Number literals）: 0, 34, 3.0, 12.3,…</li>
+<li>布尔文本（Boolean literals）: true, false</li>
+<li>空（Null literal）: null</li>
+<li>文字标记（Literal tokens）: one, sometext, main,…</li>
+</ul>
+<p><strong>文本操作（Text operations）</strong></p>
+<ul>
+<li>字符串连接(String concatenation): +</li>
+<li>文本替换（Literal substitutions）: |The name is ${name}|</li>
+</ul>
+<p><strong>算术运算（Arithmetic operations）</strong></p>
+<ul>
+<li>二元运算符（Binary operators）: +, -, *, /, %</li>
+<li>减号（单目运算符）Minus sign (unary operator): -</li>
+</ul>
+<p><strong>布尔操作（Boolean operations）</strong></p>
+<ul>
+<li>二元运算符（Binary operators）:and, or</li>
+<li>布尔否定（一元运算符）Boolean negation (unary operator):!, not</li>
+</ul>
+<p><strong>比较和等价(Comparisons and equality)</strong></p>
+<ul>
+<li>比较（Comparators）: &gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le)</li>
+<li>等值运算符（Equality operators）:==, != (eq, ne)</li>
+</ul>
+<p><strong>条件运算符（Conditional operators）</strong></p>
+<ul>
+<li>If-then: (if) ? (then)</li>
+<li>If-then-else: (if) ? (then) : (else)</li>
+<li>Default: (value) ?: (defaultvalue)</li>
+</ul>
+<h2 id="th-标签"><a href="#th-标签" class="headerlink" title="th 标签"></a>th 标签</h2><p>参考 thymeleaf 官方文档：<a href="https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.pdf" target="_blank" rel="noopener">https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.pdf</a></p>
+<h2 id="常用的使用方法"><a href="#常用的使用方法" class="headerlink" title="常用的使用方法"></a>常用的使用方法</h2><h2 id="相关参考和链接"><a href="#相关参考和链接" class="headerlink" title="相关参考和链接"></a>相关参考和链接</h2><p>Thymeleaf 模板的使用：<a href="http://www.cnblogs.com/lazio10000/p/5603955.html" target="_blank" rel="noopener">http://www.cnblogs.com/lazio10000/p/5603955.html</a></p>
+<p>新一代Java模板引擎Thymeleaf：<a href="https://www.tianmaying.com/tutorial/using-thymeleaf" target="_blank" rel="noopener">https://www.tianmaying.com/tutorial/using-thymeleaf</a></p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-03T05:09:15.938Z" itemprop="dateUpdated">2020-01-03 13:09:15</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&title=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&title=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/180718-Thymeleaf模版引擎.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/200103-java代码优化建议.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">java代码优化建议</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/180716-SpringBoot-单元测试及Thymeleaf模版.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot-单元测试及Thymeleaf模版</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&title=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&title=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/180718-Thymeleaf模版引擎.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot-Thymeleaf模版引擎》 — zhiheng's blog&url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/180718-Thymeleaf模版引擎.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/180718-Thymeleaf模版引擎.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

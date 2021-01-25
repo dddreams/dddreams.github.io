@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chat with english</title>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        body{
+            background: #fff;
+        }
+        .contenter{
+            width: 100%; height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .phone{
+            width: 25rem;
+            min-height: 50rem;
+            margin: 0 auto;
+            background: url(../images/20170826/photo_bj.png) no-repeat center;
+            background-size: 100% 100%;
+            position: relative;
+        }
+        .phone .main{
+            position: absolute;
+            left: 19px;
+            right: 18px;
+            top: 70px;
+            bottom: 71px;
+            display: flex;
+            flex-direction: column; 
+        }
+        .phone .header{
+            background: #0e42d4;
+            height: 3.5rem;
+            line-height: 3.5rem;
+            color: #fff;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+        .phone .header i{
+            display: inline-block;
+            width: 1.6rem; height: 100%;
+            cursor: pointer;
+        }
+        .phone .header i.back{
+            background: url(../images/20170826/left.png) no-repeat center;
+            float: left;
+        }
+        .phone .header i.more{
+            background: url(../images/20170826/more.png) no-repeat center;
+            float: right;
+        }
+        
+        .phone .footer{
+            border-top: 1px solid #ccc;
+            background: #efeeec;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .phone .footer .message{
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 2;
+            height: 2.5rem;
+            outline: none;
+            font-size: 1.6rem;
+            padding: 0 .4rem;
+        }
+        .phone .footer .btn-send{   
+            border: 0;
+            height: 2.5rem;
+            border-radius: 4px;
+            margin-left: .3rem;
+            box-shadow: 0px 0px 1px 0px black;
+            outline: none;
+            cursor: pointer;
+        }
+        .phone .panel{
+            background: #efeeec;
+            flex: 1;
+            overflow: auto;
+        }
+        .phone .panel > div{
+            display: inline-block;
+            width: 100%;
+            min-height: 3rem;
+            font-size: 1.6rem;
+        }
+        .phone .panel span{
+            display: inline-block;
+            padding: .5rem .7rem;
+            line-height: 1.5;
+        }
+        .phone .panel .msg{
+            height: 100%;
+            margin: .5rem;
+            border-radius: .6rem;
+            position: relative;
+        }
+        .phone .panel .msg::before{
+            content: '';
+            position: absolute;
+            width: .5rem;
+            height: .5rem;
+            top: .5rem;
+            background: inherit;
+            border: inherit;
+            border-right: 0;
+            border-bottom: 0;
+            transform: rotate(45deg);
+        }
+        .phone .panel .me .msg{
+            background: #2683F5;
+            float: right;
+            margin-left: 15%;
+            color: #fff;
+        }
+        .phone .panel .me .msg::before{
+            right: -.2rem;
+        }
+        .phone .panel .res .msg {
+            background: #cbc6d7;
+            float: left;
+            margin-right: 15%;
+            color: #000;
+        }
+        .phone .panel .res .msg::before{
+            left: -.2rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="contenter">
+        <div class="phone">
+            <div class="main">
+                <div class="header">
+                    <i class="back"></i>
+                    <span>zhiheng聊天</span>
+                    <i class="more"></i>
+                </div>
+                <div class="panel">
+                    <div class="me">
+                        <div class="msg">
+                            <i class="d-photo"></i>
+                            <span>hello</span>
+                        </div>
+                    </div><div class="res">
+                        <div class="msg">
+                            <i class="u-photo"></i>
+                            <span>请你以后不要在我面前说英文了，OK？😂</span>
+                        </div>
+                    </div><div class="me">
+                        <div class="msg">
+                            <i class="d-photo"></i>
+                            <span>好的</span>
+                        </div>
+                    </div><div class="res">
+                        <div class="msg">
+                            <i class="u-photo"></i>
+                            <span>Excellent!</span>
+                        </div>
+                    </div><div class="me">
+                        <div class="msg">
+                            <i class="d-photo"></i>
+                            <span>哈哈</span>
+                        </div>
+                    </div><div class="res">
+                        <div class="msg">
+                            <i class="u-photo"></i>
+                            <span>Laugh, say, and make Ding Ding happy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <input type="text" name="message" class="message">
+                    <button class="btn-send">send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../script/jquery/jquery-1.11.3.min.js"></script>
+<script src="../script/md5/md5.js"></script>
+<script>
+    $(function(){
+        // 滚动至最后一条消息
+        // let height = $('.panel div:last').offset().top;
+        // $('.panel').scrollTop(height);
+
+        // 点击发送按钮 
+        $('.btn-send').on('click', function(){
+            send()
+        })
+
+        // 回车事件
+        $('.message').on('keydown', function(e){
+            if(e.keyCode==13){
+                send()
+            }
+        })
+
+        // 消息发送
+        function send(){
+            let message = $('.message').val(),
+                html = "",
+                panel = $('.panel'),
+                result = "";
+
+            if(!message.trim()) return;
+            html = `<div class="me">
+                        <div class="msg">
+                            <i class="d-photo"></i>
+                            <span>${message}</span>
+                        </div>
+                    </div>`;
+            panel.append(html)
+            $('.message').val('')
+            let height = $('.panel')[0].scrollHeight
+            panel.animate({scrollTop: height}, 0)
+            
+            sendToTulin(message)
+        }
+
+        // 消息回复
+        function reply(result){
+            let html = "",
+                panel = $('.panel');
+
+            if(!result.trim()) return;
+            html = `<div class="res">
+                        <div class="msg">
+                            <i class="u-photo"></i>
+                            <span>${result}</span>
+                        </div>
+                    </div>`;
+            panel.append(html)
+            let height = $('.panel')[0].scrollHeight
+            panel.animate({scrollTop: height}, 100)
+           
+        }
+
+        // 发送消息给图灵机器人
+        function sendToTulin(message){
+            let api = "http://www.tuling123.com/openapi/api",
+                apiKey = "1861840842b2e21627dcf1e595193cdd",
+                userId = "12345678901",
+                result = "",
+                data = {
+                    "key": apiKey,
+                    "info": message,
+                    "userid": userId
+                };
+                
+            $.ajax({
+                url: api,
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                success: function(res){
+                    result = res.text;
+                    translate(result)
+                },
+                error: function(){
+                    result = "额，我不知道怎么回答你了。";
+                    translate(result)
+                }
+            })
+        }
+
+        // 翻译
+        function translate(info){
+            let api = "http://api.fanyi.baidu.com/api/trans/vip/translate",
+                appid = "20170707000063442",
+                key = "lGQROC7pQX6UshAJ9DBw",
+                salt = (new Date).getTime(),
+                from = 'auto',
+                to = 'auto',
+                q = info,
+                str = appid + q + salt + key,
+                sign = MD5(str);
+            
+            $.ajax({
+                url: api,
+                type: 'get',
+                dataType: 'jsonp',
+                data:{
+                    q : q,
+                    from: from,
+                    to: to,
+                    appid: appid,
+                    salt: salt,
+                    sign: sign
+                },
+                success: function(s){
+                    if(!s.trans_result){
+                        reply(info)
+                        return ;
+                    }
+                    if(s.from === 'zh'){
+                        reply(s.trans_result[0].dst)
+                        return ;
+                    }
+                    if(s.from === 'en'){
+                        reply(s.trans_result[0].src)
+                        return ;
+                    }
+                },
+                error: function(){
+                    reply('I do not know what you`re talking about')
+                }
+            })
+        }
+        
+    })
+</script>
+</body>
+</html>

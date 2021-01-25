@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>css伪类&amp;伪元素 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Css">
+    <meta name="description" content="样式规则通常根据元素在文档结构中的位置应用到元素；但是，级联样式表使用伪类和伪元素的概念，根据位于文档树之外的信息来允许格式设置。伪元素用于处理元素的子部分（例如 :first-letter 或 :first-line），而伪类根据元素名、元素属性或元素内容以外的特征（例如 :first-child、:visited 或 :hover）将元素分类。伪类通常是动态的，这意味着在用户与文档交互的同时元">
+<meta name="keywords" content="Css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css伪类&amp;伪元素">
+<meta property="og:url" content="https://dddreams.github.io/css伪类-伪元素.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="样式规则通常根据元素在文档结构中的位置应用到元素；但是，级联样式表使用伪类和伪元素的概念，根据位于文档树之外的信息来允许格式设置。伪元素用于处理元素的子部分（例如 :first-letter 或 :first-line），而伪类根据元素名、元素属性或元素内容以外的特征（例如 :first-child、:visited 或 :hover）将元素分类。伪类通常是动态的，这意味着在用户与文档交互的同时元">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-19T08:20:21.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css伪类&amp;伪元素">
+<meta name="twitter:description" content="样式规则通常根据元素在文档结构中的位置应用到元素；但是，级联样式表使用伪类和伪元素的概念，根据位于文档树之外的信息来允许格式设置。伪元素用于处理元素的子部分（例如 :first-letter 或 :first-line），而伪类根据元素名、元素属性或元素内容以外的特征（例如 :first-child、:visited 或 :hover）将元素分类。伪类通常是动态的，这意味着在用户与文档交互的同时元">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css伪类&amp;伪元素</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">css伪类&amp;伪元素</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-25T06:36:34.000Z" itemprop="datePublished" class="page-time">
+  2016-11-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#伪类"><span class="post-toc-text">伪类</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-css伪类-伪元素"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css伪类&伪元素</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-25 14:36:34" datetime="2016-11-25T06:36:34.000Z"  itemprop="datePublished">2016-11-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>样式规则通常根据元素在文档结构中的位置应用到元素；但是，级联样式表使用伪类和伪元素的概念，根据位于文档树之外的信息来允许格式设置。伪元素用于处理元素的子部分（例如 :first-letter 或 :first-line），而伪类根据元素名、元素属性或元素内容以外的特征（例如 :first-child、:visited 或 :hover）将元素分类。伪类通常是动态的，这意味着在用户与文档交互的同时元素可以获取或丢失伪类。</p>
+<h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><p>当我们指定某一元素被选中后的特殊状态时,一个 <code>CSS 伪类</code> 会被作为一个关键词添加到选择器上. 例如 <code>:hover</code> 会在当用户鼠标指针悬停在由选择器指定的元素上时应用一个样式.</p>
+<p>伪类连同伪元素一起, 他们允许你不仅仅是根据文档DOM树中的内容对元素应用样式,而且还允许你根据诸如像导航历史这样的外部因素来应用样式(<code>:visited</code>, 为例), 同样的,可以根据内容的状态 (例如 在一些表单元素上的 <code>:checked</code> ), 或者鼠标的位置 (例如 <code>:hover</code> 让你知道是否鼠标在一个元素上悬浮)来应用样式.</p>
+<ul>
+<li>:link</li>
+<li>:visited</li>
+<li>:active</li>
+<li>:hover</li>
+</ul>
+<p>链接的不同状态都可以不同的方式显示，这些状态包括：活动状态，已被访问状态，未被访问状态，和鼠标悬停状态。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;<span class="attribute">color</span>: <span class="number">#FF0000</span>&#125;		<span class="comment">/* 未访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: <span class="number">#00FF00</span>&#125;	<span class="comment">/* 已访问的链接 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: <span class="number">#FF00FF</span>&#125;	<span class="comment">/* 鼠标移动到链接上 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;<span class="attribute">color</span>: <span class="number">#0000FF</span>&#125;	<span class="comment">/* 选定的链接 */</span></span><br></pre></td></tr></table></figure></p>
+<p>其中 :hover 不仅限于链接之上，其他元素皆可使用。</p>
+<ul>
+<li>:focus</li>
+</ul>
+<p>focus 在一个元素成为焦点时生效，用户可以通过键盘或鼠标激活焦点（例如：一次表单输入）。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.first-name</span>:focus &#123; <span class="attribute">color</span>: red; &#125;</span><br><span class="line"><span class="selector-class">.last-name</span>:focus &#123; <span class="attribute">color</span>: lime; &#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">input</span> class=<span class="string">"first-name"</span> value=<span class="string">"input value"</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">input</span> class=<span class="string">"last-name"</span> value=<span class="string">"input value"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>:first-child</li>
+<li>:last-child</li>
+<li>:first-of-type</li>
+<li>:last-of-type</li>
+</ul>
+<p><code>:first-child</code>代表了某个元素，这个元素是它父元素的的第一个子元素.<br><code>:first-of-type</code>伪类表示在父容器内其所有种类元素的第一个元素。<br><code>:last-child</code>伪类表示其父容器内最后一个子元素。<br><code>:last-of-type</code>伪类表示父容器内其所有种类元素的最后一个元素。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">span:</span>first-<span class="class">child </span>&#123;</span><br><span class="line">    background-color: lime;</span><br><span class="line">&#125;</span><br><span class="line">ul :last-of-<span class="class">type </span>&#123;</span><br><span class="line"><span class="symbol">    color:</span> orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="params">&lt;div&gt;</span></span><br><span class="line">  <span class="params">&lt;span&gt;</span>This span is limed!<span class="params">&lt;/span&gt;</span></span><br><span class="line">  <span class="params">&lt;span&gt;</span>This span is not. :(<span class="params">&lt;/span&gt;</span></span><br><span class="line"><span class="params">&lt;/div&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="params">&lt;ul&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>Lorem ipsum dolor sit amet. <span class="params">&lt;span&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/span&gt;</span> <span class="params">&lt;span&gt;</span>This text will be orange.<span class="params">&lt;/span&gt;</span><span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>This text will be orange.<span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="params">&lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果:<br><br><span style="background-color: lime;">This span is limed!</span> This span is not. :(</p>
+<p>最后一个li和最后一个span元素的文本颜色将为橙色。</p>
+<ul>
+<li>:not</li>
+</ul>
+<p><code>:not</code>伪类也被称为反伪类。基本上它接收一个参数，在括号内书写另外一个“选择器”。实际上参数可以是另外一个选择器。</p>
+<p>这里可能是链接式的，但是不会包含:not选择器。</p>
+<p>下面示例中。:not伪类匹配参数外的元素。<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">li:</span>not(.first-item) &#123;</span><br><span class="line"><span class="symbol">    color:</span> orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="params">&lt;ul&gt;</span></span><br><span class="line">    <span class="params">&lt;li class="first-item"&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span>Lorem ipsum dolor sit amet.<span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="params">&lt;/ul&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:20:21.094Z" itemprop="dateUpdated">2017-05-19 16:20:21</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/">Css</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/css伪类-伪元素.html&title=《css伪类&伪元素》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/css伪类-伪元素.html&title=《css伪类&伪元素》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/css伪类-伪元素.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css伪类&伪元素》 — zhiheng's blog&url=https://dddreams.github.io/css伪类-伪元素.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/css伪类-伪元素.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/java设计模式之工厂模式.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">java设计模式--简单工厂模式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/css实现计数器.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">css实现计数器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/css伪类-伪元素.html&title=《css伪类&伪元素》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/css伪类-伪元素.html&title=《css伪类&伪元素》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/css伪类-伪元素.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css伪类&伪元素》 — zhiheng's blog&url=https://dddreams.github.io/css伪类-伪元素.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/css伪类-伪元素.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/css伪类-伪元素.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

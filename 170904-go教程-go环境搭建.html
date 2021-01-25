@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>go教程-go环境搭建 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="go">
+    <meta name="description" content="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.  这一节我们开始环境搭建 安装可在官网下载安装 golang (https://golang.org/) 由于 Google 在国内的限制，需要科学上网方可访问官网，也可以访">
+<meta name="keywords" content="go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go教程-go环境搭建">
+<meta property="og:url" content="https://dddreams.github.io/170904-go教程-go环境搭建.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.  这一节我们开始环境搭建 安装可在官网下载安装 golang (https://golang.org/) 由于 Google 在国内的限制，需要科学上网方可访问官网，也可以访">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2018-08-14T06:57:43.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go教程-go环境搭建">
+<meta name="twitter:description" content="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.  这一节我们开始环境搭建 安装可在官网下载安装 golang (https://golang.org/) 由于 Google 在国内的限制，需要科学上网方可访问官网，也可以访">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">go教程-go环境搭建</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">go教程-go环境搭建</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-05T03:38:09.000Z" itemprop="datePublished" class="page-time">
+  2017-09-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置环境变量"><span class="post-toc-text">配置环境变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装测试"><span class="post-toc-text">安装测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卸载或更新-Go"><span class="post-toc-text">卸载或更新 Go</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关链接"><span class="post-toc-text">相关链接</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-170904-go教程-go环境搭建"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">go教程-go环境搭建</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-05 11:38:09" datetime="2017-09-05T03:38:09.000Z"  itemprop="datePublished">2017-09-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.</p>
+</blockquote>
+<p>这一节我们开始环境搭建</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>可在官网下载安装 golang <a href="https://golang.org/" target="_blank" rel="noopener">(https://golang.org/)</a></p>
+<p>由于 Google 在国内的限制，需要科学上网方可访问官网，也可以访问中文版的文档 golang <a href="http://docscn.studygolang.com/" target="_blank" rel="noopener">（http://docscn.studygolang.com/）</a>，Linux，Mac 用户按照文档上的提示安装即可。Windows 用户更简单，下载安装包一路 next 便可。</p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>Linux，Mac 用户</p>
+<p>若安装在 <code>/usr/local/go</code> 目录，要将 <code>/usr/local/go/bin</code> 添加到 PATH 环境变量， 你需要将此行添加到你的 <code>/etc/profile</code>（全系统安装）或 <code>$HOME/.profile</code> 文件中：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=<span class="variable">$PATH</span><span class="symbol">:/usr/local/go/bin</span></span><br></pre></td></tr></table></figure>
+<p>若安装指定目录，你需要设置 GOROOT 环境变量来指定安装位置。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">GOROOT</span>=<span class="variable">$HOME</span>/go</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$GOROOT/bin</span><br></pre></td></tr></table></figure></p>
+<p>注：要使环境变量生效，你需要重启所有打开的终端。</p>
+<p>Windows 用户：</p>
+<p>一般情况 Windows 安装后会自动添加至 path 中，无需配置，可以使用 <code>go env</code> 命令查看，该命令会提示 GOROOT, GOPATH 等变量，若能看到这些变量，说明已将 go 目录添加到 path 环境中。若报错，需要新建环境变量 <code>GOROOT</code> 值为 go 的安装路径，并将 GOROOT 添加至 path 中，<code>$GOROOT/bin</code> </p>
+<h2 id="安装测试"><a href="#安装测试" class="headerlink" title="安装测试"></a>安装测试</h2><p>新建一个 hello.go 的文件，文件内容为：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"hello, world"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用 go 工具运行它：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go <span class="keyword">run</span><span class="bash"> hello.go</span></span><br><span class="line">hello, world</span><br></pre></td></tr></table></figure></p>
+<p>若看到 <code>hello world</code> 字样，说明已经安装成功。</p>
+<h2 id="卸载或更新-Go"><a href="#卸载或更新-Go" class="headerlink" title="卸载或更新 Go"></a>卸载或更新 Go</h2><p>要从你的系统中移除既有的Go安装，需删除 go 目录。 在 Linux、Mac OS X、和 FreeBSD 系统下通常为 /usr/local/go， 在 Windows 下则为 c:\Go。</p>
+<p>你也应当从你的 PATH 环境变量中移除 Go 的 bin 目录。 在 Linux 和 FreeBSD 下你应当编辑 /etc/profile 或 $HOME/.profile。 若你是通过Mac OS X 包安装的 Go，那么你应当移除 /etc/paths.d/go 文件。Windows 下删除环境变量即可。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>golang 官网 <a href="https://golang.org/" target="_blank" rel="noopener">https://golang.org/</a></p>
+<p>中文版文档 <a href="http://docscn.studygolang.com/" target="_blank" rel="noopener">http://docscn.studygolang.com/</a></p>
+<p>本教程 Github 地址 <a href="https://github.com/dddreams/go-tutorial" target="_blank" rel="noopener">https://github.com/dddreams/go-tutorial</a></p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果觉得文章对你有用，转发、分享、赞赏才是真爱 [斜眼笑]</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-14T06:57:43.962Z" itemprop="dateUpdated">2018-08-14 14:57:43</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/170904-go教程-go环境搭建.html&title=《go教程-go环境搭建》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/170904-go教程-go环境搭建.html&title=《go教程-go环境搭建》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/170904-go教程-go环境搭建.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《go教程-go环境搭建》 — zhiheng's blog&url=https://dddreams.github.io/170904-go教程-go环境搭建.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/170904-go教程-go环境搭建.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/170907-go教程-GOPATH配置与本地教程安装.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">go教程-GOPATH配置与本地教程安装</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/170905-go教程-GO语言简介.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">go教程-GO语言简介</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/170904-go教程-go环境搭建.html&title=《go教程-go环境搭建》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/170904-go教程-go环境搭建.html&title=《go教程-go环境搭建》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/170904-go教程-go环境搭建.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《go教程-go环境搭建》 — zhiheng's blog&url=https://dddreams.github.io/170904-go教程-go环境搭建.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/170904-go教程-go环境搭建.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/170904-go教程-go环境搭建.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

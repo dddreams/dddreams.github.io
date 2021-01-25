@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>简单易用的 HtmlEncode | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,JavaScript">
+    <meta name="description" content="前言最近在项目中遇到漏洞检查的问题，其中就有 script 脚本注入的问题，简单的说 script 脚本注入就是在接收用户输入时，将 javascript 脚本提交到服务器了，这样在显示时浏览器就会执行这些脚本，从而进行攻击，常见的有跨站脚本 (XSS) 攻击等。 解决方案其实解决方案也很简单，就是将其用户的输入信息进行 html 编码，将特殊字符转换为 html 实体，这样就能可以简单的防止了">
+<meta name="keywords" content="Java,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单易用的 HtmlEncode">
+<meta property="og:url" content="https://dddreams.github.io/简单易用的-HtmlEncode.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="前言最近在项目中遇到漏洞检查的问题，其中就有 script 脚本注入的问题，简单的说 script 脚本注入就是在接收用户输入时，将 javascript 脚本提交到服务器了，这样在显示时浏览器就会执行这些脚本，从而进行攻击，常见的有跨站脚本 (XSS) 攻击等。 解决方案其实解决方案也很简单，就是将其用户的输入信息进行 html 编码，将特殊字符转换为 html 实体，这样就能可以简单的防止了">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2017-05-19T08:21:00.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单易用的 HtmlEncode">
+<meta name="twitter:description" content="前言最近在项目中遇到漏洞检查的问题，其中就有 script 脚本注入的问题，简单的说 script 脚本注入就是在接收用户输入时，将 javascript 脚本提交到服务器了，这样在显示时浏览器就会执行这些脚本，从而进行攻击，常见的有跨站脚本 (XSS) 攻击等。 解决方案其实解决方案也很简单，就是将其用户的输入信息进行 html 编码，将特殊字符转换为 html 实体，这样就能可以简单的防止了">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">简单易用的 HtmlEncode</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">简单易用的 HtmlEncode</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-07T02:50:58.000Z" itemprop="datePublished" class="page-time">
+  2017-04-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决方案"><span class="post-toc-text">解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务端转义"><span class="post-toc-text">服务端转义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#js-前端转义"><span class="post-toc-text">js 前端转义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-简单易用的-HtmlEncode"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">简单易用的 HtmlEncode</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-07 10:50:58" datetime="2017-04-07T02:50:58.000Z"  itemprop="datePublished">2017-04-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在项目中遇到漏洞检查的问题，其中就有 script 脚本注入的问题，简单的说 script 脚本注入就是在接收用户输入时，将 javascript 脚本提交到服务器了，这样在显示时浏览器就会执行这些脚本，从而进行攻击，常见的有跨站脚本 (XSS) 攻击等。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>其实解决方案也很简单，就是将其用户的输入信息进行 html 编码，将特殊字符转换为 html 实体，这样就能可以简单的防止了 script 注入的攻击，但是对于业界高手，还要进一步加强安全策略。</p>
+<h2 id="服务端转义"><a href="#服务端转义" class="headerlink" title="服务端转义"></a>服务端转义</h2><p>可以在服务器端对用户的输入信息进行编码：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java 提供的 API</span></span><br><span class="line"><span class="keyword">String</span> message = Html.Encode(message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简单实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HtmlEncode</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(<span class="keyword">String</span>[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">String</span> s = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"&lt;script&gt;alert(1);&lt;/script&gt;"</span>);</span><br><span class="line">        <span class="keyword">String</span> str = encodeHtml(s);</span><br><span class="line">        System.out.<span class="built_in">println</span>(str); <span class="comment">// &amp;#60;script&amp;#62;alert(1);&amp;#60;/script&amp;#62;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> <span class="title">encodeHtml</span><span class="params">(<span class="keyword">String</span> s)</span></span>&#123;</span><br><span class="line">        StringBuffer out = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c &gt; <span class="number">127</span> || c==<span class="string">'"'</span> || c==<span class="string">'&lt;'</span> || c==<span class="string">'&gt;'</span>) &#123;</span><br><span class="line">                out.append(<span class="string">"&amp;#"</span> + (<span class="keyword">int</span>)c + <span class="string">";"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                out.append(c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> out.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="js-前端转义"><a href="#js-前端转义" class="headerlink" title="js 前端转义"></a>js 前端转义</h2><p>同样也可以在浏览器端进行转义：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>()&#123;</span><br><span class="line">	<span class="string">'use strict'</span>;</span><br><span class="line">	<span class="keyword">var</span> root = <span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">'object'</span> ? <span class="built_in">window</span> : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> htmlEncode = <span class="keyword">function</span>(value, entry) &#123;</span><br><span class="line">		<span class="keyword">if</span>(!entry)&#123;</span><br><span class="line">			entry = &#123; <span class="string">"'"</span>: <span class="string">"&amp;apos;"</span>, <span class="string">'"'</span>: <span class="string">'&amp;quot;'</span>, <span class="string">'&lt;'</span>: <span class="string">'&amp;lt;'</span>, <span class="string">'&gt;'</span>: <span class="string">'&amp;gt;'</span> &#125;;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(value)&#123;</span><br><span class="line">			value = value.replace<span class="function"><span class="params">(<span class="regexp">/(['")-&gt;&lt;&amp;\\\/\.])/g</span>, <span class="keyword">function</span> ($<span class="number">0</span>) &#123; <span class="keyword">return</span> entry[$<span class="number">0</span>] || $<span class="number">0</span>; &#125;)</span>;</span></span><br><span class="line"><span class="function">		&#125;</span></span><br><span class="line"><span class="function">		<span class="title">return</span> <span class="title">value</span>;</span></span><br><span class="line"><span class="function">	&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="title">if</span><span class="params">(root)</span>&#123;</span></span><br><span class="line"><span class="function">		<span class="title">root</span>.<span class="title">htmlEncode</span> = <span class="title">htmlEncode</span>;</span></span><br><span class="line"><span class="function">	&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">&#125;)<span class="params">()</span>;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">var</span> <span class="title">message</span> = '&lt;<span class="title">script</span>&gt;<span class="title">alert</span><span class="params">(<span class="number">1</span>)</span>;&lt;/<span class="title">script</span>&gt;';</span></span><br><span class="line"><span class="function"><span class="title">message</span> = <span class="title">window</span>.<span class="title">htmlEncode</span><span class="params">(message)</span>;  // "&amp;<span class="title">lt</span>;<span class="title">script</span>&amp;<span class="title">gt</span>;<span class="title">alert</span><span class="params">(<span class="number">1</span>)</span>&amp;<span class="title">lt</span>;/<span class="title">script</span>&amp;<span class="title">gt</span>;"</span></span><br><span class="line"><span class="function">// 在浏览器中显示 &lt;<span class="title">script</span>&gt;<span class="title">alert</span><span class="params">(<span class="number">1</span>)</span>&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这两种方法简单实用，基本可以解决简单的脚本注入问题。</p>
+<div style="text-align:center;margin:0;" markdown="1"><img src="/img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div><br><div style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:21:00.638Z" itemprop="dateUpdated">2017-05-19 16:21:00</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/简单易用的-HtmlEncode.html&title=《简单易用的 HtmlEncode》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/简单易用的-HtmlEncode.html&title=《简单易用的 HtmlEncode》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/简单易用的-HtmlEncode.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单易用的 HtmlEncode》 — zhiheng's blog&url=https://dddreams.github.io/简单易用的-HtmlEncode.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/简单易用的-HtmlEncode.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/一个对教师职业的话题.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一个对教师的话题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/JavaScript全局函数eval的用法.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript全局函数eval的用法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/简单易用的-HtmlEncode.html&title=《简单易用的 HtmlEncode》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/简单易用的-HtmlEncode.html&title=《简单易用的 HtmlEncode》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/简单易用的-HtmlEncode.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单易用的 HtmlEncode》 — zhiheng's blog&url=https://dddreams.github.io/简单易用的-HtmlEncode.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/简单易用的-HtmlEncode.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/简单易用的-HtmlEncode.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

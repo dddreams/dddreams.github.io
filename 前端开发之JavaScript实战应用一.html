@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>前端开发之JavaScript实战应用一 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="React-Native,ES6">
+    <meta name="description" content="一、JavaScript 模块化编程原始写法1234567var conut = 0;function m1()&amp;#123;	//...&amp;#125;function m2()&amp;#123;	//...&amp;#125; 使用时直接调用，这种写法”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。 对象写法123456789var module1 = new Object">
+<meta name="keywords" content="React-Native,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端开发之JavaScript实战应用一">
+<meta property="og:url" content="https://dddreams.github.io/前端开发之JavaScript实战应用一.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="一、JavaScript 模块化编程原始写法1234567var conut = 0;function m1()&amp;#123;	//...&amp;#125;function m2()&amp;#123;	//...&amp;#125; 使用时直接调用，这种写法”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。 对象写法123456789var module1 = new Object">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2017-05-19T08:20:48.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端开发之JavaScript实战应用一">
+<meta name="twitter:description" content="一、JavaScript 模块化编程原始写法1234567var conut = 0;function m1()&amp;#123;	//...&amp;#125;function m2()&amp;#123;	//...&amp;#125; 使用时直接调用，这种写法”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。 对象写法123456789var module1 = new Object">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">前端开发之JavaScript实战应用一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">前端开发之JavaScript实战应用一</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-04T07:32:12.000Z" itemprop="datePublished" class="page-time">
+  2017-02-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、JavaScript-模块化编程"><span class="post-toc-text">一、JavaScript 模块化编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原始写法"><span class="post-toc-text">原始写法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象写法"><span class="post-toc-text">对象写法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#立即执行函数写法"><span class="post-toc-text">立即执行函数写法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#放大模式"><span class="post-toc-text">放大模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#宽放大模式"><span class="post-toc-text">宽放大模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入全局变量"><span class="post-toc-text">输入全局变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CommonJS和AMD-规范"><span class="post-toc-text">CommonJS和AMD 规范</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#require-js"><span class="post-toc-text">require.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#加载非规范的模块"><span class="post-toc-text">加载非规范的模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、ES6简单语法"><span class="post-toc-text">二、ES6简单语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ES6-简介"><span class="post-toc-text">ES6 简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增语法"><span class="post-toc-text">新增语法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、Web前端代码规范"><span class="post-toc-text">三、Web前端代码规范</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、react-native-Windows-Android环境搭建"><span class="post-toc-text">四、react-native Windows + Android环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#必需软件安装"><span class="post-toc-text">必需软件安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化项目并启动"><span class="post-toc-text">初始化项目并启动</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-前端开发之JavaScript实战应用一"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">前端开发之JavaScript实战应用一</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-04 15:32:12" datetime="2017-02-04T07:32:12.000Z"  itemprop="datePublished">2017-02-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="一、JavaScript-模块化编程"><a href="#一、JavaScript-模块化编程" class="headerlink" title="一、JavaScript 模块化编程"></a>一、JavaScript 模块化编程</h2><h3 id="原始写法"><a href="#原始写法" class="headerlink" title="原始写法"></a>原始写法</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> conut = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">m1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">m2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用时直接调用，这种写法”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。</p>
+<h3 id="对象写法"><a href="#对象写法" class="headerlink" title="对象写法"></a>对象写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">　　count : <span class="number">0</span>,</span><br><span class="line">    m1 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;,</span><br><span class="line">　　m2 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>像这样封装在一个对象里面，使用时调用对象的属性。<br><code>module1.m1();</code></p>
+<p>但是，这样的写法会暴露所有模块成员，内部状态可以被外部改写<br><code>module1.count = 5;</code></p>
+<h3 id="立即执行函数写法"><a href="#立即执行函数写法" class="headerlink" title="立即执行函数写法"></a>立即执行函数写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">　　<span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(‘comule1’);</span><br><span class="line">	&#125;;</span><br><span class="line">　　<span class="keyword">return</span> &#123;</span><br><span class="line">		m1 : m1</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>这样外部代码无法读取内部的<code>count</code>变量<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(module1 .<span class="built_in">count</span>);   <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="放大模式"><a href="#放大模式" class="headerlink" title="放大模式"></a>放大模式</h3><p>如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块，这时就有必要采用”放大模式”<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span> (<span class="params">mod</span>)</span>&#123;</span><br><span class="line">　　mod.m3 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'m3'</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">　　<span class="keyword">return</span> mod;</span><br><span class="line">&#125;)(module1);</span><br><span class="line"></span><br><span class="line">Module1.m3()   <span class="comment">// m3</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="宽放大模式"><a href="#宽放大模式" class="headerlink" title="宽放大模式"></a>宽放大模式</h3><p>在浏览器环境中，模块的各个部分通常都是通过网络获取的，有时无法知道哪个部分会先加载。如果采用放大模式的写法，第一个执行的部分有可能加载一个不存在空对象，这时就要采用”宽放大模式”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = ( <span class="function"><span class="keyword">function</span> (<span class="params">mod</span>)</span>&#123;</span><br><span class="line">　　<span class="comment">//...</span></span><br><span class="line">　　<span class="keyword">return</span> mod;</span><br><span class="line">&#125;)(<span class="built_in">window</span>.module1 || &#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>与”放大模式”相比，＂宽放大模式＂就是”立即执行函数”的参数可以是空对象</p>
+<h3 id="输入全局变量"><a href="#输入全局变量" class="headerlink" title="输入全局变量"></a>输入全局变量</h3><p>独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。<br>为了在模块内部调用全局变量，必须显式地将其他变量输入模块。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span> <span class="params">($)</span> </span>&#123;</span><br><span class="line">　　<span class="comment">//...</span></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure></p>
+<p>module1模块需要使用jQuery库，把这两个库当作参数输入module1，这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显</p>
+<h3 id="CommonJS和AMD-规范"><a href="#CommonJS和AMD-规范" class="headerlink" title="CommonJS和AMD 规范"></a>CommonJS和AMD 规范</h3><p>在CommonJS中，有一个全局性方法require()，用于加载模块。CommonJS规范主要用在服务端，例如 nodejs就遵守CommonJS规范<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> math = require(<span class="string">'math'</span>);</span><br><span class="line">math.<span class="keyword">add</span>(<span class="number">2</span>,<span class="number">3</span>);   <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<p>但是，如果是客户端， <code>math.add(2, 3)</code>必须要等到 ’math’ 模块加载完成之后才能执行，也就是说，如果加载时间很长，整个应用就会停在那里等待。<br>因为服务端可以同步加载模块，而浏览器主要是异步加载， 这就产生了 AMD 规范：</p>
+<p><strong>AMD规范</strong></p>
+<p>它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<p>AMD也采用require()语句加载模块，但是不同于CommonJS，它要求两个参数：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>([<span class="class"><span class="keyword">module</span>], <span class="title">callback</span>);</span></span><br></pre></td></tr></table></figure></p>
+<p>第一个参数[module]，是一个数组，里面的成员就是要加载的模块；第二个参数callback，则是加载成功之后的回调函数。如果将前面的代码改写成AMD形式，就是下面这样：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'math'</span>], <span class="function"><span class="keyword">function</span> <span class="params">(math)</span></span> &#123;</span><br><span class="line">　　<span class="built_in">math</span>.add(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>所以，AMD比较适合浏览器环境, 目前实现了 AMD 规范最流行javascript库之一是 <code>require.js</code>.</p>
+<h3 id="require-js"><a href="#require-js" class="headerlink" title="require.js"></a>require.js</h3><p>以前引入js的方法<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"1.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"2.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"3.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"4.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"5.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"6.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>缺点：</p>
+<ul>
+<li>浏览器会停止页面渲染，加载的文件越多，网页响应的时间越长</li>
+<li>js文件存在依赖关系，必须严格保证加载顺序，当依赖关系很复杂的时候，代码的编写和维护都会变得困难。</li>
+</ul>
+<p><strong>require.js加载模块</strong></p>
+<p>首先引入 require.js<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"res/js/require.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'moduleA'</span>, <span class="string">'moduleB'</span>, <span class="string">'moduleC'</span>], <span class="function"><span class="keyword">function</span> <span class="params">(moduleA, moduleB, moduleC)</span></span>&#123;</span><br><span class="line">　　// some code here</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// <span class="built_in">require</span>.<span class="built_in">config</span>(); 配置参数</span><br><span class="line"><span class="built_in">require</span>.<span class="built_in">config</span>(&#123;</span><br><span class="line">    paths: &#123;</span><br><span class="line">        <span class="string">"jquery"</span>: <span class="string">"res/js/jquery-3.1.1.min"</span>,</span><br><span class="line">        <span class="string">"math"</span>: <span class="string">"res/js/math"</span></span><br><span class="line">　　&#125;</span><br><span class="line">)&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'math'</span>], <span class="function"><span class="keyword">function</span> <span class="params">($, math)</span></span>&#123;</span><br><span class="line">    console.<span class="built_in">log</span>($);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>AMD模块的写法</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</span><br><span class="line">　　<span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> <span class="params">(x,y)</span></span>&#123;</span><br><span class="line">　　　　<span class="keyword">return</span> x+y;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　<span class="keyword">return</span> &#123;</span><br><span class="line">　　　　add: add</span><br><span class="line">　　&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意：require.js加载的模块，必须是按照AMD规范、用define()函数定义的模块。</p>
+<h3 id="加载非规范的模块"><a href="#加载非规范的模块" class="headerlink" title="加载非规范的模块"></a>加载非规范的模块</h3><p>但是，已经有很多模块没有严格的遵守AMD规范，像这样的模块， 其实 require 也是可以加载的，使用 <code>require.config()</code> 对象除了接收 <code>paths</code> 属性之外，还有一个 <code>shim</code> 属性,专门用来配置不兼容的模块。<br>具体来说，每个模块要定义：</p>
+<ul>
+<li>exports值（输出的变量名），表明这个模块外部调用时的名称；</li>
+<li>deps数组，表明该模块的依赖性。</li>
+</ul>
+<p>比如，jQuery的插件可以这样定义<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">shim</span>: &#123;</span><br><span class="line">　　<span class="string">'jquery.scroll'</span>: &#123;</span><br><span class="line">　　　　<span class="attribute">deps</span>: [<span class="string">'jquery'</span>],</span><br><span class="line">　　　　<span class="attribute">exports</span>: <span class="string">'jQuery.fn.scroll'</span></span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、ES6简单语法"><a href="#二、ES6简单语法" class="headerlink" title="二、ES6简单语法"></a>二、ES6简单语法</h2><h3 id="ES6-简介"><a href="#ES6-简介" class="headerlink" title="ES6 简介"></a>ES6 简介</h3><p>参考：<a href="http://es6.ruanyifeng.com/#docs/intro" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/intro</a></p>
+<p>主流浏览器对ES6的支持：<a href="http://kangax.github.io/compat-table/es6/" target="_blank" rel="noopener">http://kangax.github.io/compat-table/es6/</a></p>
+<h3 id="新增语法"><a href="#新增语法" class="headerlink" title="新增语法"></a>新增语法</h3><p><strong>1、let和const命令</strong></p>
+<p>let 声明的变量只在该变量所在模块内有效<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(i);  <span class="comment">// defined</span></span><br></pre></td></tr></table></figure></p>
+<p>const 声明一个只读的常量。一旦声明，常量的值就不能改变。<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="literal">PI</span> = <span class="number">3.1415</span>;</span><br><span class="line"><span class="literal">PI</span> <span class="comment">// 3.1415</span></span><br><span class="line"></span><br><span class="line"><span class="literal">PI</span> = <span class="number">3</span>;  <span class="comment">// Assignment to constant variable.</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>2、结构化赋值</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">c</span> = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> [a, b, <span class="built_in">c</span>] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [ , , third] = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>];</span><br><span class="line">third； <span class="comment">// baz</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [head, ...tail] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">head <span class="comment">// 1</span></span><br><span class="line">tail <span class="comment">// [2, 3, 4]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>3、块级作用域</strong></p>
+<p>ES5只有全局作用域和函数作用域，没有块级作用域<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(tmp);</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = <span class="string">"hello world"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>ES6 的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = <span class="number">123</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(tmp);  <span class="comment">//defined</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>4、模版字符串</strong></p>
+<p>ES5 的写法<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt = <span class="string">'hello world!'</span>;</span><br><span class="line"><span class="keyword">var</span> test = <span class="built_in">document</span>.getElementById(<span class="string">'demo_1'</span>);</span><br><span class="line">test.innerHTML = <span class="string">'&lt;div&gt;'</span>+txt+<span class="string">'&lt;/div&gt;'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>ES6 的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt = <span class="string">'hello world!'</span>;</span><br><span class="line"><span class="keyword">var</span> test = <span class="built_in">document</span>.getElementById(<span class="string">'demo_1'</span>);</span><br><span class="line">test.innerHTML = <span class="string">`&lt;div&gt;<span class="subst">$&#123;txt&#125;</span>&lt;/div&gt;`</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>5、for of 循环</strong></p>
+<p>ES5 for in 循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// 0 1 2 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ES6 for of 循环<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> v <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v); <span class="comment">// a, b, c, d</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>6、箭头函数</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>7、class 基本语法</strong></p>
+<p>ES5<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span><span class="params">(x, y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Point.prototype.toString = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">p.toString(); <span class="comment">//(1, 2)</span></span><br></pre></td></tr></table></figure></p>
+<p>ES6<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = new Point(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">p.toString(); <span class="comment">// (1, 2)</span></span><br></pre></td></tr></table></figure></p>
+<p>更多教程： <a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰《ECMAScript 6 入门》</a></p>
+<h2 id="三、Web前端代码规范"><a href="#三、Web前端代码规范" class="headerlink" title="三、Web前端代码规范"></a>三、Web前端代码规范</h2><p>参考： 腾讯前端团队的规范文档  <a href="http://alloyteam.github.io/CodeGuide/" target="_blank" rel="noopener">http://alloyteam.github.io/CodeGuide/</a></p>
+<h2 id="四、react-native-Windows-Android环境搭建"><a href="#四、react-native-Windows-Android环境搭建" class="headerlink" title="四、react-native Windows + Android环境搭建"></a>四、react-native Windows + Android环境搭建</h2><p>react-native 官方文档: <a href="http://facebook.github.io/react-native/" target="_blank" rel="noopener">http://facebook.github.io/react-native/</a></p>
+<h3 id="必需软件安装"><a href="#必需软件安装" class="headerlink" title="必需软件安装"></a>必需软件安装</h3><p><strong>Node.js</strong></p>
+<p>安装 Node , python2<br><br><a href="https://nodejs.org/" target="_blank" rel="noopener">https://nodejs.org/</a><br><br><a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a></p>
+<p><strong>React Native CLI</strong><br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g react-<span class="keyword">native</span>-cli</span><br></pre></td></tr></table></figure></p>
+<p><strong>Android 6.0 SDK</strong></p>
+<p>为了 Android SDK 的好管理和下载，直接安装 Android Studio ，并配置环境变量</p>
+<p><strong>Genymotion 模拟器</strong></p>
+<p>下载：<a href="https://www.genymotion.com/" target="_blank" rel="noopener">https://www.genymotion.com/</a></p>
+<p>Genymotion是基于 Oracle 的 VirtualBox 虚拟机的，所以样两个版本，一个是带有VBox 的虚拟机的，一个是不带 VBox。<br><br>安装教程： <a href="http://blog.csdn.net/beiminglei/article/details/13776013" target="_blank" rel="noopener">http://blog.csdn.net/beiminglei/article/details/13776013</a></p>
+<h3 id="初始化项目并启动"><a href="#初始化项目并启动" class="headerlink" title="初始化项目并启动"></a>初始化项目并启动</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">react-<span class="keyword">native</span> <span class="keyword">init</span> AwesomeProject</span><br><span class="line">cd AwesomeProject</span><br><span class="line">react-<span class="keyword">native</span> start</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等服务启动</span></span><br><span class="line">react-<span class="keyword">native</span> run-android</span><br></pre></td></tr></table></figure>
+<p>测试服务地址： localhost:8081/index.android.bundle?platform=android</p>
+<p>yarn 简介： <a href="http://www.infoq.com/cn/news/2016/10/yarn" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2016/10/yarn</a></p>
+<p>博客园开源地址： <a href="https://github.com/togayther/react-native-cnblogs" target="_blank" rel="noopener">https://github.com/togayther/react-native-cnblogs</a></p>
+<div style="text-align:center;margin:0;" markdown="1"><img src="/img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div><br><div style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:20:48.994Z" itemprop="dateUpdated">2017-05-19 16:20:48</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native/">React-Native</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&title=《前端开发之JavaScript实战应用一》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&title=《前端开发之JavaScript实战应用一》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/前端开发之JavaScript实战应用一.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发之JavaScript实战应用一》 — zhiheng's blog&url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/JavaScript模块化编程补充.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript模块化编程补充Sea.js</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/java设计模式之工厂模式.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">java设计模式--简单工厂模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&title=《前端开发之JavaScript实战应用一》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&title=《前端开发之JavaScript实战应用一》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/前端开发之JavaScript实战应用一.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发之JavaScript实战应用一》 — zhiheng's blog&url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/前端开发之JavaScript实战应用一.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/前端开发之JavaScript实战应用一.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

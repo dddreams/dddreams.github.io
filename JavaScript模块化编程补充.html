@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JavaScript模块化编程补充Sea.js | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="官网的介绍：Sea.js 追求简单、自然的代码书写和组织方式，具有以下核心特性：  简单友好的模块定义规范：Sea.js 遵循 CMD 规范，可以像 Node.js 一般书写模块代码。 自然直观的代码组织方式：依赖的自动加载、配置的简洁清晰，可以让我们更多地享受编码的乐趣。  Sea.js 还提供常用插件，非常有助于开发调试和性能优化，并具有丰富的可扩展接口。 社区说： SeaJS 的理念的是 海">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript模块化编程补充Sea.js">
+<meta property="og:url" content="https://dddreams.github.io/JavaScript模块化编程补充.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="官网的介绍：Sea.js 追求简单、自然的代码书写和组织方式，具有以下核心特性：  简单友好的模块定义规范：Sea.js 遵循 CMD 规范，可以像 Node.js 一般书写模块代码。 自然直观的代码组织方式：依赖的自动加载、配置的简洁清晰，可以让我们更多地享受编码的乐趣。  Sea.js 还提供常用插件，非常有助于开发调试和性能优化，并具有丰富的可扩展接口。 社区说： SeaJS 的理念的是 海">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2017-05-19T08:19:37.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript模块化编程补充Sea.js">
+<meta name="twitter:description" content="官网的介绍：Sea.js 追求简单、自然的代码书写和组织方式，具有以下核心特性：  简单友好的模块定义规范：Sea.js 遵循 CMD 规范，可以像 Node.js 一般书写模块代码。 自然直观的代码组织方式：依赖的自动加载、配置的简洁清晰，可以让我们更多地享受编码的乐趣。  Sea.js 还提供常用插件，非常有助于开发调试和性能优化，并具有丰富的可扩展接口。 社区说： SeaJS 的理念的是 海">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript模块化编程补充Sea.js</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript模块化编程补充Sea.js</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-21T02:54:34.000Z" itemprop="datePublished" class="page-time">
+  2017-02-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CMD模块规范"><span class="post-toc-text">CMD模块规范</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用API"><span class="post-toc-text">常用API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JavaScript模块化编程补充"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript模块化编程补充Sea.js</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-21 10:54:34" datetime="2017-02-21T02:54:34.000Z"  itemprop="datePublished">2017-02-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://seajs.org" target="_blank" rel="noopener">官网</a>的介绍：<br>Sea.js 追求简单、自然的代码书写和组织方式，具有以下核心特性：</p>
+<ul>
+<li><strong>简单友好的模块定义规范：</strong>Sea.js 遵循 CMD 规范，可以像 Node.js 一般书写模块代码。</li>
+<li><strong>自然直观的代码组织方式：</strong>依赖的自动加载、配置的简洁清晰，可以让我们更多地享受编码的乐趣。</li>
+</ul>
+<p>Sea.js 还提供常用插件，非常有助于开发调试和性能优化，并具有丰富的可扩展接口。</p>
+<p><a href="https://github.com/seajs/seajs/issues/" target="_blank" rel="noopener">社区</a>说：</p>
+<p>SeaJS 的理念的是 <strong>海纳百川、有容乃大，推崇开放与自由</strong></p>
+<p><a href="https://github.com/seajs/seajs/releases" target="_blank" rel="noopener">下载 https://github.com/seajs/seajs/releases</a></p>
+<h3 id="CMD模块规范"><a href="#CMD模块规范" class="headerlink" title="CMD模块规范"></a>CMD模块规范</h3><p>在 Sea.js 中，所有 JavaScript 模块都遵循 CMD（Common Module Definition） 模块定义规范。该规范明确了模块的基本书写格式和基本交互规则</p>
+<p>在 CMD 规范中，一个模块就是一个文件。代码的书写格式如下：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">require</span>, exports, <span class="keyword">module</span>)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">	doSomething...</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>);</span></span><br></pre></td></tr></table></figure></p>
+<p><code>define</code> 的参数有多种类型，可以是字符串、对象、函数等；还有 <code>define</code> 也可以传入多个参数：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define(id?, deps?, factory)</span></span><br><span class="line">define(<span class="string">'hello'</span>,[<span class="string">'jquery'</span>], <span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">require</span>, exports, <span class="keyword">module</span>)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">	doSomething...</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>);</span></span><br></pre></td></tr></table></figure></p>
+<p>字符串 id 表示模块标识，数组 deps 是模块依赖，上面的写法是省略 id, deps 参数的写法，因此前两个参数是可以省略的。</p>
+<p><strong>注意：</strong>带 id, deps 参数的 define 用法不属于 CMD 规范，而属于 <a href="https://github.com/cmdjs/specification/blob/master/draft/transport.md" target="_blank" rel="noopener">Modules/Transport</a> 规范。</p>
+<p><code>require</code>, <code>exports</code> 和 <code>module</code> 三个参数的用法在下面 sea.js 的 API 中有所介绍。</p>
+<h3 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h3><p>seajs.config</p>
+<p>用来对 Sea.js 进行配置。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置路径，方便跨目录调用</span></span><br><span class="line">  paths: &#123;</span><br><span class="line">    <span class="symbol">'aral</span>e': <span class="symbol">'https</span>:<span class="comment">//a.alipayobjects.com/arale',</span></span><br><span class="line">    <span class="symbol">'jquer</span>y': <span class="symbol">'https</span>:<span class="comment">//a.alipayobjects.com/jquery'</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置别名，方便调用</span></span><br><span class="line">  alias: &#123;</span><br><span class="line">    <span class="symbol">'clas</span>s': <span class="symbol">'arale</span>/<span class="class"><span class="keyword">class</span><span class="title">/1</span>.0.0<span class="title">/class</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">jquery</span>'</span>: <span class="symbol">'jquery</span>/jquery/<span class="number">1.10</span><span class="number">.1</span>/jquery'</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>seajs.use</p>
+<p>用来在页面中加载一个或多个模块。</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载一个模块</span></span><br><span class="line">seajs.use(<span class="string">'./a'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载一个模块，在加载完成时，执行回调</span></span><br><span class="line">seajs.use(<span class="string">'./a'</span>, <span class="function"><span class="keyword">function</span><span class="params">(a)</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  a.doSomething();</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载多个模块，在加载完成时，执行回调</span></span><br><span class="line">seajs.use([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span><span class="params">(a, b)</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  a.doSomething();</span></span></span><br><span class="line"><span class="function"><span class="comment">  b.doSomething();</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>);</span></span><br></pre></td></tr></table></figure>
+<p>define</p>
+<p>用来定义模块。Sea.js 推崇一个模块一个文件，遵循统一的写法：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">require</span>, exports, <span class="keyword">module</span>)</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment"></span></span></span><br><span class="line"><span class="function"><span class="comment">  // 模块代码</span></span></span><br><span class="line"><span class="function"><span class="comment"></span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>);</span></span><br></pre></td></tr></table></figure></p>
+<p><code>require</code>, <code>exports</code> 和 <code>module</code> 三个参数可酌情省略，具体用法如下。</p>
+<p>require</p>
+<p><code>require</code> 用来获取指定模块的接口。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取模块 a 的接口</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用模块 a 的方法</span></span><br><span class="line">  a.doSomething();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意，<code>require</code> 只接受字符串直接量作为参数，</p>
+<p>require.async</p>
+<p>用来在模块内部异步加载一个或多个模块。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 异步加载一个模块，在加载完成时，执行回调</span></span><br><span class="line">  <span class="built_in">require</span>.async(<span class="string">'./b'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">    b.doSomething();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 异步加载多个模块，在加载完成时，执行回调</span></span><br><span class="line">  <span class="built_in">require</span>.async([<span class="string">'./c'</span>, <span class="string">'./d'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">c, d</span>) </span>&#123;</span><br><span class="line">    c.doSomething();</span><br><span class="line">    d.doSomething();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>exports</p>
+<p>用来在模块内部对外提供接口。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span><span class="params">(require, exports)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对外提供 foo 属性</span></span><br><span class="line">  exports.foo = <span class="string">'bar'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对外提供 doSomething 方法</span></span><br><span class="line">  exports.doSomething = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>module.exports</p>
+<p>与 exports 类似，用来在模块内部对外提供接口。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对外提供接口</span></span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    name: <span class="string">'a'</span>,</span><br><span class="line">    doSomething: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>sea.js的优点</strong></p>
+<p>1，通过exports暴露接口。不需要命名空间，不需要全局变量。</p>
+<p>2，通过require引入依赖。让依赖内置，开发者只关心当前模块的依赖，其他事情Seajs都会自动处理好。 其他好处： 1，模块的版本管理。通过别名配置，配合构建工具，可以比较轻松地实现模块的版本管理。 2，提高可以维护性。</p>
+<p>3，前端性能优化。通过异步加载模块，对性能非常有益。</p>
+<p>4，跨环境共享模块。 随着Dojo，YUI3，Node.js推广和流行，前端模块化才开始深入人心。 一类是大教堂模式。如Dojo，YUI3，KISSY等。所有组件都是颗粒化、模块化的，各组件之间层层分级、环环相扣。 一类是集市模式。如 jQuery、RequireJS、Sea.js、OzJS 等。所有组件彼此独立、职责单一，各组件通过组合松耦合在一起，协同完成开发。</p>
+<p><strong>sea.js缺点</strong></p>
+<p>1.文档很烂，官网只有一个很简单的例子，玉伯开了用Github issues 做文档的坏头，导致有的文档issue 里说的东西已经过时了，给人误导。</p>
+<p>2.打包痛苦，配置起来极其复杂，而且一变再变，早期的transport/concat组件简直了，bug挺多。而且这个打包跟spm的关系到底是啥？！！</p>
+<p>3.sea.js文件路径，模块路径，spm路径，打包路径，相对路径，绝对路径，html入口文件路径，这些关系在sea.js初期的时候开发团队没有理清楚，现在我也不知道seajs3和spm3搞清楚没。</p>
+<p>4.每个小版本大版本都有很大变化，从seajs1到2到3，每次变化都挺大的，有些配置莫名其妙地就没了，也没有一个统一的文档来记录。</p>
+<p>摘自知乎<a href="https://www.zhihu.com/question/20342350" target="_blank" rel="noopener">LABjs、RequireJS、SeaJS 哪个最好用？为什么？</a> <a href="https://www.zhihu.com/people/Rufus/answers" target="_blank" rel="noopener">鲁小夫</a>的回答。</p>
+<div style="text-align:center;margin:0;" markdown="1"><img src="/img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div><br><div style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:19:37.453Z" itemprop="dateUpdated">2017-05-19 16:19:37</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/JavaScript模块化编程补充.html&title=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/JavaScript模块化编程补充.html&title=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/JavaScript模块化编程补充.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&url=https://dddreams.github.io/JavaScript模块化编程补充.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/JavaScript模块化编程补充.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/JavaScript全局函数eval的用法.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript全局函数eval的用法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/前端开发之JavaScript实战应用一.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端开发之JavaScript实战应用一</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/JavaScript模块化编程补充.html&title=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/JavaScript模块化编程补充.html&title=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/JavaScript模块化编程补充.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript模块化编程补充Sea.js》 — zhiheng's blog&url=https://dddreams.github.io/JavaScript模块化编程补充.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/JavaScript模块化编程补充.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/JavaScript模块化编程补充.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

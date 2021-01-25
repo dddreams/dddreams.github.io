@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>SpringBoot-集成Quartz作业调度 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Spring Boot">
+    <meta name="description" content="在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文SpringBoot-定时任务，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot-集成Quartz作业调度">
+<meta property="og:url" content="https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文SpringBoot-定时任务，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2021-01-25T08:47:46.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot-集成Quartz作业调度">
+<meta name="twitter:description" content="在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文SpringBoot-定时任务，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringBoot-集成Quartz作业调度</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot-集成Quartz作业调度</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-01-25T08:41:46.000Z" itemprop="datePublished" class="page-time">
+  2021-01-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加依赖"><span class="post-toc-text">加依赖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写配置"><span class="post-toc-text">写配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加注解"><span class="post-toc-text">加注解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-text">实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quartz-集群使用"><span class="post-toc-text">Quartz 集群使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#扩展"><span class="post-toc-text">扩展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、Quartz-触发时间配置的三种方式"><span class="post-toc-text">1、Quartz 触发时间配置的三种方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、使用-quartz-遇到的问题"><span class="post-toc-text">2、使用 quartz 遇到的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1、在定时任务执行中-service-Autowired-注解不进来"><span class="post-toc-text">2.1、在定时任务执行中 service @Autowired 注解不进来</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2、quartz-任务激活失败"><span class="post-toc-text">2.2、quartz 任务激活失败</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最后"><span class="post-toc-text">最后</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考与相关链接"><span class="post-toc-text">参考与相关链接</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-210125-SpringBoot-集成Quartz作业调度"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SpringBoot-集成Quartz作业调度</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-01-25 16:41:46" datetime="2021-01-25T08:41:46.000Z"  itemprop="datePublished">2021-01-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文<a href="https://dddreams.github.io/210122-SpringBoot-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html">SpringBoot-定时任务</a>，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot 是怎么集成 quartz 的。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>简单介绍下 quartz，Quartz是OpenSymphony开源组织在任务调度领域的一个开源项目，完全基于Java实现。作为一个优秀的开源调度框架，Quartz具有以下特点：</p>
+<ul>
+<li>（1）强大的调度功能，例如支持丰富多样的调度方法，可以满足各种常规及特殊需求；</li>
+<li>（2）灵活的应用方式，例如支持任务和调度的多种组合方式，支持调度数据的多种存储方式；</li>
+<li>（3）分布式和集群能力。</li>
+</ul>
+<blockquote>
+<p>Tips<br>还记得 spring boot 的三板斧吗？加依赖，写配置，添注解</p>
+</blockquote>
+<h2 id="加依赖"><a href="#加依赖" class="headerlink" title="加依赖"></a>加依赖</h2><p>引入 spring-boot-starter-quartz 的依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--quartz定时任务依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="写配置"><a href="#写配置" class="headerlink" title="写配置"></a>写配置</h2><p>无需配置</p>
+<h2 id="加注解"><a href="#加注解" class="headerlink" title="加注解"></a>加注解</h2><p>无需注解</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们需要新建一个 QuartzService 的类，由于代码较长，在这里就不贴了，想看具体代码，请前往<a href="https://github.com/dddreams/learn-spring-boot/blob/master/spring-boot-quartz/src/main/java/com/shure/quartz/QuartzService.java" target="_blank" rel="noopener">QuartzService.java</a>。quartz 的 Job 实现方式很多，不一定要用这种方式，只是笔者认为这是一种比较简单的实现。</p>
+<p>新加一个测试类 QuartzTest<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootTest</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzTest</span> &#123;</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(QuartzTest.class);</span><br><span class="line">    @Autowired</span><br><span class="line">    <span class="keyword">private</span> QuartzService quartzService;</span><br><span class="line">    @Test</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quartzTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"添加定时任务"</span>);</span><br><span class="line">        <span class="keyword">String</span> jobName = <span class="string">"test-1"</span>;</span><br><span class="line">        Map&lt;<span class="keyword">String</span>, Object&gt; <span class="built_in">map</span> = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"test"</span>, <span class="string">"测试任务执行"</span>);</span><br><span class="line">        <span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"name"</span>, jobName);</span><br><span class="line">        quartzService.deleteJob(jobName, <span class="string">"test"</span>);</span><br><span class="line">        quartzService.addJob(TestQuartz.class, jobName, <span class="string">"test"</span>, <span class="string">"0 */2 * * * ?"</span>, <span class="built_in">map</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>新建 Job 类，需要继承 QuartzJobBean<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">TestQuartz</span> <span class="keyword">extends</span> <span class="title">QuartzJobBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> static <span class="keyword">final</span> <span class="type">Logger</span> logger = <span class="type">LoggerFactory</span>.getLogger(<span class="type">TestQuartz</span><span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> void executeInternal(<span class="type">JobExecutionContext</span> jobExecutionContext) <span class="keyword">throws</span> <span class="type">JobExecutionException</span> &#123;</span><br><span class="line">        <span class="type">SimpleDateFormat</span> formatter = <span class="keyword">new</span> <span class="type">SimpleDateFormat</span>(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        logger.info(<span class="string">"任务开始执行:"</span> + formatter.format(<span class="type">System</span>.currentTimeMillis()));</span><br><span class="line">        <span class="type">JobDataMap</span> jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();</span><br><span class="line">        <span class="type">String</span> test = jobDataMap.get(<span class="string">"test"</span>).toString();</span><br><span class="line">        <span class="type">String</span> jobName = jobDataMap.get(<span class="string">"name"</span>).toString();</span><br><span class="line">        logger.info(test + <span class="string">":"</span> + jobName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>启动，运行 Test 类，便可添加一个任务，创建 Job 时需要的参数可以通过 <code>JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();</code>来获取，这样就完成了一个定时任务功能。</p>
+<h2 id="Quartz-集群使用"><a href="#Quartz-集群使用" class="headerlink" title="Quartz 集群使用"></a>Quartz 集群使用</h2><p>一个 Quartz 集群中的每个节点是一个独立的 Quartz 应用，它又管理着其他的节点。这就意味着你必须对每个节点分别启动或停止。Quartz 集群中，独立的 Quartz 节点并不与另一其的节点或是管理节点通信，而是通过相同的数据库表来感知到另一 Quartz 应用的。</p>
+<p>因为 Quartz 集群依赖于数据库，所以必须首先创建 Quartz 数据库表，Quartz 发布包中包括了所有被支持的数据库平台的SQL脚本。这些SQL脚本存放于 <code>&lt;quartz_home&gt;/docs/dbTables</code> 目录下，总共12张表，不同版本，表个数可能不同。下面是具体表的说明：</p>
+<ul>
+<li>qrtz_blob_triggers : 以Blob 类型存储的触发器。</li>
+<li>qrtz_calendars：存放日历信息， quartz可配置一个日历来指定一个时间范围。</li>
+<li>qrtz_cron_triggers：存放cron类型的触发器。</li>
+<li>qrtz_fired_triggers：存放已触发的触发器。</li>
+<li>qrtz_job_details：存放一个jobDetail信息。</li>
+<li>qrtz_job_listeners：job监听器。</li>
+<li>qrtz_locks： 存储程序的悲观锁的信息(假如使用了悲观锁)。</li>
+<li>qrtz_paused_trigger_graps：存放暂停掉的触发器。</li>
+<li>qrtz_scheduler_state：调度器状态。</li>
+<li>qrtz_simple_triggers：简单触发器的信息。</li>
+<li>qrtz_trigger_listeners：触发器监听器。</li>
+<li>qrtz_triggers：触发器的基本信息。</li>
+</ul>
+<p>接下来，新建 quartz.yml 的配置文件，来覆盖默认的配置。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">org:</span></span><br><span class="line">  <span class="attr">quartz:</span></span><br><span class="line">    <span class="attr">jobStore:</span></span><br><span class="line">      <span class="attr">useProperties:</span> <span class="literal">false</span></span><br><span class="line">      <span class="attr">tablePrefix:</span> <span class="string">qrtz_</span></span><br><span class="line">      <span class="comment"># 开启集群模式</span></span><br><span class="line">      <span class="attr">isClustered:</span> <span class="literal">true</span></span><br><span class="line">      <span class="comment"># 集群实例检测时间间隔 ms</span></span><br><span class="line">      <span class="attr">clusterCheckinInterval:</span> <span class="number">5000</span></span><br><span class="line">      <span class="comment"># misfire 任务的超时阈值 ms</span></span><br><span class="line">      <span class="attr">misfireThreshold:</span> <span class="number">60000</span></span><br><span class="line">      <span class="attr">txIsolationLevelReadCommitted:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">class:</span> <span class="string">org.quartz.impl.jdbcjobstore.JobStoreTX</span></span><br><span class="line">      <span class="attr">driverDelegateClass:</span> <span class="string">org.quartz.impl.jdbcjobstore.StdJDBCDelegate</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">scheduler:</span></span><br><span class="line">      <span class="attr">instanceId:</span> <span class="string">AUTO</span></span><br><span class="line">      <span class="attr">rmi.export:</span> <span class="literal">false</span></span><br><span class="line">      <span class="attr">rmi.proxy:</span> <span class="literal">false</span></span><br><span class="line">      <span class="attr">wrapJobExecutionInUserTransaction:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 工作线程的线程池设置</span></span><br><span class="line">    <span class="attr">threadPool:</span></span><br><span class="line">      <span class="attr">class:</span> <span class="string">org.quartz.simpl.SimpleThreadPool</span></span><br><span class="line">      <span class="attr">threadCount:</span> <span class="number">25</span></span><br><span class="line">      <span class="attr">threadPriority:</span> <span class="number">5</span></span><br><span class="line">      <span class="attr">threadsInheritContextClassLoaderOfInitializingThread:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>这样 Quartz 集群就可以实现了。</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="1、Quartz-触发时间配置的三种方式"><a href="#1、Quartz-触发时间配置的三种方式" class="headerlink" title="1、Quartz 触发时间配置的三种方式"></a>1、Quartz 触发时间配置的三种方式</h3><ul>
+<li>cron 方式：采用cronExpression表达式配置时间。</li>
+<li>simple 方式：和JavaTimer差不多，可以指定一个开始时间和结束时间外加一个循环时间。</li>
+<li>calendars 方式：可以和cron配合使用，用cron表达式指定一个触发时间规律，用calendar指定一个范围。</li>
+</ul>
+<p><strong>注意：cron方式需要用到的4张数据表： qrtz_triggers，qrtz_cron_triggers，qrtz_fired_triggers，qrtz_job_details</strong></p>
+<h3 id="2、使用-quartz-遇到的问题"><a href="#2、使用-quartz-遇到的问题" class="headerlink" title="2、使用 quartz 遇到的问题"></a>2、使用 quartz 遇到的问题</h3><h4 id="2-1、在定时任务执行中-service-Autowired-注解不进来"><a href="#2-1、在定时任务执行中-service-Autowired-注解不进来" class="headerlink" title="2.1、在定时任务执行中 service @Autowired 注解不进来"></a>2.1、在定时任务执行中 service @Autowired 注解不进来</h4><p>创建 JobFactory 的 Bean，并在 SchedulerConfig 中添加到 SchedulerFactoryBean<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JobFactory</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">JobFactory</span> <span class="keyword">extends</span> <span class="title">SpringBeanJobFactory</span> <span class="title">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> transient <span class="type">AutowireCapableBeanFactory</span> beanFactory;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    public void setApplicationContext(<span class="keyword">final</span> <span class="type">ApplicationContext</span> context) &#123;</span><br><span class="line">        beanFactory = context.getAutowireCapableBeanFactory();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">Object</span> createJobInstance(<span class="keyword">final</span> <span class="type">TriggerFiredBundle</span> bundle) <span class="keyword">throws</span> <span class="type">Exception</span> &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">Object</span> job = <span class="keyword">super</span>.createJobInstance(bundle);</span><br><span class="line">        beanFactory.autowireBean(job);</span><br><span class="line">        <span class="keyword">return</span> job;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>SchedulerConfig.java<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SchedulerConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DataSource dataSource;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> JobFactory jobFactory;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function">Properties <span class="title">quartzProperties</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        PropertiesFactoryBean propertiesFactoryBean = <span class="keyword">new</span> PropertiesFactoryBean();</span><br><span class="line">        propertiesFactoryBean.setLocation(<span class="keyword">new</span> ClassPathResource(<span class="string">"/quartz.yml"</span>));</span><br><span class="line">        propertiesFactoryBean.afterPropertiesSet();</span><br><span class="line">        <span class="function"><span class="keyword">return</span> propertiesFactoryBean.<span class="title">getObject</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function">SchedulerFactoryBean <span class="title">schedulerFactoryBean</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        SchedulerFactoryBean factory = <span class="keyword">new</span> SchedulerFactoryBean();</span><br><span class="line">        factory.setSchedulerName(<span class="string">"Cluster_Scheduler"</span>);</span><br><span class="line">        factory.setDataSource(dataSource);</span><br><span class="line">        factory.setApplicationContextSchedulerContextKey(<span class="string">"applicationContext"</span>);</span><br><span class="line">        factory.setQuartzProperties(quartzProperties());</span><br><span class="line">        factory.setJobFactory(jobFactory);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-2、quartz-任务激活失败"><a href="#2-2、quartz-任务激活失败" class="headerlink" title="2.2、quartz 任务激活失败"></a>2.2、quartz 任务激活失败</h4><p>在Quartz中，当一个持久化的触发器会因为：</p>
+<ol>
+<li>调度器被关闭；</li>
+<li>线程池没有可用线程；</li>
+<li>项目重启；</li>
+<li>任务的串行执行；</li>
+</ol>
+<p>而错过激活时间，就会发生激活失败（misfire）。</p>
+<p>可以设置 quartz中CornTrigger使用的策略<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有的misfile任务马上执行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY = <span class="number">-1</span>;</span><br><span class="line"><span class="comment">//在Trigger中默认选择MISFIRE_INSTRUCTION_FIRE_ONCE_NOW 策略</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_SMART_POLICY = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// CornTrigger默认策略，合并部分misfire，正常执行下一个周期的任务。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_FIRE_ONCE_NOW = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//所有的misFire都不管，执行下一个周期的任务。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_DO_NOTHING = <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>1、 通过setMisfireInstruction方法设置misfire策略。<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CronTriggerFactoryBean triggerFactoryBean = new CronTriggerFactoryBean<span class="params">()</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>Name<span class="params">("corn_" + clazzName)</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>JobDetail<span class="params">(jobFactory.getObject()</span>);</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>CronExpression<span class="params">(quartzCorn)</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>Group<span class="params">(QUARTZ_TRIGGER_GROUP)</span>;</span><br><span class="line"><span class="string">//</span>设置misfire策略</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>MisfireInstruction<span class="params">(CronTrigger.MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY)</span>;</span><br><span class="line">triggerFactoryBean.afterPropertiesSet<span class="params">()</span>;</span><br></pre></td></tr></table></figure></p>
+<p>2、 也可以通过CronScheduleBuilder设置misfire策略。<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CronScheduleBuilder csb = CronScheduleBuilder.cronSchedule(<span class="string">"0/5 * * * * ?"</span>);</span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_DO_NOTHING </span></span><br><span class="line">csb.withMisfireHandlingInstructionDoNothing();</span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_FIRE_ONCE_NOW</span></span><br><span class="line">csb.withMisfireHandlingInstructionFireAndProceed();<span class="comment">//(默认)</span></span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY</span></span><br><span class="line">csb.withMisfireHandlingInstructionIgnoreMisfires();</span><br></pre></td></tr></table></figure></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>任务调度在实际项目中会经常用到，Quartz 也是我们的不二选择，但是在高可用的系统中也存在不少问题，具体问题小伙伴们可以在留言区留言，卫门来共同探讨。</p>
+<h2 id="参考与相关链接"><a href="#参考与相关链接" class="headerlink" title="参考与相关链接"></a>参考与相关链接</h2><p>示例代码：<a href="https://github.com/dddreams/learn-spring-boot/tree/master/spring-boot-quartz" target="_blank" rel="noopener">https://github.com/dddreams/learn-spring-boot/tree/master/spring-boot-quartz</a></p>
+<p>Quartz 官网：<a href="http://www.quartz-scheduler.org/" target="_blank" rel="noopener">http://www.quartz-scheduler.org/</a></p>
+<p>Quartz集群原理及配置应用：<a href="https://www.cnblogs.com/xiang--liu/p/10120105.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiang–liu/p/10120105.html</a></p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-01-25T08:47:46.673Z" itemprop="dateUpdated">2021-01-25 16:47:46</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&title=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&title=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/210122-SpringBoot-定时任务.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot-定时任务</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&title=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&title=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SpringBoot-集成Quartz作业调度》 — zhiheng's blog&url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/210125-SpringBoot-集成Quartz作业调度.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

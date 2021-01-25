@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>代码规范之 java  | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="对于代码规范，我是一个有洁癖的人，尤其是在 html 页面中更加注重。公司有几个哥们，写代码完全不按常理出牌，最简单的代码缩进都懒得去做，更别说美观了，每次修改bug都让人很头疼，读他们的代码就像是在吃黄连。尤其是我这种有代码洁癖的人，第一眼看上去，必然会在心里骂爹骂娘的（我去年买了个表）。今天这篇文章我们就来说说大神们的代码规范。 命名包名： 包名一般都是用公司的域名反着来写的，最后是业务名称，">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码规范之 java ">
+<meta property="og:url" content="https://dddreams.github.io/代码规范之-java.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="对于代码规范，我是一个有洁癖的人，尤其是在 html 页面中更加注重。公司有几个哥们，写代码完全不按常理出牌，最简单的代码缩进都懒得去做，更别说美观了，每次修改bug都让人很头疼，读他们的代码就像是在吃黄连。尤其是我这种有代码洁癖的人，第一眼看上去，必然会在心里骂爹骂娘的（我去年买了个表）。今天这篇文章我们就来说说大神们的代码规范。 命名包名： 包名一般都是用公司的域名反着来写的，最后是业务名称，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2017-05-19T08:21:13.101Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码规范之 java ">
+<meta name="twitter:description" content="对于代码规范，我是一个有洁癖的人，尤其是在 html 页面中更加注重。公司有几个哥们，写代码完全不按常理出牌，最简单的代码缩进都懒得去做，更别说美观了，每次修改bug都让人很头疼，读他们的代码就像是在吃黄连。尤其是我这种有代码洁癖的人，第一眼看上去，必然会在心里骂爹骂娘的（我去年买了个表）。今天这篇文章我们就来说说大神们的代码规范。 命名包名： 包名一般都是用公司的域名反着来写的，最后是业务名称，">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">代码规范之 java </div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">代码规范之 java </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-29T03:05:40.000Z" itemprop="datePublished" class="page-time">
+  2016-10-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命名"><span class="post-toc-text">命名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编码规范"><span class="post-toc-text">编码规范</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#捕获的异常：不能忽视"><span class="post-toc-text">捕获的异常：不能忽视</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-代码规范之-java"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">代码规范之 java </h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-29 11:05:40" datetime="2016-10-29T03:05:40.000Z"  itemprop="datePublished">2016-10-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>对于代码规范，我是一个有洁癖的人，尤其是在 html 页面中更加注重。公司有几个哥们，写代码完全不按常理出牌，最简单的代码缩进都懒得去做，更别说美观了，每次修改bug都让人很头疼，读他们的代码就像是在吃黄连。尤其是我这种有代码洁癖的人，第一眼看上去，必然会在心里骂爹骂娘的（我去年买了个表）。今天这篇文章我们就来说说大神们的代码规范。</p>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a><strong>命名</strong></h3><p><strong>包名：</strong> 包名一般都是用公司的域名反着来写的，最后是业务名称，通用小写字母，连续的单词只是简单地连接起来，不使用下划线，例如： <code>com.google.XXX.action</code> 。<br><strong>文件名：</strong>源文件以其最顶层的类名来命名，大小写敏感，文件扩展名为 <code>.java</code> 名称与业务相关。源文件编码格式为 <code>utf-8</code> .<br><strong>类名：</strong> 类的名字必须由大写字母开头而单词中的其他字母均为小写；如果类名称由多个单词组成，则每个单词的首字母均应为大写例如TestPage；如果类名 称中包含单词缩写，则这个所写词的每个字母均应大写，如：XMLExample,还有一点命名技巧就是由于类是设计用来代表对象的，所以在命名类时应尽量选择名词。例如： User<br><strong>方法名：</strong>方法的名字的第一个单词应以小写字母作为开头，后面的单词则用大写字母开头，使用驼峰命名法。例如： sendMessge()<br><strong>常量名：</strong>常量的名字应该都使用大写字母，并且指出该常量完整含义。如果一个常量名称由多个单词组成，则应该用下划线来分割这些单词。 例如：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> NUMBER = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableList&lt;<span class="built_in">String</span>&gt; NAMES = ImmutableList.of(<span class="string">"Ed"</span>, <span class="string">"Ann"</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Joiner COMMA_JOINER = Joiner.<span class="keyword">on</span>(<span class="string">','</span>);  <span class="comment">// because Joiner is immutable</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> SomeMutableType[] EMPTY_ARRAY = &#123;&#125;;</span><br><span class="line"><span class="keyword">enum</span> SomeEnum &#123; ENUM_CONSTANT &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">String</span> nonFinal = <span class="string">"non-final"</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> nonStatic = <span class="string">"non-static"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; mutableCollection = <span class="keyword">new</span> HashSet&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableSet&lt;SomeMutableType&gt; mutableElements = ImmutableSet.of(mutable);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Logger logger = Logger.getLogger(MyClass.getName());</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">String</span>[] nonEmptyArray = &#123;<span class="string">"these"</span>, <span class="string">"can"</span>, <span class="string">"change"</span>&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>属性名：</strong>参数的命名规范和方法的命名规范相同，而且为了避免阅读程序时造成迷惑，请在尽量保证参数名称为一个单词的情况下使参数的命名尽可能明确。<br><strong>驼峰式命名法(CamelCase)：</strong><br>驼峰式命名法分大驼峰式命名法(UpperCamelCase)和小驼峰式命名法(lowerCamelCase)。 有时，我们有不只一种合理的方式将一个英语词组转换成驼峰形式，如缩略语或不寻常的结构(例如”IPv6”或”iOS”)。Google指定了以下的转换方案。</p>
+<p>名字从散文形式(prose form)开始:</p>
+<ul>
+<li>把短语转换为纯ASCII码，并且移除任何单引号。例如：”Müller’s algorithm”将变成”Muellers algorithm”。</li>
+<li><p>把这个结果切分成单词，在空格或其它标点符号(通常是连字符)处分割开。<br>推荐：如果某个单词已经有了常用的驼峰表示形式，按它的组成将它分割开(如”AdWords”将分割成”ad words”)。 需要注意的是”iOS”并不是一个真正的驼峰表示形式，因此该推荐对它并不适用。</p>
+</li>
+<li><p>现在将所有字母都小写(包括缩写)，然后将单词的第一个字母大写：</p>
+<ul>
+<li>每个单词的第一个字母都大写，来得到大驼峰式命名。</li>
+<li>除了第一个单词，每个单词的第一个字母都大写，来得到小驼峰式命名。</li>
+</ul>
+</li>
+<li>最后将所有的单词连接起来得到一个标识符。<br>例如：<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Prose form                Correct               Incorrect</span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">"XML HTTP request"        XmlHttpRequest        XMLHTTPRequest</span><br><span class="line">"new customer ID"         newCustomerId         newCustomerID</span><br><span class="line">"inner stopwatch"         innerStopwatch        innerStopWatch</span><br><span class="line">"supports IPv6 on iOS?"   supportsIpv6OnIos     supportsIPv6OnIOS</span><br><span class="line">"YouTube importer"        YouTubeImporter</span><br><span class="line"><span class="code">                          YoutubeImporter*</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>javadoc注释：</strong> Java除了可以采用我们常见的注释方式之外，Java语言规范还定义了一种特殊的注释，也就是我们所说的Javadoc注释，它是用来记录我们代 码中的API的。Javadoc注释是一种多行注释，以结束，注释可以包含一些HTML标记符和专门的关键词。使用Javadoc 注释的好处是编写的注释可以被自动转为在线文档，省去了单独编写程序文档的麻烦。例如：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Multiple lines of Javadoc text are written here,</span></span><br><span class="line"><span class="comment"> * wrapped normally...</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">method</span><span class="params">(<span class="keyword">String</span> p1)</span> </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure></p>
+<p>至少在每个public类及它的每个public和protected成员处使用Javadoc，</p>
+<h3 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a><strong>编码规范</strong></h3><p><strong>package语句：</strong> <code>package</code> 语句不换行，(即package语句写在一行里)<br><strong>import语句：</strong> 一般不使用通配符，即：<code>import java.util.*;</code><br><code>import</code>语句不换行(每个import语句独立成行)。<br><strong>缩进：</strong> 缩进一个 tab<br><strong>大括号：</strong> 大括号与if, else, for, do, while语句一起使用，即使只有一条语句(或是空)，也应该把大括号写上。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(value)</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>列限制：</strong> 80或100，一个项目可以选择一行80个字符或100个字符的列限制，除了下述例外，任何一行如果超过这个字符数限制，必须自动换行。自动换行时，第一行后的每一行至少比第一行多缩进4个空格。<br><strong>数组：</strong> 以下写法都是OK的<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">new int[] &#123;</span><br><span class="line">  <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">new int[] &#123;</span><br><span class="line">  <span class="number">0</span>,</span><br><span class="line">  <span class="number">1</span>,</span><br><span class="line">  <span class="number">2</span>,</span><br><span class="line">  <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">new int[] &#123;</span><br><span class="line">  <span class="number">0</span>, <span class="number">1</span>,</span><br><span class="line">  <span class="number">2</span>, <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">new int[]</span><br><span class="line">    &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>switch语句：</strong>在一个switch块内，每个语句组要么通过break, continue, return或抛出异常来终止，要么通过一条注释来说明程序将继续执行到下一个语句组， 任何能表达这个意思的注释都是OK的(典型的是用// fall through)。这个特殊的注释并不需要在最后一个语句组(一般是default)中出现。示例：<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (<span class="keyword">input</span>) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    prepareOneOrTwo()<span class="comment">;</span></span><br><span class="line">    <span class="comment">// fall through</span></span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    handleOneTwoOrThree()<span class="comment">;</span></span><br><span class="line">    <span class="keyword">break</span><span class="comment">;</span></span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    handleLargeNumber(<span class="keyword">input</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注解(Annotations)：</strong>注解紧跟在文档块后面，应用于类、方法和构造函数，一个注解独占一行。这些换行不属于自动换行(第4.5节，自动换行)，因此缩进级别不变。例如：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Override</span></span><br><span class="line"><span class="variable">@Nullable</span></span><br><span class="line">public String getNameIfPresent() &#123; ... &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注释：</strong>块注释与其周围的代码在同一缩进级别。它们可以是<code>/* ... */</code>风格，也可以是<code>// ...</code>风格。对于多行的<code>/* ... */</code>注释，后续行必须从<code>*开始， 并且与前一行的*</code>对齐。以下示例注释都是OK的。<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * This is          <span class="comment">// And so           /* Or you can</span></span><br><span class="line"> * okay.            <span class="comment">// is this.          * even do this. */</span></span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<h3 id="捕获的异常：不能忽视"><a href="#捕获的异常：不能忽视" class="headerlink" title="捕获的异常：不能忽视"></a><strong>捕获的异常：不能忽视</strong></h3><p>除了下面的例子，对捕获的异常不做响应是极少正确的。(典型的响应方式是打印日志，或者如果它被认为是不可能的，则把它当作一个AssertionError重新抛出。)</p>
+<p>如果它确实是不需要在catch块中做任何响应，需要做注释加以说明(如下面的例子)。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">int</span> i = Integer.parseInt(response);</span><br><span class="line">  <span class="function"><span class="keyword">return</span> <span class="title">handleNumericResponse</span><span class="params">(i)</span></span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException ok) &#123;</span><br><span class="line">  <span class="comment">// it's not numeric; that's fine, just continue</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">return</span> <span class="title">handleTextResponse</span><span class="params">(response)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>例外：在测试中，如果一个捕获的异常被命名为expected，则它可以被不加注释地忽略。下面是一种非常常见的情形，用以确保所测试的方法会抛出一个期望中的异常， 因此在这里就没有必要加注释。<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  emptyStack.pop<span class="comment">()</span>;</span><br><span class="line">  fail<span class="comment">()</span>;</span><br><span class="line">&#125; catch <span class="comment">(NoSuchElementException expected)</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="text-align:center;margin:0;" markdown="1"><img src="/img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div><br><div style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:21:13.101Z" itemprop="dateUpdated">2017-05-19 16:21:13</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/代码规范之-java.html&title=《代码规范之 java 》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/代码规范之-java.html&title=《代码规范之 java 》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/代码规范之-java.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《代码规范之 java 》 — zhiheng's blog&url=https://dddreams.github.io/代码规范之-java.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/代码规范之-java.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/代码规范之Web.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">代码规范之Web</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/chrome插件，吐血推荐.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">chrome插件，吐血推荐</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/代码规范之-java.html&title=《代码规范之 java 》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/代码规范之-java.html&title=《代码规范之 java 》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/代码规范之-java.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《代码规范之 java 》 — zhiheng's blog&url=https://dddreams.github.io/代码规范之-java.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/代码规范之-java.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/代码规范之-java.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

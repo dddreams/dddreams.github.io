@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>代码规范之Web | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Web">
+    <meta name="description" content="命名规则上一篇总结了 java 代码规范，规则都来源于 google 的代码规范，这一篇总结 web 前端的规范。 项目命名：全部使用小写字母，用下划线隔开。例：my_project_name目录命名：采用项目命名规则，有复数结构时，要采用复数命名法。例：styles，images，scripts文件名：都采用小写字母，用下划线隔开加后缀。例：index_example.html，style_ba">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码规范之Web">
+<meta property="og:url" content="https://dddreams.github.io/代码规范之Web.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="命名规则上一篇总结了 java 代码规范，规则都来源于 google 的代码规范，这一篇总结 web 前端的规范。 项目命名：全部使用小写字母，用下划线隔开。例：my_project_name目录命名：采用项目命名规则，有复数结构时，要采用复数命名法。例：styles，images，scripts文件名：都采用小写字母，用下划线隔开加后缀。例：index_example.html，style_ba">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2017-05-19T08:21:08.571Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码规范之Web">
+<meta name="twitter:description" content="命名规则上一篇总结了 java 代码规范，规则都来源于 google 的代码规范，这一篇总结 web 前端的规范。 项目命名：全部使用小写字母，用下划线隔开。例：my_project_name目录命名：采用项目命名规则，有复数结构时，要采用复数命名法。例：styles，images，scripts文件名：都采用小写字母，用下划线隔开加后缀。例：index_example.html，style_ba">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">代码规范之Web</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">代码规范之Web</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-23T12:26:46.000Z" itemprop="datePublished" class="page-time">
+  2016-11-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命名规则"><span class="post-toc-text">命名规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML"><span class="post-toc-text">HTML</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS"><span class="post-toc-text">CSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JavaScript"><span class="post-toc-text">JavaScript</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-代码规范之Web"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">代码规范之Web</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-23 20:26:46" datetime="2016-11-23T12:26:46.000Z"  itemprop="datePublished">2016-11-23</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a><strong>命名规则</strong></h2><p>上一篇总结了 java 代码规范，规则都来源于 google 的代码规范，这一篇总结 web 前端的规范。</p>
+<p><strong>项目命名：</strong>全部使用小写字母，用下划线隔开。例：my_project_name<br><strong>目录命名：</strong>采用项目命名规则，有复数结构时，要采用复数命名法。例：styles，images，scripts<br><strong>文件名：</strong>都采用小写字母，用下划线隔开加后缀。例：index_example.html，style_base.css，example_model.js。</p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a><strong>HTML</strong></h2><p><strong>语法：</strong></p>
+<ul>
+<li>缩进使用soft tab（4个空格）；</li>
+<li>嵌套的节点应该缩进；</li>
+<li>在属性上，使用双引号，不要使用单引号；</li>
+<li>属性名全小写，用中划线做分隔符；</li>
+<li>不要在自动闭合标签结尾处使用斜线（HTML5 规范 指出他们是可选的）；</li>
+<li>不要忽略可选的关闭标签，例：<code>&lt;/li&gt;</code> 和 <code>&lt;/body&gt;</code>。</li>
+<li>虽然doctype不区分大小写，但是按照惯例，doctype大写<a href="http://stackoverflow.com/questions/15594877/is-there-any-benefits-to-use-uppercase-or-lowercase-letters-with-html5-tagname" target="_blank" rel="noopener">关于html属性，大写还是小写</a></li>
+<li>应在html标签上加上lang属性。这会给语音工具和翻译工具帮助，告诉它们应当怎么去发音和翻译。更多关于 lang 属性的说明<a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-html-element" target="_blank" rel="noopener">在这里</a>；而微软给出了一份更加<a href="http://msdn.microsoft.com/en-us/library/ms533052(v=vs.85" target="_blank" rel="noopener">详细的语言列表</a>.aspx)，其中细分了zh-cn, zh-hk, zh-tw;</li>
+<li>指定字符编码通常为’UTF-8’；</li>
+<li>IE兼容模式： 用 <meta> 标签可以指定页面应该用什么版本的IE来渲染；</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en-us"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=Edge"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Page title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- External CSS --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"code_guide.css"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- In-document CSS --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">		    ...</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/company_logo.png"</span> <span class="attr">alt</span>=<span class="string">"Company"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"hello-world"</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- External JS --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"code_guide.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- In-document JS --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">		    ...</span><br><span class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>属性顺序</strong><br>属性应该按照特定的顺序出现以保证易读性；</p>
+<ul>
+<li>class</li>
+<li>id</li>
+<li>name</li>
+<li>data-*</li>
+<li>src, for, type, href, value , max-length, max, min, pattern</li>
+<li>placeholder, title, alt</li>
+<li>aria-*, role</li>
+<li>required, readonly, disabled</li>
+</ul>
+<p>class是为高可复用组件设计的，所以应处在第一位；<br>id更加具体且应该尽量少使用，所以将它放在第二位。</p>
+<p><strong>JS生成标签</strong></p>
+<p>在JS文件中生成标签让内容变得更难查找，更难编辑，性能更差。应该尽量避免这种情况的出现。</p>
+<p><strong>减少标签数量</strong></p>
+<p>在编写HTML代码时，需要尽量避免多余的父节点；<br>很多时候，需要通过迭代和重构来使HTML变得更少。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Not well --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"avatar"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Better --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">src</span>=<span class="string">"..."</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a><strong>CSS</strong></h2><p><strong>缩进</strong></p>
+<p>使用soft tab（4个空格）。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>命名</strong></p>
+<p>类名使用小写字母，以中划线分隔<br>id采用驼峰式命名<br>scss中的变量、函数、混合、placeholder采用驼峰式命名</p>
+<p><strong>属性简写</strong></p>
+<p>属性简写需要你非常清楚属性值的正确顺序，而且在大多数情况下并不需要设置属性简写中包含的所有值，所以建议尽量分开声明会更加清晰；<br>margin 和 padding 相反，需要使用简写；<br>常见的属性简写包括：</p>
+<ul>
+<li>font</li>
+<li>background</li>
+<li>transition</li>
+<li>animation</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* not good */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">transition</span>: opacity <span class="number">1s</span> linear <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* good */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">transition-delay</span>: <span class="number">2s</span>;</span><br><span class="line">    <span class="attribute">transition-timing-function</span>: linear;</span><br><span class="line">    <span class="attribute">transition-duration</span>: <span class="number">1s</span>;</span><br><span class="line">    <span class="attribute">transition-property</span>: opacity;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>颜色</strong></p>
+<p>颜色16进制用小写字母；<br>颜色16进制尽量用简写。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* not good */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ABCDEF</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#001122</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* good */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#abcdef</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#012</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>杂项</strong></p>
+<p>不允许有空的规则；</p>
+<p>元素选择器用小写字母；</p>
+<p>去掉小数点前面的0；</p>
+<p>去掉数字中不必要的小数点和末尾的0；</p>
+<p>属性值’0’后面不要加单位；</p>
+<p>同个属性不同前缀的写法需要在垂直方向保持对齐，具体参照右边的写法；</p>
+<p>无前缀的标准属性应该写在有前缀的属性后面；</p>
+<p>不要在同个规则里出现重复的属性，如果重复的属性是连续的则没关系；</p>
+<p>不要在一个文件里出现两个相同的规则；</p>
+<p>用 border: 0; 代替 border: none;；</p>
+<p>选择器不要超过4层（在scss中如果超过4层应该考虑用嵌套的方式来写）；</p>
+<p>发布的代码中不要有 @import；</p>
+<p>尽量少用’*’选择器。</p>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a><strong>JavaScript</strong></h2><p><strong>缩进</strong></p>
+<p>使用soft tab（4个空格）。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var</span> x = <span class="number">1</span>,</span><br><span class="line">    y = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">if</span> (x &lt; y) &#123;</span><br><span class="line">    <span class="attribute">x</span> += <span class="number">10</span>;</span><br><span class="line">&#125; <span class="section">else</span> &#123;</span><br><span class="line">    <span class="attribute">x</span> += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>分号</strong></p>
+<p>以下几种情况后需加分号：</p>
+<ul>
+<li>变量声明</li>
+<li>表达式</li>
+<li>return</li>
+<li>throw</li>
+<li>break</li>
+<li>continue</li>
+<li>do-while</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* var declaration */</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* expression statement */</span></span><br><span class="line">x++;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* do-while */</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    x++;</span><br><span class="line">&#125; <span class="keyword">while</span> (x &lt; <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>引号</strong></p>
+<p>最外层统一使用单引号。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// not good</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="string">"test"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">'foo'</span>,</span><br><span class="line">    z = <span class="string">'&lt;div id="test"&gt;&lt;/div&gt;'</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>变量命名</strong></p>
+<ul>
+<li>标准变量采用驼峰式命名（除了对象的属性外，主要是考虑到cgi返回的数据）</li>
+<li>‘ID’在变量名中全大写</li>
+<li>‘URL’在变量名中全大写</li>
+<li>‘Android’在变量名中大写第一个字母</li>
+<li>‘iOS’在变量名中小写第一个，大写后两个字母</li>
+<li>常量全大写，用下划线连接</li>
+<li>构造函数，大写第一个字母</li>
+<li>jquery对象必须以’$’开头命名</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thisIsMyName;</span><br><span class="line"><span class="keyword">var</span> goodID;</span><br><span class="line"><span class="keyword">var</span> reportURL;</span><br><span class="line"><span class="keyword">var</span> AndroidVersion;</span><br><span class="line"><span class="keyword">var</span> iOSVersion;</span><br><span class="line"><span class="keyword">var</span> MAX_COUNT = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// not good</span></span><br><span class="line"><span class="keyword">var</span> body = $(<span class="string">'body'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">var</span> $body = $(<span class="string">'body'</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>变量声明</strong></p>
+<p>一个函数作用域中所有的变量声明尽量提到函数首部，用一个var声明，不允许出现两个连续的var声明。<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function doSomethingWithItems(items) &#123;</span><br><span class="line">    // use one <span class="built_in">var</span></span><br><span class="line">    <span class="built_in">var</span> <span class="built_in">value</span> = <span class="number">10</span>,</span><br><span class="line">        result = <span class="built_in">value</span> + <span class="number">10</span>,</span><br><span class="line">        i,</span><br><span class="line">        <span class="built_in">len</span>;</span><br><span class="line"></span><br><span class="line">    for (i = <span class="number">0</span>, <span class="built_in">len</span> = items.length; i &lt; <span class="built_in">len</span>; i++) &#123;</span><br><span class="line">        result += <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>函数</strong></p>
+<p>无论是函数声明还是函数表达式，’(‘前不要空格，但’{‘前一定要有空格；</p>
+<p>函数调用括号前不需要空格；</p>
+<p>立即执行函数外必须包一层括号；</p>
+<p>不要给inline function命名；</p>
+<p>参数之间用’, ‘分隔，注意逗号后有一个空格。</p>
+<p><strong>数组、对象</strong></p>
+<p>对象属性名不需要加引号；</p>
+<p>对象以缩进的形式书写，不要写在一行；</p>
+<p>数组、对象最后不要有逗号。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">not</span> <span class="string">good</span></span><br><span class="line"><span class="string">var</span> <span class="string">a</span> <span class="string">=</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">'b':</span> <span class="number">1</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="string">var</span> <span class="string">a</span> <span class="string">=</span> <span class="string">&#123;b:</span> <span class="number">1</span><span class="string">&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="string">var</span> <span class="string">a</span> <span class="string">=</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">b:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">c:</span> <span class="number">2</span><span class="string">,</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">good</span></span><br><span class="line"><span class="string">var</span> <span class="string">a</span> <span class="string">=</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">b:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">c:</span> <span class="number">2</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>文档注释</strong></p>
+<p>各类标签@param, @method等请参考usejsdoc和JSDoc Guide；</p>
+<p>建议在以下情况下使用：</p>
+<p>所有常量<br>所有函数<br>所有类<br><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @func</span><br><span class="line"> * @desc 一个带参数的函数</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">a</span> - 参数a</span><br><span class="line"> * @<span class="keyword">param</span> &#123;number&#125; <span class="keyword">b</span>=1 - 参数b默认值为1</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">c</span>=1 - 参数c有两种支持的取值&lt;/br&gt;1—表示x&lt;/br&gt;2—表示xx</span><br><span class="line"> * @<span class="keyword">param</span> &#123;object&#125; <span class="keyword">d</span> - 参数d为一个对象</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">d</span>.e - 参数d的e属性</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">d</span>.f - 参数d的f属性</span><br><span class="line"> * @<span class="keyword">param</span> &#123;object[]&#125; <span class="keyword">g</span> - 参数g为一个对象数组</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">g</span>.h - 参数g数组中一项的h属性</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; <span class="keyword">g</span>.i - 参数g数组中一项的i属性</span><br><span class="line"> * @<span class="keyword">param</span> &#123;string&#125; [j] - 参数j是一个可选参数</span><br><span class="line"> */</span><br><span class="line">function foo(a, b, c, d, g, j) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>null</strong></p>
+<p>适用场景：</p>
+<ul>
+<li>初始化一个将来可能被赋值为对象的变量</li>
+<li>与已经初始化的变量做比较</li>
+<li>作为一个参数为对象的函数的调用传参</li>
+<li><p>作为一个返回对象的函数的返回值<br>不适用场景：</p>
+</li>
+<li><p>不要用null来判断函数调用时有无传参</p>
+</li>
+<li>不要与未初始化的变量做比较</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// not good</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(a, b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// not mean b is not supply</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a === <span class="literal">null</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a === <span class="literal">null</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>undefined</strong></p>
+<p>永远不要直接使用undefined进行变量判断；</p>
+<p>使用typeof和字符串’undefined’对变量进行判断。<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> not good</span><br><span class="line"><span class="keyword">if</span> <span class="params">(<span class="attr">person</span> === undefined)</span> &#123;</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">//</span> good</span><br><span class="line"><span class="keyword">if</span> <span class="params">(typeof <span class="attr">person</span> === 'undefined')</span> &#123;</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>杂项</strong></p>
+<p>不要混用tab和space；</p>
+<p>不要在一处使用多个tab或space；</p>
+<p>换行符统一用’LF’；</p>
+<p>对上下文this的引用只能使用’_this’, ‘that’, ‘self’其中一个来命名；</p>
+<p>行尾不要有空白字符；</p>
+<p>switch的falling through和no default的情况一定要有注释特别说明；</p>
+<p>不允许有空的代码块。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// not good</span></span><br><span class="line"><span class="keyword">var</span> a   = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// not good</span></span><br><span class="line">    <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// good</span></span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// good</span></span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// good</span></span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">switch</span> (condition) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        ...</span><br><span class="line">    <span class="comment">// why fall through</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">// why no default</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// not good with empty block</span></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<div style="text-align:center;margin:0;" markdown="1"><img src="/img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div><br><div style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-19T08:21:08.571Z" itemprop="dateUpdated">2017-05-19 16:21:08</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/代码规范之Web.html&title=《代码规范之Web》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/代码规范之Web.html&title=《代码规范之Web》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/代码规范之Web.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《代码规范之Web》 — zhiheng's blog&url=https://dddreams.github.io/代码规范之Web.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/代码规范之Web.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/css实现计数器.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">css实现计数器</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/代码规范之-java.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">代码规范之 java </h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/代码规范之Web.html&title=《代码规范之Web》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/代码规范之Web.html&title=《代码规范之Web》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/代码规范之Web.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《代码规范之Web》 — zhiheng's blog&url=https://dddreams.github.io/代码规范之Web.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/代码规范之Web.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/代码规范之Web.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

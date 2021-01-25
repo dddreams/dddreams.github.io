@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>java代码优化建议 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="帮助开发人员夯实基础，从规范的编码操作开始，培养良好的编码习惯，助力未来技术成长。  通过java代码规范来优化程序，优化内存使用情况，防止内存泄露 可供程序利用的资源（内存、CPU时间、网络带宽等）是有限的，优化的目的就是让程序用尽可能少的资源完成预定的任务。优化通常包含两方面的内容：减小代码的体积，提高代码的运行效率。本文讨论的主要是如何提高代码的效率。在Java程序中，性能问题的大部分原因">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java代码优化建议">
+<meta property="og:url" content="https://dddreams.github.io/200103-java代码优化建议.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="帮助开发人员夯实基础，从规范的编码操作开始，培养良好的编码习惯，助力未来技术成长。  通过java代码规范来优化程序，优化内存使用情况，防止内存泄露 可供程序利用的资源（内存、CPU时间、网络带宽等）是有限的，优化的目的就是让程序用尽可能少的资源完成预定的任务。优化通常包含两方面的内容：减小代码的体积，提高代码的运行效率。本文讨论的主要是如何提高代码的效率。在Java程序中，性能问题的大部分原因">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2020-01-03T05:08:50.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java代码优化建议">
+<meta name="twitter:description" content="帮助开发人员夯实基础，从规范的编码操作开始，培养良好的编码习惯，助力未来技术成长。  通过java代码规范来优化程序，优化内存使用情况，防止内存泄露 可供程序利用的资源（内存、CPU时间、网络带宽等）是有限的，优化的目的就是让程序用尽可能少的资源完成预定的任务。优化通常包含两方面的内容：减小代码的体积，提高代码的运行效率。本文讨论的主要是如何提高代码的效率。在Java程序中，性能问题的大部分原因">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">java代码优化建议</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">java代码优化建议</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-03T04:07:26.000Z" itemprop="datePublished" class="page-time">
+  2020-01-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-200103-java代码优化建议"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">java代码优化建议</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-01-03 12:07:26" datetime="2020-01-03T04:07:26.000Z"  itemprop="datePublished">2020-01-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>帮助开发人员夯实基础，从规范的编码操作开始，培养良好的编码习惯，助力未来技术成长。</p>
+</blockquote>
+<p>通过java代码规范来优化程序，优化内存使用情况，防止内存泄露</p>
+<p>可供程序利用的资源（内存、CPU时间、网络带宽等）是有限的，优化的目的就是让程序用尽可能少的资源完成预定的任务。优化通常包含两方面的内容：减小代码的体积，提高代码的运行效率。本文讨论的主要是如何提高代码的效率。<br>在Java程序中，性能问题的大部分原因并不在于Java语言，而是在于程序本身。养成好的代码编写习惯非常重要，比如正确地、巧妙地运用java.lang.String类和java.util.Vector类，它能够显著地提高程序的性能。下面我们就来具体地分析一下这方面的问题。</p>
+<p><strong>1、 尽量指定类的final修饰符 带有final修饰符的类是不可派生的。</strong></p>
+<p>在Java核心API中，有许多应用final的例子，例如java.lang.String。为String类指定final防止了人们覆盖length()方法。另外，如果指定一个类为final，则该类所有的方法都是final。Java编译器会寻找机会内联（inline）所有的final方法（这和具体的编译器实现有关）。此举能够使性能平均提高50% 。</p>
+<p><strong>2、 尽量重用对象。</strong></p>
+<p>特别是String 对象的使用中，出现字符串连接情况时应用StringBuffer 代替。由于系统不仅要花时间生成对象，以后可能还需花时间对这些对象进行垃圾回收和处理。因此，生成过多的对象将会给程序的性能带来很大的影响。</p>
+<p><strong>3、 尽量使用局部变量，调用方法时传递的参数以及在调用中创建的临时变量都保存在栈（Stack）中，速度较快。</strong></p>
+<p>其他变量，如静态变量、实例变量等，都在堆（Heap）中创建，速度较慢。另外，依赖于具体的编译器/JVM，局部变量还可能得到进一步优化。请参见《尽可能使用堆栈变量》。</p>
+<p><strong>4、 不要重复初始化变量</strong></p>
+<p>默认情况下，调用类的构造函数时， Java会把变量初始化成确定的值：所有的对象被设置成null，整数变量（byte、short、int、long）设置成0，float和double变量设置成0.0，逻辑值设置成false。当一个类从另一个类派生时，这一点尤其应该注意，因为用new关键词创建一个对象时，构造函数链中的所有构造函数都会被自动调用。</p>
+<p><strong>5、 在JAVA + ORACLE 的应用系统开发中，java中内嵌的SQL语句尽量使用大写的形式，以减轻ORACLE解析器的解析负担。</strong></p>
+<p><strong>6、 Java 编程过程中，进行数据库连接、I/O流操作时务必小心，在使用完毕后，即使关闭以释放资源。</strong></p>
+<p>因为对这些大对象的操作会造成系统大的开销，稍有不慎，会导致严重的后果。</p>
+<p><strong>7、 由于JVM的有其自身的GC机制，不需要程序开发者的过多考虑，从一定程度上减轻了开发者负担，但同时也遗漏了隐患，过分的创建对象会消耗系统的大量内存，严重时会导致内存泄露，因此，保证过期对象的及时回收具有重要意义。</strong></p>
+<p>JVM回收垃圾的条件是：对象不在被引用；然而，JVM的GC并非十分的机智，即使对象满足了垃圾回收的条件也不一定会被立即回收。所以，建议我们在对象使用完毕，应手动置成null。</p>
+<p><strong>8、 在使用同步机制时，应尽量使用方法同步代替代码块同步。</strong></p>
+<p><strong>9、 尽量减少对变量的重复计算</strong><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">0</span>;<span class="built_in">i</span> &lt; list.<span class="built_in">size</span>; <span class="built_in">i</span> ++) &#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br><span class="line">应替换为：</span><br><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">0</span>,int len = list.<span class="built_in">size</span>();<span class="built_in">i</span> &lt; len; <span class="built_in">i</span> ++)&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>10、尽量采用lazy loading 的策略，即在需要的时候才开始创建。</strong></p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">例如： </span><br><span class="line"><span class="keyword">String</span> <span class="built_in">str</span> = “aaa”;</span><br><span class="line"><span class="keyword">if</span>(i == <span class="number">1</span>) &#123;</span><br><span class="line">    list.<span class="built_in">add</span>(<span class="built_in">str</span>);</span><br><span class="line">&#125;</span><br><span class="line">应替换为：</span><br><span class="line"><span class="keyword">if</span>(i == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">String</span> <span class="built_in">str</span> = “aaa”;</span><br><span class="line">    list.<span class="built_in">add</span>(<span class="built_in">str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>11、慎用异常</strong></p>
+<p>异常对性能不利。抛出异常首先要创建一个新的对象。Throwable接口的构造函数调用名为fillInStackTrace()的本地（Native）方法，fillInStackTrace()方法检查堆栈，收集调用跟踪信息。只要有异常被抛出，VM就必须调整调用堆栈，因为在处理过程中创建了一个新的对象。 异常只能用于错误处理，不应该用来控制程序流程。</p>
+<p><strong>12、不要在循环中使用：</strong></p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Try</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span>() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应把其放置在最外层。</p>
+<p><strong>13、StringBuffer 的使用：</strong></p>
+<p><code>StringBuffer</code>表示了可变的、可写的字符串。<br>有三个构造方法 :<br><code>StringBuffer ();</code> //默认分配16个字符的空间<br><code>StringBuffer (int size);</code> //分配size个字符的空间<br><code>StringBuffer (String str);</code> //分配16个字符+str.length()个字符空间<br>你可以通过StringBuffer的构造函数来设定它的初始化容量，这样可以明显地提升性能。</p>
+<p>这里提到的构造函数是<code>StringBuffer(int length)</code>，<code>length</code>参数表示当前的<code>StringBuffer</code>能保持的字符数量。你也可以使用<code>ensureCapacity(int minimumcapacity)</code>方法在StringBuffer对象创建之后设置它的容量。首先我们看看<code>StringBuffer</code>的缺省行为，然后再找出一条更好的提升性能的途径。<br><code>StringBuffer</code>在内部维护一个字符数组，当你使用缺省的构造函数来创建<code>StringBuffer</code>对象的时候，因为没有设置初始化字符长度，<code>StringBuffer</code>的容量被初始化为16个字符，也就是说缺省容量就是16个字符。当<code>StringBuffer</code>达到最大容量的时候，它会将自身容量增加到当前的2倍再加2，也就是（2<em>旧值+2）。如果你使用缺省值，初始化之后接着往里面追加字符，在你追加到第16个字符的时候它会将容量增加到34（2</em>16+2），当追加到34个字符的时候就会将容量增加到70（2*34+2）。无论何事只要StringBuffer到达它的最大容量它就不得不创建一个新的字符数组然后重新将旧字符和新字符都拷贝一遍――这也太昂贵了点。所以总是给StringBuffer设置一个合理的初始化容量值是错不了的，这样会带来立竿见影的性能增益。StringBuffer初始化过程的调整的作用由此可见一斑。所以，使用一个合适的容量值来初始化StringBuffer永远都是一个最佳的建议。</p>
+<p><strong>14、合理的使用Java类 java.util.Vector。</strong></p>
+<p>简单地说，一个Vector就是一个java.lang.Object实例的数组。Vector与数组相似，它的元素可以通过整数形式的索引访问。但是，Vector类型的对象在创建之后，对象的大小能够根据元素的增加或者删除而扩展、缩小。请考虑下面这个向Vector加入元素的例子：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Object</span> bj = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line">Vector v = <span class="keyword">new</span> Vector(<span class="number">100000</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123; </span><br><span class="line">    v.<span class="built_in">add</span>(<span class="number">0</span>,obj); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>除非有绝对充足的理由要求每次都把新元素插入到Vector的前面，否则上面的代码对性能不利。在默认构造函数中，Vector的初始存储能力是10个元素，如果新元素加入时存储能力不足，则以后存储能力每次加倍。Vector类就对象StringBuffer类一样，每次扩展存储能力时，所有现有的元素都要复制到新的存储空间之中。下面的代码片段要比前面的例子快几个数量级：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Object</span> bj = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line">Vector v = <span class="keyword">new</span> Vector(<span class="number">100000</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123; </span><br><span class="line">    v.<span class="built_in">add</span>(obj); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样的规则也适用于Vector类的remove()方法。由于Vector中各个元素之间不能含有“空隙”，删除除最后一个元素之外的任意其他元素都导致被删除元素之后的元素向前移动。也就是说，从Vector删除最后一个元素要比删除第一个元素“开销”低好几倍。</p>
+<p>假设要从前面的Vector删除所有元素，我们可以使用这种代码：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(int i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">    v.remove(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是，与下面的代码相比，前面的代码要慢几个数量级：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(<span class="name">int</span> i = <span class="number">0</span><span class="comment">; i &lt; 100000; i++) &#123;</span></span><br><span class="line">    v.remove(<span class="name">v</span>.size()<span class="number">-1</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从Vector类型的对象v删除所有元素的最好方法是：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v.removeAllElements()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>假设Vector类型的对象v包含字符串“Hello”。考虑下面的代码，它要从这个Vector中删除“Hello”字符串：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> s = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="keyword">int</span> i = v.indexOf(s);</span><br><span class="line"><span class="keyword">if</span>(I != <span class="number">-1</span>) v.<span class="built_in">remove</span>(s);</span><br></pre></td></tr></table></figure></p>
+<p>这些代码看起来没什么错误，但它同样对性能不利。在这段代码中，indexOf()方法对v进行顺序搜索寻找字符串“Hello”，remove(s)方法也要进行同样的顺序搜索。改进之后的版本是：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> s = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="keyword">int</span> i = v.indexOf(s);</span><br><span class="line"><span class="keyword">if</span>(I != <span class="number">-1</span>) v.<span class="built_in">remove</span>(i);</span><br></pre></td></tr></table></figure></p>
+<p>这个版本中我们直接在remove()方法中给出待删除元素的精确索引位置，从而避免了第二次搜索。一个更好的版本是：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"Hello"</span><span class="comment">; </span></span><br><span class="line">v.remove(s)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，我们再来看一个有关Vector类的代码片段：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span>++;<span class="built_in">i</span> &lt; v.<span class="built_in">length</span>)</span><br></pre></td></tr></table></figure></p>
+<p>如果v包含100,000个元素，这个代码片段将调用v.size()方法100,000次。虽然size方法是一个简单的方法，但它仍旧需要一次方法调用的开销，至少JVM需要为它配置以及清除堆栈环境。在这里，for循环内部的代码不会以任何方式修改Vector类型对象v的大小，因此上面的代码最好改写成下面这种形式：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">size</span> = v.<span class="built_in">size</span>(); </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> I=<span class="number">0</span>; I++;I&lt;<span class="built_in">size</span>)</span><br></pre></td></tr></table></figure></p>
+<p>虽然这是一个简单的改动，但它仍旧赢得了性能。毕竟，每一个CPU周期都是宝贵的。</p>
+<p><strong>15、当复制大量数据时，使用System.arraycopy()命令。</strong><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] src=&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[] dest = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">6</span>];</span><br><span class="line">System.arraycopy(src, <span class="number">0</span>, dest, <span class="number">0</span>, <span class="number">6</span>);</span><br><span class="line"><span class="string">src:</span>源数组; <span class="string">srcPos:</span>源数组要复制的起始位置;</span><br><span class="line"><span class="string">dest:</span>目的数组; <span class="string">destPos:</span>目的数组放置的起始位置;</span><br><span class="line"><span class="string">length:</span>复制的长度.</span><br><span class="line"></span><br><span class="line">注意：src and dest都必须是同类型或者可以进行转换类型的数组．</span><br></pre></td></tr></table></figure></p>
+<p><strong>16、代码重构：增强代码的可读性。</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ShopCart</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List carts ;</span><br><span class="line">    …</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span> (<span class="params">Object item</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(carts == <span class="literal">null</span>) &#123;</span><br><span class="line">            carts = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        &#125;</span><br><span class="line">        crts.<span class="keyword">add</span>(item);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span>(<span class="params">Object item</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(carts. contains(item)) &#123;</span><br><span class="line">            carts.<span class="keyword">remove</span>(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List <span class="title">getCarts</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="comment">//返回只读列表</span></span><br><span class="line">        <span class="keyword">return</span> Collections.unmodifiableList(carts);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//不推荐这种方式</span></span><br><span class="line">    <span class="comment">//this.getCarts().add(item);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>17、不用new关键词创建类的实例</strong></p>
+<p>用new关键词创建类的实例时，构造函数链中的所有构造函数都会被自动调用。但如果一个对象实现了Cloneable接口，我们可以调用它的clone()方法。clone()方法不会调用任何类构造函数。<br>在使用设计模式（Design Pattern）的场合，如果用Factory模式创建对象，则改用clone()方法创建新的对象实例非常简单。例如，下面是Factory模式的一个典型实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Credit <span class="title">getNewCredit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Credit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>改进后的代码使用clone()方法，如下所示：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Credit BaseCredit = <span class="keyword">new</span> Credit();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Credit <span class="title">getNewCredit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (Credit) BaseCredit.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的思路对于数组处理同样很有用。</p>
+<p><strong>18、乘法和除法</strong></p>
+<p>考虑下面的代码：<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">val</span> = <span class="number">0</span>; <span class="keyword">val</span> &lt; <span class="number">100000</span>; <span class="keyword">val</span> +=<span class="number">5</span>) &#123;</span><br><span class="line">    alterX = <span class="keyword">val</span> * <span class="number">8</span>; myResult = <span class="keyword">val</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用移位操作替代乘法操作可以极大地提高性能。下面是修改后的代码：<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">val</span> = <span class="number">0</span>; <span class="keyword">val</span> &lt; <span class="number">100000</span>; <span class="keyword">val</span> += <span class="number">5</span>) &#123;</span><br><span class="line">    alterX = <span class="keyword">val</span> &lt;&lt; <span class="number">3</span>; myResult = <span class="keyword">val</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>修改后的代码不再做乘以8的操作，而是改用等价的左移3位操作，每左移1位相当于乘以2。相应地，右移1位操作相当于除以2。值得一提的是，虽然移位操作速度快，但可能使代码比较难于理解，所以最好加上一些注释。</p>
+<p><strong>19、在JSP页面中关闭无用的会话。</strong></p>
+<p>一个常见的误解是以为session在有客户端访问时就被创建，然而事实是直到某server端程序调用HttpServletRequest.getSession(true)这样的语句时才被创建，注意如果JSP没有显示的使用 &lt;&gt; 关闭session，则JSP文件在编译成Servlet时将会自动加上这样一条语句HttpSession session = HttpServletRequest.getSession(true);这也是JSP中隐含的session对象的来历。由于session会消耗内存资源，因此，如果不打算使用session，应该在所有的JSP中关闭它。<br>对于那些无需跟踪会话状态的页面，关闭自动创建的会话可以节省一些资源。使用如下page指令：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@<span class="built_in"> page </span><span class="attribute">session</span>=<span class="string">"false"</span>%&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>20、JDBC与I/O</strong></p>
+<p>如果应用程序需要访问一个规模很大的数据集，则应当考虑使用块提取方式。默认情况下，JDBC每次提取32行数据。举例来说，假设我们要遍历一个5000行的记录集，JDBC必须调用数据库157次才能提取到全部数据。如果把块大小改成512，则调用数据库的次数将减少到10次。</p>
+<p><strong>21、Servlet与内存使用</strong></p>
+<p>许多开发者随意地把大量信息保存到用户会话之中。一些时候，保存在会话中的对象没有及时地被垃圾回收机制回收。从性能上看，典型的症状是用户感到系统周期性地变慢，却又不能把原因归于任何一个具体的组件。如果监视JVM的堆空间，它的表现是内存占用不正常地大起大落。<br>解决这类内存问题主要有二种办法。第一种办法是，在所有作用范围为会话的Bean中实现HttpSessionBindingListener接口。这样，只要实现valueUnbound()方法，就可以显式地释放Bean使用的资源。</p>
+<p>另外一种办法就是尽快地把会话作废。大多数应用服务器都有设置会话作废间隔时间的选项。另外，也可以用编程的方式调用会话的setMaxInactiveInterval()方法，该方法用来设定在作废会话之前，Servlet容器允许的客户请求的最大间隔时间，以秒计。</p>
+<p><strong>22、使用缓冲标记</strong></p>
+<p>一些应用服务器加入了面向JSP的缓冲标记功能。例如，BEA的WebLogic Server从6.0版本开始支持这个功能，Open Symphony工程也同样支持这个功能。JSP缓冲标记既能够缓冲页面片断，也能够缓冲整个页面。当JSP页面执行时，如果目标片断已经在缓冲之中，则生成该片断的代码就不用再执行。页面级缓冲捕获对指定URL的请求，并缓冲整个结果页面。对于购物篮、目录以及门户网站的主页来说，这个功能极其有用。对于这类应用，页面级缓冲能够保存页面执行的结果，供后继请求使用。</p>
+<p><strong>23、选择合适的引用机制</strong></p>
+<p>在典型的JSP应用系统中，页头、页脚部分往往被抽取出来，然后根据需要引入页头、页脚。当前，在JSP页面中引入外部资源的方法主要有两种：include指令，以及include动作。<br>include指令：例如&lt;%@ include file=”copyright.html” %&gt;。该指令在编译时引入指定的资源。在编译之前，带有include指令的页面和指定的资源被合并成一个文件。被引用的外部资源在编译时就确定，比运行时才确定资源更高效。<br>include动作：例如<br><code>&lt;jsp:include page=&quot;copyright.jsp&quot; /&gt;</code>。该动作引入指定页面执行后生成的结果。由于它在运行时完成，因此对输出结果的控制更加灵活。但时，只有当被引用的内容频繁地改变时，或者在对主页面的请求没有出现之前，被引用的页面无法确定时，使用include动作才合算。</p>
+<p><strong>24、及时清除不再需要的会话</strong></p>
+<p>为了清除不再活动的会话，许多应用服务器都有默认的会话超时时间，一般为30分钟。当应用服务器需要保存更多会话时，如果内存容量不足，操作系统会把部分内存数据转移到磁盘，应用服务器也可能根据“最近最频繁使用”（Most Recently Used）算法把部分不活跃的会话转储到磁盘，甚至可能抛出“内存不足”异常。在大规模系统中，串行化会话的代价是很昂贵的。当会话不再需要时，应当及时调用HttpSession.invalidate()方法清除会话。HttpSession.invalidate()方法通常可以在应用的退出页面调用。</p>
+<p><strong>25、不要将数组声明为：public static final 。</strong></p>
+<p><strong>26、HashMap的遍历效率讨论</strong></p>
+<p>经常遇到对HashMap中的key和value值对的遍历操作，有如下两种方法：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>[]&gt; paraMap = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>, <span class="built_in">String</span>[]&gt;();</span><br><span class="line"><span class="comment">//第一个循环</span></span><br><span class="line"><span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; appFieldDefIds = paraMap.keySet();</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">String</span> appFieldDefId : appFieldDefIds) &#123;</span><br><span class="line">    <span class="built_in">String</span>[] values = paraMap.<span class="keyword">get</span>(appFieldDefId);</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个循环</span></span><br><span class="line"><span class="keyword">for</span>(Entry&lt;<span class="built_in">String</span>, <span class="built_in">String</span>[]&gt; entry : paraMap.entrySet())&#123;</span><br><span class="line">    <span class="built_in">String</span> appFieldDefId = entry.getKey();</span><br><span class="line">    <span class="built_in">String</span>[] values = entry.getValue();</span><br><span class="line">    .......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一种实现明显的效率不如第二种实现。<br>分析如下 <code>Set&lt;String&gt; appFieldDefIds = paraMap.keySet();</code> 是先从HashMap中取得keySet<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Set&lt;K&gt; ks = keySet;</span><br><span class="line">    <span class="keyword">return</span> (ks != <span class="keyword">null</span> ? ks : (keySet = <span class="keyword">new</span> KeySet()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">KeySet</span> <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">K</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;K&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> newKeyIterator();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> containsKey(o);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> HashMap.<span class="keyword">this</span>.removeEntryForKey(o) != <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        HashMap.<span class="keyword">this</span>.clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实就是返回一个私有类KeySet, 它是从AbstractSet继承而来，实现了Set接口。</p>
+<p>再来看看for/in循环的语法<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(declaration : expression)</span></span></span><br><span class="line">statement</span><br></pre></td></tr></table></figure></p>
+<p>在执行阶段被翻译成如下各式<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(<span class="name">Iterator&lt;E&gt;</span> #i = (<span class="name">expression</span>).iterator()<span class="comment">; #i.hashNext();)&#123;</span></span><br><span class="line">    declaration = #i.next()<span class="comment">;</span></span><br><span class="line">    statement</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此在第一个for语句<code>for (String appFieldDefId : appFieldDefIds)</code>中调用了<code>HashMap.keySet().iterator()</code></p>
+<p>而这个方法调用了<code>newKeyIterator()</code><br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Iterator</span>&lt;<span class="type">K</span>&gt; newKeyIterator() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">KeyIterator</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyIterator</span> <span class="keyword">extends</span> <span class="title">HashIterator&lt;K&gt;</span> </span>&#123;</span><br><span class="line">    public <span class="type">K</span> next() &#123;</span><br><span class="line">        <span class="keyword">return</span> nextEntry().getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以在for中还是调用了<br>在第二个循环for(Entry&lt;String, String[]&gt; entry : paraMap.entrySet())中使用的Iterator是如下的一个内部类<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">EntryIterator</span> <span class="keyword">extends</span> <span class="title">HashIterator&lt;Map</span>.<span class="title">Entry&lt;K</span>,<span class="title">V&gt;&gt;</span> </span>&#123;</span><br><span class="line">    public <span class="type">Map</span>.<span class="type">Entry</span>&lt;<span class="type">K</span>,<span class="type">V</span>&gt; next() &#123;</span><br><span class="line">        <span class="keyword">return</span> nextEntry();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此时第一个循环得到key，第二个循环得到HashMap的Entry效率就是从循环里面体现出来的第二个循环此致可以直接取key和value值而第一个循环还是得再利用HashMap的get(Object key)来取value值现在看看HashMap的get(Object key)方法<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> V <span class="built_in">get</span>(<span class="keyword">Object</span> <span class="built_in">key</span>) &#123;</span><br><span class="line">    <span class="keyword">Object</span> k = maskNull(<span class="built_in">key</span>);</span><br><span class="line">    <span class="built_in">int</span> hash = hash(k);</span><br><span class="line">    <span class="built_in">int</span> i = indexFor(hash, table.length); <span class="comment">//Entry[] table</span></span><br><span class="line">    Entry&lt;K,V&gt; e = table;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; eq(k, e.<span class="built_in">key</span>))</span><br><span class="line">            <span class="keyword">return</span> e.value;</span><br><span class="line">        e = e.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实就是再次利用Hash值取出相应的Entry做比较得到结果，所以使用第一中循环相当于两次进入HashMap的Entry</p>
+<p>中而第二个循环取得Entry的值之后直接取key和value，效率比第一个循环高。其实按照Map的概念来看也应该是用第二个循环好一点，它本来就是key和value的值对，将key和value分开操作在这里不是个好选择。</p>
+<p><strong>27、array(数组) 和 ArryList的使用</strong></p>
+<p>array（[]）：最高效；但是其容量固定且无法动态改变；<br>ArrayList：容量可动态增长；但牺牲效率；<br>基于效率和类型检验，应尽可能使用array，无法确定数组大小时才使用ArrayList！<br>ArrayList是Array的复杂版本<br>ArrayList内部封装了一个Object类型的数组，从一般的意义来说，它和数组没有本质的差别，甚至于ArrayList的许多方法，如Index、IndexOf、Contains、Sort等都是在内部数组的基础上直接调用Array的对应方法。<br>ArrayList存入对象时，抛弃类型信息，所有对象屏蔽为Object，编译时不检查类型，但是运行时会报错。<br>注：jdk5中加入了对泛型的支持，已经可以在使用ArrayList时进行类型检查。<br>从这一点上看来，ArrayList与数组的区别主要就是由于动态增容的效率问题了</p>
+<p><strong>28、尽量使用HashMap 和ArrayList ,除非必要，否则不推荐使用HashTable和Vector ，后者由于使用同步机制，而导致了性能的开销。</strong></p>
+<p><strong>29、StringBuffer 和StringBuilder的区别：</strong></p>
+<p>java.lang.StringBuffer线程安全的可变字符序列。一个类似于 String 的字符串缓冲区，但不能修改。</p>
+<p>StringBuilder。与该类相比，通常应该优先使用 java.lang.StringBuilder类，因为它支持所有相同的操作，但由于它不执行同步，所以速度更快。为了获得更好的性能，在构造 StirngBuffer 或 StirngBuilder 时应尽可能指定它的容量。当然，如果你操作的字符串长度不超过 16 个字符就不用了。 相同情况下使用 StirngBuilder 相比使用 StringBuffer 仅能获得 10%-15% 左右的性能提升，但却要冒多线程不安全的风险。而在现实的模块化编程中，负责某一模块的程序员不一定能清晰地判断该模块是否会放入多线程的环境中运行，因此：除非你能确定你的系统的瓶颈是在 StringBuffer 上，并且确定你的模块不会运行在多线程模式下，否则还是用 StringBuffer 吧。</p>
+<p><strong>30、尽量避免使用split</strong></p>
+<p>除非是必须的，否则应该避免使用split，split由于支持正则表达式，所以效率比较低，如果是频繁的几十，几百万的调用将会耗费大量资源，如果确实需要频繁的调用split，可以考虑使用apache的 StringUtils.split(string,char)，频繁split的可以缓存结果。</p>
+<p>其他补充:</p>
+<p>1、及时清除不再使用的对象，设为null<br>2、尽可能使用final,static等关键字<br>3、尽可能使用buffered对象</p>
+<p>如何优化代码使JAVA源文件及编译后CLASS文件更小</p>
+<p>1 尽量使用继承，继承的方法越多，你要写的代码量也就越少</p>
+<p>2 打开JAVA编译器的优化选项： javac -O 这个选项将删除掉CLASS文件中的行号，并能把<br>一些private, static,final的小段方法申明为inline方法调用</p>
+<p>3 把公用的代码提取出来</p>
+<p>4 不要初始化很大的数组，尽管初始化一个数组在JAVA代码中只是一行的代码量，但<br>编译后的代码是一行代码插入一个数组的元素，所以如果你有大量的数据需要存在数组<br>中的话，可以先把这些数据放在String中，然后在运行期把字符串解析到数组中</p>
+<p>5 日期类型的对象会占用很大的空间，如果你要存储大量的日期对象，可以考虑把它存储为<br>long型，然后在使用的时候转换为Date类型</p>
+<p>6 类名，方法名和变量名尽量使用简短的名字，可以考虑使用Hashjava, Jobe, Obfuscate and Jshrink等工具自动完成这个工作</p>
+<p>7 将static final类型的变量定义到Interface中去</p>
+<p>8 算术运算 能用左移/右移的运算就不要用*和/运算，相同的运算不要运算多次</p>
+<p>2、不要两次初始化变量<br>Java通过调用独特的类构造器默认地初始化变量为一个已知的值。所有的对象被设置成null，integers (byte, short, int, long)被设置成0，float和double设置成0.0，Boolean变量设置成false。这对那些扩展自其它类的类尤其重要，这跟使用一个新的关键词创建一个对象时所有一连串的构造器被自动调用一样。</p>
+<p>3、在任何可能的地方让类为Final<br>标记为final的类不能被扩展。在《核心Java API》中有大量这个技术的例子，诸如java.lang.String。将String类标记为final阻止了开发者创建他们自己实现的长度方法。<br>更深入点说，如果类是final的，所有类的方法也是final的。Java编译器可能会内联所有的方法（这依赖于编译器的实现）。在我的测试里，我已经看到性能平均增加了50%。</p>
+<p>3、异常在需要抛出的地方抛出，try catch能整合就整合<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    some.method1(); <span class="comment">// Difficult for javac</span></span><br><span class="line">&#125; <span class="keyword">catch</span>( method1Exception e ) &#123; <span class="comment">// and the JVM runtime</span></span><br><span class="line">    <span class="comment">// Handle exception 1 // to optimize this</span></span><br><span class="line">&#125; <span class="comment">// code</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    some.method2();</span><br><span class="line">&#125; <span class="keyword">catch</span>( method2Exception e ) &#123;</span><br><span class="line">    <span class="comment">// Handle exception 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    some.method3();</span><br><span class="line">&#125; <span class="keyword">catch</span>( method3Exception e ) &#123;</span><br><span class="line">    <span class="comment">// Handle exception 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>已下代码 更容易被编译器优化<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    some.method<span class="number">1</span><span class="comment">()</span>; <span class="comment">// Easier to optimize</span></span><br><span class="line">    some.method<span class="number">2</span><span class="comment">()</span>;</span><br><span class="line">    some.method<span class="number">3</span><span class="comment">()</span>;</span><br><span class="line">&#125; catch<span class="comment">( method1Exception e )</span> &#123;</span><br><span class="line">    <span class="comment">// Handle exception 1</span></span><br><span class="line">&#125; catch<span class="comment">( method2Exception e )</span> &#123;</span><br><span class="line">    <span class="comment">// Handle exception 2</span></span><br><span class="line">&#125; catch<span class="comment">( method3Exception e )</span> &#123;</span><br><span class="line">    <span class="comment">// Handle exception 3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、For循环的优化</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Replace…</span><br><span class="line"><span class="keyword">for</span>( int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; collection.<span class="built_in">size</span>(); <span class="built_in">i</span>++ ) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">with…</span><br><span class="line"><span class="keyword">for</span>( int <span class="built_in">i</span> = <span class="number">0</span>, n = collection.<span class="built_in">size</span>(); <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++ ) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、 在JAVA + ORACLE 的应用系统开发中，java中内嵌的SQL语句尽量使用大写的形式，以减轻ORACLE解析器的解析负担。</p>
+<p>6、尽量采用lazy loading 的策略，即在需要的时候才开始创建。<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">例如： <span class="keyword">String</span> <span class="built_in">str</span> = “aaa”;</span><br><span class="line"><span class="keyword">if</span>(i == <span class="number">1</span>) &#123;</span><br><span class="line">    list.<span class="built_in">add</span>(<span class="built_in">str</span>);</span><br><span class="line">&#125;</span><br><span class="line">应替换为：</span><br><span class="line"><span class="keyword">if</span>(i == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">String</span> <span class="built_in">str</span> = “aaa”;</span><br><span class="line">    list.<span class="built_in">add</span>(<span class="built_in">str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>7、不要在循环中使用：<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Try</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span>() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>应把其放置在最外层</p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-03T05:08:50.624Z" itemprop="dateUpdated">2020-01-03 13:08:50</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/200103-java代码优化建议.html&title=《java代码优化建议》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/200103-java代码优化建议.html&title=《java代码优化建议》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/200103-java代码优化建议.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java代码优化建议》 — zhiheng's blog&url=https://dddreams.github.io/200103-java代码优化建议.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/200103-java代码优化建议.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/200110-Java1-8你还不知道的新特性.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java1.8你还不知道的新特性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/180718-Thymeleaf模版引擎.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot-Thymeleaf模版引擎</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/200103-java代码优化建议.html&title=《java代码优化建议》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/200103-java代码优化建议.html&title=《java代码优化建议》 — zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/200103-java代码优化建议.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java代码优化建议》 — zhiheng's blog&url=https://dddreams.github.io/200103-java代码优化建议.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/200103-java代码优化建议.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/200103-java代码优化建议.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

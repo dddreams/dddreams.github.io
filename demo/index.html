@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="undefined">
+    <meta name="description" content="html2canvas利用 html2canvas ,生成 “我们是谁” 的图片（使用手机查看，效果更好） zhiheng聊天zhiheng 聊天 zhiheng 聊天，简易的聊天程序，不过程序使用英语跟你聊天，是你学习英语的好帮手！来吧，开始你的英语学习之旅。 程序员的小浪漫程序员的小浪漫 都说程序员呆傻、不善言语，但是浪漫起来也是别人无法比拟的，点击上面的链接，查看程序员的小浪漫。 项目来源：">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zhiheng&#39;s blog">
+<meta property="og:url" content="https://dddreams.github.io/demo/index.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="html2canvas利用 html2canvas ,生成 “我们是谁” 的图片（使用手机查看，效果更好） zhiheng聊天zhiheng 聊天 zhiheng 聊天，简易的聊天程序，不过程序使用英语跟你聊天，是你学习英语的好帮手！来吧，开始你的英语学习之旅。 程序员的小浪漫程序员的小浪漫 都说程序员呆傻、不善言语，但是浪漫起来也是别人无法比拟的，点击上面的链接，查看程序员的小浪漫。 项目来源：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2021-01-07T09:52:23.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zhiheng&#39;s blog">
+<meta name="twitter:description" content="html2canvas利用 html2canvas ,生成 “我们是谁” 的图片（使用手机查看，效果更好） zhiheng聊天zhiheng 聊天 zhiheng 聊天，简易的聊天程序，不过程序使用英语跟你聊天，是你学习英语的好帮手！来吧，开始你的英语学习之旅。 程序员的小浪漫程序员的小浪漫 都说程序员呆傻、不善言语，但是浪漫起来也是别人无法比拟的，点击上面的链接，查看程序员的小浪漫。 项目来源：">
+<meta name="twitter:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect active">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Demos</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header archives-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Demos</h1>
+        <h5 class="subtitle">
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+	<article class="post-content">
+	<div class="post-card" style="margin-top: 0;padding-top: 0;">
+		<h2 id="html2canvas"><a href="#html2canvas" class="headerlink" title="html2canvas"></a>html2canvas</h2><p><a href="../html/html2canvas.html" target="_blank">利用 html2canvas ,生成 “我们是谁” 的图片（使用手机查看，效果更好）</a></p>
+<h2 id="zhiheng聊天"><a href="#zhiheng聊天" class="headerlink" title="zhiheng聊天"></a>zhiheng聊天</h2><p><a href="https://shure.gitee.io/html/chat_with_english.html" target="_blank">zhiheng 聊天</a></p>
+<p>zhiheng 聊天，简易的聊天程序，不过程序使用英语跟你聊天，是你学习英语的好帮手！来吧，开始你的英语学习之旅。</p>
+<h2 id="程序员的小浪漫"><a href="#程序员的小浪漫" class="headerlink" title="程序员的小浪漫"></a>程序员的小浪漫</h2><p><a href="../html/SmallRomance/index.html" target="_blank">程序员的小浪漫</a></p>
+<p>都说程序员呆傻、不善言语，但是浪漫起来也是别人无法比拟的，点击上面的链接，查看程序员的小浪漫。</p>
+<p>项目来源：<a href="https://github.com/NewNewKing/SmallRomance" target="_blank" rel="noopener">https://github.com/NewNewKing/SmallRomance</a></p>
+<h2 id="今儿就想发个红包"><a href="#今儿就想发个红包" class="headerlink" title="今儿就想发个红包~~~"></a>今儿就想发个红包~~~</h2><p>想要红包吗？？？使劲戳~<a href="../html/hongbao.html" target="_blank">今儿就想发个红包，戳吧！！！</a></p>
+<h2 id="亲爱的，嫁给我好吗？"><a href="#亲爱的，嫁给我好吗？" class="headerlink" title="亲爱的，嫁给我好吗？"></a>亲爱的，嫁给我好吗？</h2><p>点点看有惊喜哦~  <a href="../html/wedding/index.html" target="_blank">浪漫求婚，点点看~~~</a></p>
+<p>项目地址：<a href="https://github.com/sunweiling/wedding" target="_blank" rel="noopener">https://github.com/sunweiling/wedding</a></p>
+<h2 id="恋爱时光"><a href="#恋爱时光" class="headerlink" title="恋爱时光"></a>恋爱时光</h2><p><a href="../html/loveTime/index.html" target="_blank">亲爱的，这是我们相爱在一起的时光。</a></p>
+<p>持续更新中 . . . </p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果觉得文章对你有用，转发、分享、赞赏才是真爱 [斜眼笑]</p>
+
+
+
+	</div>
+</article>
+	
+</div>
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/demo/&title=zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/demo/&title=zhiheng's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/demo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=zhiheng's blog&url=https://dddreams.github.io/demo/&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/demo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/demo/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
