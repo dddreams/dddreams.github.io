@@ -29,7 +29,7 @@
 <meta property="og:description" content="在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文SpringBoot-定时任务，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
-<meta property="og:updated_time" content="2021-01-26T03:13:40.355Z">
+<meta property="og:updated_time" content="2021-01-26T06:30:22.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot-集成Quartz作业调度">
 <meta name="twitter:description" content="在说 quartz 之前，我们先回顾一下 spring 的定时任务，使用相当简单，默认集成在 spring boot 中，所以在 spring boot 项目中无需额外添加依赖，无需配置，只需要加个注解就可以了，当然也可以实现动态添加删除定时任务，详情前往上一篇博文SpringBoot-定时任务，那为什么要使用 quartz 呢，主要还是考虑分布式的应用，下面我们就来看一下 spring boot">
@@ -245,7 +245,7 @@
 <p>可以设置 quartz中CornTrigger使用的策略<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有的misfile任务马上执行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY = <span class="number">-1</span>;</span><br><span class="line"><span class="comment">//在Trigger中默认选择MISFIRE_INSTRUCTION_FIRE_ONCE_NOW 策略</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_SMART_POLICY = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// CornTrigger默认策略，合并部分misfire，正常执行下一个周期的任务。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_FIRE_ONCE_NOW = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//所有的misFire都不管，执行下一个周期的任务。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MISFIRE_INSTRUCTION_DO_NOTHING = <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
 <p>1、 通过setMisfireInstruction方法设置misfire策略。<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CronTriggerFactoryBean triggerFactoryBean = new CronTriggerFactoryBean<span class="params">()</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>Name<span class="params">("corn_" + clazzName)</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>JobDetail<span class="params">(jobFactory.getObject()</span>);</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>CronExpression<span class="params">(quartzCorn)</span>;</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>Group<span class="params">(QUARTZ_TRIGGER_GROUP)</span>;</span><br><span class="line"><span class="string">//</span>设置misfire策略</span><br><span class="line">triggerFactoryBean.<span class="keyword">set</span>MisfireInstruction<span class="params">(CronTrigger.MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY)</span>;</span><br><span class="line">triggerFactoryBean.afterPropertiesSet<span class="params">()</span>;</span><br></pre></td></tr></table></figure></p>
 <p>2、 也可以通过CronScheduleBuilder设置misfire策略。<br><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CronScheduleBuilder csb = CronScheduleBuilder.cronSchedule(<span class="string">"0/5 * * * * ?"</span>);</span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_DO_NOTHING </span></span><br><span class="line">csb.withMisfireHandlingInstructionDoNothing();</span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_FIRE_ONCE_NOW</span></span><br><span class="line">csb.withMisfireHandlingInstructionFireAndProceed();<span class="comment">//(默认)</span></span><br><span class="line"><span class="comment">//MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY</span></span><br><span class="line">csb.withMisfireHandlingInstructionIgnoreMisfires();</span><br></pre></td></tr></table></figure></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>任务调度在实际项目中会经常用到，Quartz 也是我们的不二选择，但是在高可用的系统中也存在不少问题，具体问题小伙伴们可以在留言区留言，卫门来共同探讨。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>任务调度在实际项目中会经常用到，Quartz 也是我们的不二选择，但是在高可用的系统中也存在不少问题，具体问题小伙伴们可以在留言区留言，我们一起共同探讨。</p>
 <h2 id="参考与相关链接"><a href="#参考与相关链接" class="headerlink" title="参考与相关链接"></a>参考与相关链接</h2><p>示例代码：<a href="https://github.com/dddreams/learn-spring-boot/tree/master/spring-boot-quartz" target="_blank" rel="noopener">https://github.com/dddreams/learn-spring-boot/tree/master/spring-boot-quartz</a></p>
 <p>Quartz 官网：<a href="http://www.quartz-scheduler.org/" target="_blank" rel="noopener">http://www.quartz-scheduler.org/</a></p>
 <p>Quartz集群原理及配置应用：<a href="https://www.cnblogs.com/xiang--liu/p/10120105.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiang–liu/p/10120105.html</a></p>
@@ -261,7 +261,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2021-01-26T03:13:40.355Z" itemprop="dateUpdated">2021年01月26日 11:13:40</time>
+    最后更新时间：<time datetime="2021-01-26T06:30:22.058Z" itemprop="dateUpdated">2021年01月26日 14:30:22</time>
 </span><br>
 
 
@@ -339,7 +339,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/210127-SpringBoot-集成Swagger2文档生成.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot-集成Swagger2文档生成</h4>
+      </a>
+    </div>
   
 
   
