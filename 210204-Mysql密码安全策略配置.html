@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Mysql密码安全策略配置 | zhiheng&#39;s blog | 喜于分享，勤于积累</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="运维,Mysql">
+    <meta name="description" content="近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配置。  Tips：示例是以 Mysql 5.7 为例  密码策略首先登录 Mysql 查看目前数据库的密码策略1show va">
+<meta name="keywords" content="运维,Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql密码安全策略配置">
+<meta property="og:url" content="https://dddreams.github.io/210204-Mysql密码安全策略配置.html">
+<meta property="og:site_name" content="zhiheng&#39;s blog">
+<meta property="og:description" content="近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配置。  Tips：示例是以 Mysql 5.7 为例  密码策略首先登录 Mysql 查看目前数据库的密码策略1show va">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/04/5IgGol6d9bTfkFC.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/04/kHz2YjrEyGQ6J3P.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/04/Y4I5nLstzM9ClmH.png">
+<meta property="og:image" content="https://dddreams.github.io/img/ddAnswer.jpg">
+<meta property="og:updated_time" content="2021-02-04T07:51:39.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql密码安全策略配置">
+<meta name="twitter:description" content="近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配置。  Tips：示例是以 Mysql 5.7 为例  密码策略首先登录 Mysql 查看目前数据库的密码策略1show va">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/04/5IgGol6d9bTfkFC.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="zhiheng&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.5.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Shure</h5>
+          <a href="mailto:dzhsdreams@outlook.com" title="dzhsdreams@outlook.com" class="mail">dzhsdreams@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/demo"  >
+                <i class="icon icon-lg icon-adjust"></i>
+                demos
+              </a>
+            </li>
+        
+      </ul>
+      <div class="wxgzh">
+        <img src="/img/zhss.jpg">
+        <h5>治恒说说</h5>
+        <p>~~关注有惊喜~</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Mysql密码安全策略配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Mysql密码安全策略配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-02-04T06:49:39.000Z" itemprop="datePublished" class="page-time">
+  2021年02月04日
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#密码策略"><span class="post-toc-text">密码策略</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装插件"><span class="post-toc-text">安装插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考和相关链接"><span class="post-toc-text">参考和相关链接</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-210204-Mysql密码安全策略配置"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Mysql密码安全策略配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021年02月04日 14:49:39" datetime="2021-02-04T06:49:39.000Z"  itemprop="datePublished">2021年02月04日</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配置。</p>
+<blockquote>
+<p>Tips：示例是以 Mysql 5.7 为例</p>
+</blockquote>
+<h2 id="密码策略"><a href="#密码策略" class="headerlink" title="密码策略"></a>密码策略</h2><p>首先登录 Mysql 查看目前数据库的密码策略<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'validate_password%'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>如果出现 <code>Empty set (0.01 sec)</code> 的字样，说明你的 Mysql 还未安装 <code>validate_password</code> 的插件。查看插件列表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> plugins;</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2021/02/04/5IgGol6d9bTfkFC.png" alt="图一" title>
+                </div>
+                <div class="image-caption">图一</div>
+            </figure>
+<p>如果没有这一项，说明确实没有安装<code>validate_password</code>插件。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>要使服务器可用，插件库文件必须位于 MySQL 插件目录中(由plugin_dir系统变量命名的目录)。如果需要，通过在服务器启动时设置 plugin_dir 的值来配置插件目录位置。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'plugin_dir'</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2021/02/04/kHz2YjrEyGQ6J3P.png" alt="图二" title>
+                </div>
+                <div class="image-caption">图二</div>
+            </figure>
+<p>插件库的文件名是 validate_password.文件名后缀根据平台的不同而不同(.so 是Unix和类Linux系统，.dll是Windows系统)。要在服务器启动时加载插件，可以在配置文件中使用 <code>plugin-load-add</code> 参数来命名包含它的库文件。修改配置文件<code>my.cnf</code><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="attribute">plugin-load-add</span>=validate_password.so</span><br><span class="line"><span class="comment">#服务器在启动时加载插件，并防止在服务器运行时删除插件。</span></span><br><span class="line"><span class="attribute">validate-password</span>=FORCE_PLUS_PERMANENT</span><br></pre></td></tr></table></figure></p>
+<p>修改 my.cnf 之后，重启服务器以使新设置生效。或者，要在运行时注册插件，可以使用以下命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br><span class="line"><span class="comment">#或</span></span><br><span class="line"><span class="keyword">install</span> <span class="keyword">plugin</span> validate_password <span class="keyword">soname</span> <span class="string">'validate_password.so'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然后在次查看插件列表，就会出现图一中的那一项 <code>validate_password</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>再次执行查看密码策略的命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'validate_password%'</span>;</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2021/02/04/Y4I5nLstzM9ClmH.png" alt="image.png" title>
+                </div>
+                <div class="image-caption">image.png</div>
+            </figure>
+<p><code>validate_password_check_user_name</code>：设置为ON的时候表示能将密码设置成当前用户名。<br><code>validate_password_dictionary_file</code>：用于检查密码的字典文件的路径名。<br><code>validate_password_length</code>：所需密码的最小长度。<br><code>validate_password_mixed_case_count</code>：默认值为1，如果密码策略是中等或更强的，限制小写字符和大写字符个数。<br><code>validate_password_number_count</code>：如果密码策略是中等或更强的，要求密码具有数字的个数。<br><code>validate_password_policy</code>： 默认值为1, 密码强度等级 [LOW:0| MEDIUM:1 | STRONG:2]<br><code>validate_password_special_char_count</code> : 默认值为1，限制特殊字符个数<br>其中，validate_password_policy<br>0/LOW：只检查长度。<br>1/MEDIUM：检查长度、数字、大小写、特殊字符。<br>2/STRONG：检查长度、数字、大小写、特殊字符字典文件。</p>
+<p>可以使用一下命令修改上述值：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_policy=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_length=<span class="number">8</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure></p>
+<p>也可以在配置文件中直接配置：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="attribute">validate_password_policy</span>=1</span><br><span class="line"><span class="attribute">validate_password_length</span>=8</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考和相关链接"><a href="#参考和相关链接" class="headerlink" title="参考和相关链接"></a>参考和相关链接</h2><p>mysql 5.7安装密码校验插件validate_password：<a href="https://www.cnblogs.com/alonely/p/10927541.html" target="_blank" rel="noopener">https://www.cnblogs.com/alonely/p/10927541.html</a></p>
+<p>MYSQL57密码策略修改：<a href="https://www.cnblogs.com/zhi-leaf/p/5994478.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhi-leaf/p/5994478.html</a></p>
+<p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p>
+<p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p>
+
+<p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、赞赏才是真爱 [斜眼笑]</p>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-02-04T07:51:39.801Z" itemprop="dateUpdated">2021年02月04日 15:51:39</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://dddreams.github.io">
+            <img src="/img/logo.jpg" alt="Shure">
+            Shure
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&title=《Mysql密码安全策略配置》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&title=《Mysql密码安全策略配置》 — zhiheng's blog&source=asdfasf" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/210204-Mysql密码安全策略配置.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mysql密码安全策略配置》 — zhiheng's blog&url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/210127-SpringBoot-集成Swagger2文档生成.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot-集成Swagger2文档生成</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "jCAo4LFolA0mFtPBlMzb2fXd-gzGzoHsz",
+            appKey: "UpQkdQiDA08lpX1U30vddREX",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "20"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        赞一个一块钱的~_~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <!-- <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv">
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv">
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div> -->
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv">
+        访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv">
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p><span>zhiheng's blog &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&title=《Mysql密码安全策略配置》 — zhiheng's blog&pic=https://dddreams.github.io/img/logo.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&title=《Mysql密码安全策略配置》 — zhiheng's blog&source=asdfasf" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dddreams.github.io/210204-Mysql密码安全策略配置.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mysql密码安全策略配置》 — zhiheng's blog&url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html&via=https://dddreams.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dddreams.github.io/210204-Mysql密码安全策略配置.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://dddreams.github.io/210204-Mysql密码安全策略配置.html" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.5.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.5.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

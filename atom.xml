@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dddreams.github.io/"/>
-  <updated>2021-01-27T09:02:57.732Z</updated>
+  <updated>2021-02-04T07:51:39.801Z</updated>
   <id>https://dddreams.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql密码安全策略配置</title>
+    <link href="https://dddreams.github.io/210204-Mysql%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE.html"/>
+    <id>https://dddreams.github.io/210204-Mysql密码安全策略配置.html</id>
+    <published>2021-02-04T06:49:39.000Z</published>
+    <updated>2021-02-04T07:51:39.801Z</updated>
+    
+    <content type="html"><![CDATA[<p>近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配置。</p><blockquote><p>Tips：示例是以 Mysql 5.7 为例</p></blockquote><h2 id="密码策略"><a href="#密码策略" class="headerlink" title="密码策略"></a>密码策略</h2><p>首先登录 Mysql 查看目前数据库的密码策略<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'validate_password%'</span>;</span><br></pre></td></tr></table></figure></p><p>如果出现 <code>Empty set (0.01 sec)</code> 的字样，说明你的 Mysql 还未安装 <code>validate_password</code> 的插件。查看插件列表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> plugins;</span><br></pre></td></tr></table></figure></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://i.loli.net/2021/02/04/5IgGol6d9bTfkFC.png" alt="图一" title>                </div>                <div class="image-caption">图一</div>            </figure><p>如果没有这一项，说明确实没有安装<code>validate_password</code>插件。</p><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>要使服务器可用，插件库文件必须位于 MySQL 插件目录中(由plugin_dir系统变量命名的目录)。如果需要，通过在服务器启动时设置 plugin_dir 的值来配置插件目录位置。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'plugin_dir'</span>;</span><br></pre></td></tr></table></figure></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://i.loli.net/2021/02/04/kHz2YjrEyGQ6J3P.png" alt="图二" title>                </div>                <div class="image-caption">图二</div>            </figure><p>插件库的文件名是 validate_password.文件名后缀根据平台的不同而不同(.so 是Unix和类Linux系统，.dll是Windows系统)。要在服务器启动时加载插件，可以在配置文件中使用 <code>plugin-load-add</code> 参数来命名包含它的库文件。修改配置文件<code>my.cnf</code><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="attribute">plugin-load-add</span>=validate_password.so</span><br><span class="line"><span class="comment">#服务器在启动时加载插件，并防止在服务器运行时删除插件。</span></span><br><span class="line"><span class="attribute">validate-password</span>=FORCE_PLUS_PERMANENT</span><br></pre></td></tr></table></figure></p><p>修改 my.cnf 之后，重启服务器以使新设置生效。或者，要在运行时注册插件，可以使用以下命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br><span class="line"><span class="comment">#或</span></span><br><span class="line"><span class="keyword">install</span> <span class="keyword">plugin</span> validate_password <span class="keyword">soname</span> <span class="string">'validate_password.so'</span>;</span><br></pre></td></tr></table></figure></p><p>然后在次查看插件列表，就会出现图一中的那一项 <code>validate_password</code></p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>再次执行查看密码策略的命令：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'validate_password%'</span>;</span><br></pre></td></tr></table></figure></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://i.loli.net/2021/02/04/Y4I5nLstzM9ClmH.png" alt="image.png" title>                </div>                <div class="image-caption">image.png</div>            </figure><p><code>validate_password_check_user_name</code>：设置为ON的时候表示能将密码设置成当前用户名。<br><code>validate_password_dictionary_file</code>：用于检查密码的字典文件的路径名。<br><code>validate_password_length</code>：所需密码的最小长度。<br><code>validate_password_mixed_case_count</code>：默认值为1，如果密码策略是中等或更强的，限制小写字符和大写字符个数。<br><code>validate_password_number_count</code>：如果密码策略是中等或更强的，要求密码具有数字的个数。<br><code>validate_password_policy</code>： 默认值为1, 密码强度等级 [LOW:0| MEDIUM:1 | STRONG:2]<br><code>validate_password_special_char_count</code> : 默认值为1，限制特殊字符个数<br>其中，validate_password_policy<br>0/LOW：只检查长度。<br>1/MEDIUM：检查长度、数字、大小写、特殊字符。<br>2/STRONG：检查长度、数字、大小写、特殊字符字典文件。</p><p>可以使用一下命令修改上述值：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_policy=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_length=<span class="number">8</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure></p><p>也可以在配置文件中直接配置：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="attribute">validate_password_policy</span>=1</span><br><span class="line"><span class="attribute">validate_password_length</span>=8</span><br></pre></td></tr></table></figure></p><h2 id="参考和相关链接"><a href="#参考和相关链接" class="headerlink" title="参考和相关链接"></a>参考和相关链接</h2><p>mysql 5.7安装密码校验插件validate_password：<a href="https://www.cnblogs.com/alonely/p/10927541.html" target="_blank" rel="noopener">https://www.cnblogs.com/alonely/p/10927541.html</a></p><p>MYSQL57密码策略修改：<a href="https://www.cnblogs.com/zhi-leaf/p/5994478.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhi-leaf/p/5994478.html</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、赞赏才是真爱 [斜眼笑]</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近些年来，网络安全相应的法律法规在逐步完善，网络安全等级保护制度在《网络安全法》的正式实施后，得到大力推进。很多公司、单位，逐渐认识到网络安全等级保护的重要性，为了落实网络安全等级保护工作，我所在的项目最近也做了一次等保的测评，下面是针对 MySQL 数据库相关的一些整改配
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="https://dddreams.github.io/categories/Mysql/"/>
+    
+    
+      <category term="运维" scheme="https://dddreams.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="Mysql" scheme="https://dddreams.github.io/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot-集成Swagger2文档生成</title>
@@ -494,32 +521,6 @@
 &lt;p&gt;书不记，熟读可记；义不精，细思可精；惟有志不立，直是无着力处。 &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;上篇文章说了写作之后，有很读者就在问我 “道理我都懂，但是就是坚持不下来”，的确是这样。我见过很多这样的例子，刚开始的时候心血来潮，噼噼啪啪
-      
-    
-    </summary>
-    
-    
-      <category term="杂谈" scheme="https://dddreams.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>未来必不可少的一项技能</title>
-    <link href="https://dddreams.github.io/171119-%E6%9C%AA%E6%9D%A5%E5%BF%85%E4%B8%8D%E5%8F%AF%E5%B0%91%E7%9A%84%E4%B8%80%E9%A1%B9%E6%8A%80%E8%83%BD.html"/>
-    <id>https://dddreams.github.io/171119-未来必不可少的一项技能.html</id>
-    <published>2017-11-20T01:58:18.000Z</published>
-    <updated>2017-11-20T02:55:12.706Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>未来必不可少的一项技能–写作</p></blockquote><p>公众号已经有一个多月没有更新了，最近一直在思考，如何更好的去运营这个公号，以前所写的文章都比较杂乱，涉及到了很多方面，回头看时，有价值的文章很少，所以最近就一直在想，如何提升文章内容的优质性，引发读者一些思考，真正的能帮助读者进行自我提升。</p><p>本来还想重新申请一个公号，后来想想还是算了，一是不想扔掉之前所写的文章；二是同时运营两个公号费时费力，还不如把时间花在如何更好的输出有价值的东西。</p><p>在这期间我关注了很多文章写的不错的公号，主体大都是一些业界大佬，有做管理的，有做产品的，也有做技术的，不管是什么方向，他们总是能输出一些令人惊叹的文章，并能持续不断的输出。不可否认他们在业界摸爬滚打这么多年积累的经验很丰富，但是要将这些自身的经验转换成文字，转换为对别人有帮助的东西，还是要靠一项技能，那就是今天所说的–写作。</p><p>说几个公众号故事吧</p><p>1、stormzhang</p><p>如果你经常刷知乎，公众号，或者是知识星球，那肯定会见到他的身影。我关注他的公号有一年多了，之前也有推荐过的他的公号，他写的文章总是能打动人，无论内容是否对你有价值，但是看他的文章感觉上就是一种享受，当然让你享受的文章内容肯定不会差。他的公号主要分享一些个人成长，理财，职业发展相关的，同时他还运营着一个叫做“帅张和他的朋友们”的知识星球，里面的气氛很好，大家互相帮助，互相讨论一些问题，也可以直接向他提出一些问题，他的回答也是有依有据。他是一个让知识变现的例子，而这也要归功于一项必不可少的技能–写作。</p><p>2、滴答滴答</p><p>这个公号的主体可就牛了，她叫朱赟，毕业于中国科技大学少年班，获得美国萊斯大学攻读硕士和博士，Square 公司的第一位华人女工程师，现任硅谷 Airbnb 公司的支付团队的技术经理。我也是前几天看池建强老师写的一篇文章中得知这位牛人的，然后就关注了，翻了翻她之前写的文章，发现太能写了，大多都是自己的一些经验总结，但是涉及了技术、管理等多方面，而且都有自己的独特的观点。她的公号粉丝已经有 1w+ 了，但是看不到有广告，人家任性的说了 “我不差钱”。最近她在极客时间的 APP 上开了一个专栏 “朱赟的技术管理课”，为了跟紧大牛的步伐我花了 58 元大洋订阅了。所以真正能实现财富自由不差钱的技能–写作。</p><p>说着两个故事呢，证明一个问题，无论你是做技术，产品，还是运维，或者说无论你是否在互联网行业，都应该对自己定期的做总结，做归纳。昨天看 “caoz的梦呓” 的一个举例，一个没文化，没多过书的家长，把孩子培养名校高材生，问他怎么培养的，说其实很简单，孩子明天回来，让他给自己讲讲学校里都讲了啥，自己学会了啥，让孩子给自己当老师，对知识的掌握，对孩子的表达能力和总结能力的提高，是非常大的。而做总结归纳的一个非常有效的途径就是–写作。</p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">转发分享、点赞赞赏才是真爱 [斜眼笑]</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;未来必不可少的一项技能–写作&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;公众号已经有一个多月没有更新了，最近一直在思考，如何更好的去运营这个公号，以前所写的文章都比较杂乱，涉及到了很多方面，回头看时，有价值的文章很少，所以最近就一直在想，如何提升文
       
     
     </summary>
