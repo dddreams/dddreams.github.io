@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>github精选-秒杀系统设计与实现</title>
+      <link href="/211108-github%E7%B2%BE%E9%80%89-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.html"/>
+      <url>/211108-github%E7%B2%BE%E9%80%89-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.html</url>
+      
+        <content type="html"><![CDATA[<p>很长时间没有更新了，最近有个想法，做一个github 开源项目精选的主题，我经常会去逛 githb，发现一些好玩或实用的项目就会 star，后来发现 star 了很多项目，但在实际要使用时还是想不起来自己已经 star 了该项目了。所以就有了这样一个想法，整理记录 github 上的一些项目，知道它是做什么的，它能解决什么问题，当实际使用时直接在博客上搜索，岂不是很方便了；于是就有了这个 github精选的分类。</p><p>今天分享的是一个秒杀系统设计与实现，互联网工程师进阶与分析，创建者对高并发大流量如何进行秒杀架构这部分知识做了一个系统的整理。目前已获得 22.9k 的star，其中包含整体设计，数据库设计和常见的一些问题整理，涉及到的技术有 SpringBoot、MQ、Redis、Dubbo、ZK、Maven、lua 等技术。</p><p>我花了一些时间看了其中的内容，真的是干货，nginx优化，mysql 的执行计划，数据的备份和恢复写的都很实用，程序员的进阶修炼不可缺少的好项目，极力推荐。</p><p>送上开源地址：<a href="https://github.com/qiurunze123/miaosha" target="_blank" rel="noopener">https://github.com/qiurunze123/miaosha</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： 治恒说说</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Github </category>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mysql登录失败多次锁定配置</title>
       <link href="/210208-Mysql%E7%99%BB%E5%BD%95%E5%A4%B1%E8%B4%A5%E5%A4%9A%E6%AC%A1%E9%94%81%E5%AE%9A%E9%85%8D%E7%BD%AE.html"/>
       <url>/210208-Mysql%E7%99%BB%E5%BD%95%E5%A4%B1%E8%B4%A5%E5%A4%9A%E6%AC%A1%E9%94%81%E5%AE%9A%E9%85%8D%E7%BD%AE.html</url>

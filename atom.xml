@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dddreams.github.io/"/>
-  <updated>2021-11-07T14:29:39.803Z</updated>
+  <updated>2021-11-08T14:47:29.910Z</updated>
   <id>https://dddreams.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github精选-秒杀系统设计与实现</title>
+    <link href="https://dddreams.github.io/211108-github%E7%B2%BE%E9%80%89-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.html"/>
+    <id>https://dddreams.github.io/211108-github精选-秒杀系统设计与实现.html</id>
+    <published>2021-11-08T14:46:17.000Z</published>
+    <updated>2021-11-08T14:47:29.910Z</updated>
+    
+    <content type="html"><![CDATA[<p>很长时间没有更新了，最近有个想法，做一个github 开源项目精选的主题，我经常会去逛 githb，发现一些好玩或实用的项目就会 star，后来发现 star 了很多项目，但在实际要使用时还是想不起来自己已经 star 了该项目了。所以就有了这样一个想法，整理记录 github 上的一些项目，知道它是做什么的，它能解决什么问题，当实际使用时直接在博客上搜索，岂不是很方便了；于是就有了这个 github精选的分类。</p><p>今天分享的是一个秒杀系统设计与实现，互联网工程师进阶与分析，创建者对高并发大流量如何进行秒杀架构这部分知识做了一个系统的整理。目前已获得 22.9k 的star，其中包含整体设计，数据库设计和常见的一些问题整理，涉及到的技术有 SpringBoot、MQ、Redis、Dubbo、ZK、Maven、lua 等技术。</p><p>我花了一些时间看了其中的内容，真的是干货，nginx优化，mysql 的执行计划，数据的备份和恢复写的都很实用，程序员的进阶修炼不可缺少的好项目，极力推荐。</p><p>送上开源地址：<a href="https://github.com/qiurunze123/miaosha" target="_blank" rel="noopener">https://github.com/qiurunze123/miaosha</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： 治恒说说</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;很长时间没有更新了，最近有个想法，做一个github 开源项目精选的主题，我经常会去逛 githb，发现一些好玩或实用的项目就会 star，后来发现 star 了很多项目，但在实际要使用时还是想不起来自己已经 star 了该项目了。所以就有了这样一个想法，整理记录 gith
+      
+    
+    </summary>
+    
+      <category term="Github" scheme="https://dddreams.github.io/categories/Github/"/>
+    
+      <category term="教程" scheme="https://dddreams.github.io/categories/Github/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Github" scheme="https://dddreams.github.io/tags/Github/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql登录失败多次锁定配置</title>
@@ -498,31 +525,6 @@
 &lt;p&gt;好汉不吃眼前亏。但是在另外很多时候，如果问题争执不下，也不要继续火上浇油，冷静下来，多收集一些数据材料与想更明白点再说。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;又是忙碌的一周，上周通宵两夜赶出来的功能只用了一下午，还是有一点小失望的。今天认识了
-      
-    
-    </summary>
-    
-    
-      <category term="杂谈" scheme="https://dddreams.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>会上瘾的今日头条</title>
-    <link href="https://dddreams.github.io/171203-%E4%BC%9A%E4%B8%8A%E7%98%BE%E7%9A%84%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1.html"/>
-    <id>https://dddreams.github.io/171203-会上瘾的今日头条.html</id>
-    <published>2017-12-05T05:07:17.000Z</published>
-    <updated>2017-12-05T05:14:40.294Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>年轻时很容易想要“一鸣惊人”，急于证明自己，但其实，二十几岁恰恰是需要一个人定下心来，本本分分，一步步地去做事情，去积累的时候。年轻不怕失败，只要能学到东西，并且让自己一直处于成长的状态，你想要的都会不请自来。——蓑依 ​​​ ​​​​</p></blockquote><p>最近经常见好多同事，一有闲时间就在刷头条，我也好奇就安装了今日头条，大概看了一些有趣的段子什么的，就再没管，当我第二次打开头条的时候，发现铺天盖地的都是同一种类型的段子，把我看的不亦乐乎。后来又看了些我感兴趣的话题，当我再次打开头条看时，又是同一类型的话题，并且大多数是一些标题党，标题很吸引人，内容平平，没什么价值。时间一长我也跟同事们一样了，一有闲时间就不由自主的打开头条，而且看的不亦乐乎。当我发现自己大部分闲时间都被头条占据后，我毫不犹豫的卸载了。</p><p>记得大学时候，新闻客户端还是那个风格简洁，以红色为主色的网易新闻，每天上课前看看新闻，偶尔还会转发分享到微博（那时的朋友圈还没有现在这么流行）。当网易还沉浸在包揽用户的喜悦之中时，今日头条慢慢进入了人们的生活，以他独到的推荐算法，魔法般的将用户感兴趣的东西一股脑抛到你面前，你就像上瘾了似的每天笑的乐哈哈。再到后来，网易新闻也做起了推荐，丢弃了当初那个少女般的新闻类产品，和头条一样，无论内容好坏一股脑的抛给用户。不得不说头条的推荐算法很强大，侵蚀力也很强，甚至老牌的腾讯新闻，新浪新闻也被头条超越。他准确抓住了人性的弱点，那些热点文章都是在抓人的注意力，使用耸人听闻的标题，引诱你其点击，点击之后头条认为你对其感兴趣，然后给你推荐更多的垃圾信息。</p><p>据有关统计，头条的点击量已经超越了公众号的点击阅读量，单从每天发表数量来看，公众号原创输出远远大于头条的输出，但是在点击量上头条却占据了领先地。在我看来，这很正常，因为公众号文章用户有选择权，如果一个公众号输出的内容没有多大价值，用户可以取关；相反的头条无论内容质量如何都推荐给用户，几乎排在前面的文章都是利用机器推荐算法推荐给你的。但是公众号就不样了，我们知道公众号的文章阅读一部分是来自朋友的转发，那么你是相信朋友给你的推荐呢，还是相信机器算法给你的推荐？</p><p>其实头条上也有一些很不错的文章值得我们去阅读，只是那些吸引眼球的标题和远远不断的推荐，占据了你筛选信息的时间。在这个信息膨胀的互联网时代，如何筛选出真实，有价值，有深度的内容，还是需要一个有节操有底线的产品来为用户服务，从而节省人们更多的时间。</p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;年轻时很容易想要“一鸣惊人”，急于证明自己，但其实，二十几岁恰恰是需要一个人定下心来，本本分分，一步步地去做事情，去积累的时候。年轻不怕失败，只要能学到东西，并且让自己一直处于成长的状态，你想要的都会不请自来。——蓑依 ​​​ ​​​​&lt;/p&gt;
-&lt;
       
     
     </summary>
