@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css">
+    #title{
+        text-align: center;
+        font-size: 4em;
+    }
+    #timer{
+      margin: 100px auto;
+      font-size: 15em;
+      text-align: center;
+    }
+    #group{
+      font-weight: bold;
+      font-size: 18px;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <div id="tips">你已运动：<span id="group">0</span>组</div>
+    <div id="title">热身</div>
+    <div id="timer"></div>
+  </div>
+  
+  <script type="text/javascript">
+      var maxtime = 1 * 60;
+      var index = 0;
+      function CountDown() {
+        if (maxtime >= 0) {
+          minutes = Math.floor(maxtime / 60);
+          seconds = Math.floor(maxtime % 60);
+          var strM = minutes, strS = seconds;
+          if(minutes < 10) strM = '0' + minutes
+          if(seconds < 10) strS = '0' + seconds
+          msg = strM + ":" + strS;
+          document.all["timer"].innerHTML = msg;
+          //if (maxtime == 5 * 60)alert("距离结束仅剩5分钟");
+            --maxtime;
+        } else{
+          clearInterval(timer);
+          var title = document.querySelector('#title');
+          if(index % 2 == 0){
+            maxtime = 2 * 59;
+            title.innerHTML = '步行'
+            if(index != 0){
+              var group = document.querySelector('#group');
+              group.innerHTML = index / 2;
+            }
+          } else {
+            maxtime = 1 * 59;
+            title.innerHTML = '跑起来'
+          }
+          index++;
+          timer = setInterval("CountDown()", 1000); 
+        }
+      }
+      var timer = setInterval("CountDown()", 1000); 
+  </script>
+</body>
+</html>
