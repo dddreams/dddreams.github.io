@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>github精选-PeaZip一款好用又免费的压缩软件</title>
+      <link href="/211120-github%E7%B2%BE%E9%80%89-PeaZip%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E5%8F%88%E5%85%8D%E8%B4%B9%E7%9A%84%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6.html"/>
+      <url>/211120-github%E7%B2%BE%E9%80%89-PeaZip%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E5%8F%88%E5%85%8D%E8%B4%B9%E7%9A%84%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6.html</url>
+      
+        <content type="html"><![CDATA[<p>先问大家一个问题，你们电脑上常用的压缩软件是什么呢？<code>WinRaR</code>？还是<code>BandiZip</code>？或者国产的<strong>好压</strong>、还是<strong>360压缩</strong>？如果是后两者，那么我建议你是时候换一款压缩软件了。</p><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>今天介绍的便是一款好用又免费而且没有广告的压缩软件<code>PeaZip</code>，跨平台Windows和Linux都可以运行，它本身有一种原生的压缩格式叫做 pea。除此之外，完全支持7Z, 7Z-sfx, BZip2, GZip/TGZ, PAQ8F, PAQ8JD, PAQ8L, PEA, QUAD, split (.001), TAR, ZIP等格式；支持浏览或解压缩以下格式：CE, ARJ, CAB, CHM, CPIO, ISO, Java archives (JAR, EAR, WAR), Linux installers (DEB, PET/PUP, RPM, SLP), LHA, LZH, Open Office file types, PAK/PK3/PK4, RAR, Windows installers (NSIS, some MSI), WIM, XPI, Z/TZ。这些格式不能支持压缩，说原因，大家也明白，这些格式都是不开放的。</p><h3 id="2、软件界面"><a href="#2、软件界面" class="headerlink" title="2、软件界面"></a>2、软件界面</h3><p>界面长这样子</p><p><img src="https://tva1.sinaimg.cn/large/9b21a2d4ly8gwlwa46d6aj20oh0e275v.jpg" alt="1.png" style="zoom:80%;"></p><p>你可以轻松切换到中文界面，打开【Options】菜单选择【Localization】，然后选择<code>chs.txt</code>（简体中文）或者<code>cht.txt</code>（繁体中文）就变为下面这样了。</p><p><img src="https://tva1.sinaimg.cn/large/9b21a2d4ly8gwlwhke0dcj20oi0e40uc.jpg" alt="2.png" style="zoom:80%;"></p><h3 id="3、有哪些不错的功能"><a href="#3、有哪些不错的功能" class="headerlink" title="3、有哪些不错的功能"></a>3、有哪些不错的功能</h3><h5 id="1、智能解压"><a href="#1、智能解压" class="headerlink" title="1、智能解压"></a>1、智能解压</h5><p><img src="https://cdn.sspai.com/2019/12/24/b9f3bc1e6456b1502996762363ebbac7.png" alt="像这样" style="zoom:80%;"></p><p>如果在一个压缩文件中包含很多文件，就像上图，当我们在未打开这个压缩软件时先点击「解压到当前文件夹」时，一定会在下一秒为刚刚做出的操作而后悔，因为这些文件迅速的占领了你的视野，就像下图这样：</p><p><img src="https://cdn.sspai.com/2019/12/24/acf5196799ffa78b7c9d7a43f868c4d7.png" alt="解压后" style="zoom:80%;"></p><p>但是如果遇到内置一个单独文件夹的压缩包时，当我们像以往一样使用「解压到（压缩文件名称的）文件夹」时就会遇到令人抓狂的「套娃」模式。这时，智能解压就显得十分重要。当解压一个我们不知道内部是什么的文件夹时，使用智能解压，就可以优雅地将压缩包中的目标文件整理到当前目录的同名文件夹里。不用担心是否会套娃，也不用担心一堆文件突然塞满你的文件夹。</p><h5 id="2、快速拖放"><a href="#2、快速拖放" class="headerlink" title="2、快速拖放"></a>2、快速拖放</h5><p>若你习惯于直接将压缩包内文件「拖出来」来进行解压操作，那你大概常常会在压缩软件的解压进度条走完后遇到又一个进度条：将操作文件从临时文件夹复制到目标拖放目录。</p><p>这种情况常见于从一个特别大的压缩文件里面提取一个小文件，在 WinRAR 上我们需要等待它完全解压、转存到临时文件夹，然后再让它自动把你要的文件放到你想要的位置上去……这一切无疑都太耗费时间了。</p><p>而 Peazip 在解压大文件时会使用「快速拖放」功能，让你的文件被直接解压到目标拖放目录，而非从临时文件夹处中转。既不需要你改变操作习惯，同时有效减少你的等待时间。</p><h5 id="3、密码管理器"><a href="#3、密码管理器" class="headerlink" title="3、密码管理器"></a>3、密码管理器</h5><p><img src="https://tva3.sinaimg.cn/large/9b21a2d4ly8gwlwh7dk3gj20gn0bwq33.jpg" alt="密码管理器" style="zoom: 80%;"></p><p>如果你有密码管理的需求，PeaZip 是一个不错的选择。</p><h3 id="4、开源地址"><a href="#4、开源地址" class="headerlink" title="4、开源地址"></a>4、开源地址</h3><p>github地址：<a href="https://github.com/peazip/PeaZip" target="_blank" rel="noopener">https://github.com/peazip/PeaZip</a></p><p>下载地址：<a href="https://peazip.github.io/" target="_blank" rel="noopener">https://peazip.github.io/</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： 治恒说说</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> 软件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用Python读取Excel中的图片并对应到记录</title>
       <link href="/211116-%E4%BD%BF%E7%94%A8Python%E8%AF%BB%E5%8F%96Excel%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E5%B9%B6%E5%AF%B9%E5%BA%94%E5%88%B0%E8%AE%B0%E5%BD%95.html"/>
       <url>/211116-%E4%BD%BF%E7%94%A8Python%E8%AF%BB%E5%8F%96Excel%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E5%B9%B6%E5%AF%B9%E5%BA%94%E5%88%B0%E8%AE%B0%E5%BD%95.html</url>

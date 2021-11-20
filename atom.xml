@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dddreams.github.io/"/>
-  <updated>2021-11-16T12:34:59.631Z</updated>
+  <updated>2021-11-20T14:19:41.721Z</updated>
   <id>https://dddreams.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github精选-PeaZip一款好用又免费的压缩软件</title>
+    <link href="https://dddreams.github.io/211120-github%E7%B2%BE%E9%80%89-PeaZip%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E5%8F%88%E5%85%8D%E8%B4%B9%E7%9A%84%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6.html"/>
+    <id>https://dddreams.github.io/211120-github精选-PeaZip一款好用又免费的压缩软件.html</id>
+    <published>2021-11-20T14:46:17.000Z</published>
+    <updated>2021-11-20T14:19:41.721Z</updated>
+    
+    <content type="html"><![CDATA[<p>先问大家一个问题，你们电脑上常用的压缩软件是什么呢？<code>WinRaR</code>？还是<code>BandiZip</code>？或者国产的<strong>好压</strong>、还是<strong>360压缩</strong>？如果是后两者，那么我建议你是时候换一款压缩软件了。</p><h3 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h3><p>今天介绍的便是一款好用又免费而且没有广告的压缩软件<code>PeaZip</code>，跨平台Windows和Linux都可以运行，它本身有一种原生的压缩格式叫做 pea。除此之外，完全支持7Z, 7Z-sfx, BZip2, GZip/TGZ, PAQ8F, PAQ8JD, PAQ8L, PEA, QUAD, split (.001), TAR, ZIP等格式；支持浏览或解压缩以下格式：CE, ARJ, CAB, CHM, CPIO, ISO, Java archives (JAR, EAR, WAR), Linux installers (DEB, PET/PUP, RPM, SLP), LHA, LZH, Open Office file types, PAK/PK3/PK4, RAR, Windows installers (NSIS, some MSI), WIM, XPI, Z/TZ。这些格式不能支持压缩，说原因，大家也明白，这些格式都是不开放的。</p><h3 id="2、软件界面"><a href="#2、软件界面" class="headerlink" title="2、软件界面"></a>2、软件界面</h3><p>界面长这样子</p><p><img src="https://tva1.sinaimg.cn/large/9b21a2d4ly8gwlwa46d6aj20oh0e275v.jpg" alt="1.png" style="zoom:80%;"></p><p>你可以轻松切换到中文界面，打开【Options】菜单选择【Localization】，然后选择<code>chs.txt</code>（简体中文）或者<code>cht.txt</code>（繁体中文）就变为下面这样了。</p><p><img src="https://tva1.sinaimg.cn/large/9b21a2d4ly8gwlwhke0dcj20oi0e40uc.jpg" alt="2.png" style="zoom:80%;"></p><h3 id="3、有哪些不错的功能"><a href="#3、有哪些不错的功能" class="headerlink" title="3、有哪些不错的功能"></a>3、有哪些不错的功能</h3><h5 id="1、智能解压"><a href="#1、智能解压" class="headerlink" title="1、智能解压"></a>1、智能解压</h5><p><img src="https://cdn.sspai.com/2019/12/24/b9f3bc1e6456b1502996762363ebbac7.png" alt="像这样" style="zoom:80%;"></p><p>如果在一个压缩文件中包含很多文件，就像上图，当我们在未打开这个压缩软件时先点击「解压到当前文件夹」时，一定会在下一秒为刚刚做出的操作而后悔，因为这些文件迅速的占领了你的视野，就像下图这样：</p><p><img src="https://cdn.sspai.com/2019/12/24/acf5196799ffa78b7c9d7a43f868c4d7.png" alt="解压后" style="zoom:80%;"></p><p>但是如果遇到内置一个单独文件夹的压缩包时，当我们像以往一样使用「解压到（压缩文件名称的）文件夹」时就会遇到令人抓狂的「套娃」模式。这时，智能解压就显得十分重要。当解压一个我们不知道内部是什么的文件夹时，使用智能解压，就可以优雅地将压缩包中的目标文件整理到当前目录的同名文件夹里。不用担心是否会套娃，也不用担心一堆文件突然塞满你的文件夹。</p><h5 id="2、快速拖放"><a href="#2、快速拖放" class="headerlink" title="2、快速拖放"></a>2、快速拖放</h5><p>若你习惯于直接将压缩包内文件「拖出来」来进行解压操作，那你大概常常会在压缩软件的解压进度条走完后遇到又一个进度条：将操作文件从临时文件夹复制到目标拖放目录。</p><p>这种情况常见于从一个特别大的压缩文件里面提取一个小文件，在 WinRAR 上我们需要等待它完全解压、转存到临时文件夹，然后再让它自动把你要的文件放到你想要的位置上去……这一切无疑都太耗费时间了。</p><p>而 Peazip 在解压大文件时会使用「快速拖放」功能，让你的文件被直接解压到目标拖放目录，而非从临时文件夹处中转。既不需要你改变操作习惯，同时有效减少你的等待时间。</p><h5 id="3、密码管理器"><a href="#3、密码管理器" class="headerlink" title="3、密码管理器"></a>3、密码管理器</h5><p><img src="https://tva3.sinaimg.cn/large/9b21a2d4ly8gwlwh7dk3gj20gn0bwq33.jpg" alt="密码管理器" style="zoom: 80%;"></p><p>如果你有密码管理的需求，PeaZip 是一个不错的选择。</p><h3 id="4、开源地址"><a href="#4、开源地址" class="headerlink" title="4、开源地址"></a>4、开源地址</h3><p>github地址：<a href="https://github.com/peazip/PeaZip" target="_blank" rel="noopener">https://github.com/peazip/PeaZip</a></p><p>下载地址：<a href="https://peazip.github.io/" target="_blank" rel="noopener">https://peazip.github.io/</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： 治恒说说</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;先问大家一个问题，你们电脑上常用的压缩软件是什么呢？&lt;code&gt;WinRaR&lt;/code&gt;？还是&lt;code&gt;BandiZip&lt;/code&gt;？或者国产的&lt;strong&gt;好压&lt;/strong&gt;、还是&lt;strong&gt;360压缩&lt;/strong&gt;？如果是后两者，那么我建议你是时候换
+      
+    
+    </summary>
+    
+      <category term="Github" scheme="https://dddreams.github.io/categories/Github/"/>
+    
+    
+      <category term="Github" scheme="https://dddreams.github.io/tags/Github/"/>
+    
+      <category term="软件" scheme="https://dddreams.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Python读取Excel中的图片并对应到记录</title>
@@ -503,32 +530,6 @@
     
     
       <category term="推荐" scheme="https://dddreams.github.io/tags/%E6%8E%A8%E8%8D%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>工作两年之后</title>
-    <link href="https://dddreams.github.io/171231-%E5%B7%A5%E4%BD%9C%E4%B8%A4%E5%B9%B4%E4%B9%8B%E5%90%8E.html"/>
-    <id>https://dddreams.github.io/171231-工作两年之后.html</id>
-    <published>2018-01-03T01:03:32.000Z</published>
-    <updated>2018-01-03T01:07:26.976Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>我的 2017 年终总结</p></blockquote><p>又是一年年尾，今年的年尾好像显得尤为重要似的，每个人都在谈论 “再见2017,你好2018” 的话题，朋友圈继圣诞帽的热潮之后，又掀起了 “我的 18 岁” 热潮，2017 年的我们越来越喜欢跟风刷存在感，相比前面两种热潮我更青睐于知乎上年终总结的热潮。</p><p>用两个字总结这一年，那就是「忙碌」，可是在写这篇总结的时候却发现可写的没有多少，说白了是收获没有多少，除了年龄上的收获外，其他的都没有那么明显了。</p><h2 id="最大的变化"><a href="#最大的变化" class="headerlink" title="最大的变化"></a>最大的变化</h2><p>这一年最大的变化就是每天上班做的第一件事，以往的时候上班第一件事先是打开掘金或者知乎刷几篇热门的技术文章，而今年上班第一件事必然是打开我们所开发的平台，点点自己负责的模块，看看系统是否运行正常，然后开始一天的工作。工作上，不在是整天埋头敲代码，更多的是考虑如何设计，如何分配，如何提高效率，一天的时间几乎被一些琐碎的杂事请所占据，从而显得疲惫了不少，也正是因为这些琐碎的杂事请，每天感觉什么也没做，反而使人更累，回头想想还是安安静静的敲代码来的爽快。技术上，几乎没有什么进展，每天忙碌下来，上班期间根本没有时间去看技术文档，下班后又感觉很累也就没心思学习了，再加上技术更新换代的速度太快，明显感觉到跟不上的节奏，想想也罢，一味的追逐新技术不是什么好事。生活上，那就更不用说了，一如既往的单调，除了熬夜越来越迟，头发越来越少之外在没有什么了。相比 16 年的总结「工作一年之后」，方向已经大有变化，但是技术人不能丢弃技术，这是毋庸置疑的。</p><h2 id="对自己的投资"><a href="#对自己的投资" class="headerlink" title="对自己的投资"></a>对自己的投资</h2><p>不错，在这个变化莫测的时代，对自己的投资才是最有价值的投资，从16年开始，微信公众号成为了我获取信息的主要途径，我关注了大概有 200 多个公众号，有大公司的技术号，有个人的自媒体号，也有互联网大 V 的个人号，随着个人兴趣的变化，我也慢慢的开始关注产品类，运营类，投资理财类，心理学类等等的一些公众号，涉及领域之广泛，当然关注这么多公众号不可能每天都会去阅读，但是经常看的一些号，只要有更新就会去看。通过这些公众号，我也了解了一些付费平台的产品，订阅了罗元裳的「投资理财，怎么做才能获得最大收益」知乎 live，justjavac 的「前端工程师的入门与阶进」知乎live；订阅了朱赟在极客时间上的专栏「朱赟的技术管理课」，左耳朵耗子的「左耳听风」专栏；加入了 stormzhang 的知识星球「帅张和他的朋友们」。关注了这么多，也看了这么多，要说收获了什么我也说不上来，但是我相信长期下来收获是必然的。</p><h2 id="「zhiheng博客」的运营"><a href="#「zhiheng博客」的运营" class="headerlink" title="「zhiheng博客」的运营"></a>「zhiheng博客」的运营</h2><p>这个公众号开通已经有两年多了，15,16 年几乎没写几篇文章，主要在今年虽然写的很少，但至少是坚持写了一年，并且获得了微信爸爸的原创保护，留言赞赏功能，虽然听说原创保护已经对所有公众号开放了[捂脸]，粉丝长的也不多，但是还是要感谢一直关注我的读者们，你们的坚守与鼓励是我写下去的动力。17 年总的写了大概有 30 几篇文章，其中技术分享的文章不多，有几篇关于 GO 语言的，本来打算系统的学习这门语言，并以教程的形式发表，可是由于时间原因放弃了，之所以要学习 GO 语言，是因为 GO 比较年轻，在设计上都有前所未有的前瞻性，相信他将会成为未来的趋势。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>忙碌的一年，回头看时，能让人历历在目的没有几件事，还是那句话，都不知道这一年干了个啥，已经结束了。明年呢，明年继续努力，少熬夜，多看书，多运动，多与异性交朋友。[斜眼笑]</p><pre><code>2017 年 12 月 31 日冬</code></pre><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;我的 2017 年终总结&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;又是一年年尾，今年的年尾好像显得尤为重要似的，每个人都在谈论 “再见2017,你好2018” 的话题，朋友圈继圣诞帽的热潮之后，又掀起了 “我的 18 岁” 热潮，2017 年的我
-      
-    
-    </summary>
-    
-    
-      <category term="总结" scheme="https://dddreams.github.io/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
