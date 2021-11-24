@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dddreams.github.io/"/>
-  <updated>2021-11-20T14:19:41.721Z</updated>
+  <updated>2021-11-24T08:17:15.834Z</updated>
   <id>https://dddreams.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github精选-Linux命令大全</title>
+    <link href="https://dddreams.github.io/211124-github%E7%B2%BE%E9%80%89-Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.html"/>
+    <id>https://dddreams.github.io/211124-github精选-Linux命令大全.html</id>
+    <published>2021-11-24T07:31:41.000Z</published>
+    <updated>2021-11-24T08:17:15.834Z</updated>
+    
+    <content type="html"><![CDATA[<p> 对于程序员，和 Linux 打交道那是一项必不可少的技能，有很多同学问我，Linux命令这么多，该怎么从入门到精通呢？今天给大家推荐一个学习和查询Linux命令的好工具<code>linux-command</code>.</p><p>先来看看效果</p><p><img src="https://user-images.githubusercontent.com/1680273/123261829-ce830300-d529-11eb-8cea-a39059b972dd.gif" alt="linux-command"></p><p>该仓库搜集了570多个Linux命令，内容包含 Linux 命令手册、详解、学习等，非常值得收藏的 Linux 命令速查手册。并且作者生成了一个web网站，方便大家使用，地址：<a href="https://git.io/linux" target="_blank" rel="noopener">https://git.io/linux</a>。由于网络的原因这个地址可能访问不到，大家可以访问：<a href="https://wangchujiang.com/linux-command" target="_blank" rel="noopener">https://wangchujiang.com/linux-command</a>。其中包含了Linux命令有：</p><p><img src="https://i.loli.net/2021/11/24/NtshVnJOCSIKY9T.png" alt="Linux命令分类"></p><p>不仅于此，作者还提供了微信小程序版、Chrome插件、Alfred 版本、Dash 版本、命令行工具等方式进行检索。下载方式请移步仓库地址。</p><p>仓库还整理了很多Linux学习资料，包括各种资讯、文章、技术，知识相关、软件工具等，是一个学习Linux的不错选择。</p><p>开源地址：<a href="https://github.com/jaywcjlove/linux-command" target="_blank" rel="noopener">https://github.com/jaywcjlove/linux-command</a></p><p>网站地址：<a href="https://wangchujiang.com/linux-command/" target="_blank" rel="noopener">https://wangchujiang.com/linux-command/</a></p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： 治恒说说</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt; 对于程序员，和 Linux 打交道那是一项必不可少的技能，有很多同学问我，Linux命令这么多，该怎么从入门到精通呢？今天给大家推荐一个学习和查询Linux命令的好工具&lt;code&gt;linux-command&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;先来看看效果&lt;/p&gt;
+&lt;p&gt;&lt;im
+      
+    
+    </summary>
+    
+      <category term="Github" scheme="https://dddreams.github.io/categories/Github/"/>
+    
+    
+      <category term="Github" scheme="https://dddreams.github.io/tags/Github/"/>
+    
+      <category term="工具" scheme="https://dddreams.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>github精选-PeaZip一款好用又免费的压缩软件</title>
@@ -503,33 +532,6 @@
     
     
       <category term="杂谈" scheme="https://dddreams.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>推荐一些常看的公众号，不是互推</title>
-    <link href="https://dddreams.github.io/180324-%E6%8E%A8%E8%8D%90%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%9C%8B%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%EF%BC%8C%E4%B8%8D%E6%98%AF%E4%BA%92%E6%8E%A8.html"/>
-    <id>https://dddreams.github.io/180324-推荐一些常看的公众号，不是互推.html</id>
-    <published>2018-03-24T01:03:32.000Z</published>
-    <updated>2018-03-24T09:44:21.496Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>我倒是想互推呢，，，</p></blockquote><p>看过很多推荐公众号的文章，总有人留言说是互推的吧，其实我倒是想互推呢，能让这些大佬推荐，能不火都不行，要知道他们的公众号读者至少 10+ ，能让他们推荐，那真是荣幸。</p><p>这几个号其实之前就推荐过，只所以再次推荐，是因为这一年来我一直跟随着这几个公众号成长的，他们的坚持给了我很大的帮助，无论是从认知，行业现状，技术发展等各个方面，18年的前三个月又懈怠了这件事，一直以来都想跟他们一样坚持做自己想做的事。「制定一个目标，想坚持一件事情。这一次，是认真的，真的是认真的」。</p><h3 id="1、stormzhang"><a href="#1、stormzhang" class="headerlink" title="1、stormzhang"></a>1、stormzhang</h3><p><img src="images/20180324/stormzhang.jpeg" alt="stormzhang"></p><p>stormzhang， 不是第一次推荐了，他是一个非常值得让人敬佩的人，非科班出身，自学编程，现在成为公司的技术管理者，坚持写作 5,6 年了，前段时间因为他的知识星球 「帅张和他的朋友们」 第二期续费，日入 10w+ ，目前付费用户 6000+ ，前几天还被知识星球官方采访 <a href="https://mp.weixin.qq.com/s/icJpggvBEpWtqzAxF6hjCQ" target="_blank" rel="noopener">他不把运气放在眼里，用努力完成从学渣到职场高手的逆袭</a>，因此他自己也做了总结，个人觉得这是一篇很不错的文章 <a href="http://mp.weixin.qq.com/s/6nby0vu40SxFR8tCe4Wy5g" target="_blank" rel="noopener">一个新的里程碑</a>。</p><h3 id="2、MacTalk"><a href="#2、MacTalk" class="headerlink" title="2、MacTalk"></a>2、MacTalk</h3><p><img src="images/20180324/MacTalk.jpg" alt="MacTalk"></p><p>池老师，老程序员，先后任职洪恩软件和用友集团，从事互联网和企业应用软件研发，还在锤子科技担任过总监，目前加盟极客邦科技，任总裁。喜爱编程和写作，坚持年轻时的理想。他的文章文风有趣，又有一点力量。去年极客帮团队上线的APP「极客时间」也是非常棒的产品，可以说是程序员的福利。</p><h3 id="3、小道消息"><a href="#3、小道消息" class="headerlink" title="3、小道消息"></a>3、小道消息</h3><p><img src="images/20180324/fenng.jpeg" alt="小道消息"></p><p>冯老师，也是一个值得让人敬佩的人，常以不同与常人的思维思考问题，写文章也是，有独到的见解，时而风趣，时而讲真，在很多地方可以找到他的身影，推特、公众号、知识星球、微博等等，目前正在创业中，他的创业公司无码科技出品的产品「Readhub」是一个极简，有价值，注重与用户体验的产品。他们的产品特别重视用户体验，其中入住微信小程序的「Readhub」，「抽奖助手」也得到了用户的好评。</p><h3 id="4、keso-怎么看"><a href="#4、keso-怎么看" class="headerlink" title="4、keso 怎么看"></a>4、keso 怎么看</h3><p><img src="images/20180324/kesoview.jpg" alt="keso 怎么看"></p><p>洪波，不是程序员，独立IT评论人，以犀利的笔锋、独到的观点著名。keso 的文字就像是重剑无锋一样，大巧不工，不花哨，不抖机灵，扎实，有力度，有深度。</p><p>关注上车，老司机要开车了。。。</p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;我倒是想互推呢，，，&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;看过很多推荐公众号的文章，总有人留言说是互推的吧，其实我倒是想互推呢，能让这些大佬推荐，能不火都不行，要知道他们的公众号读者至少 10+ ，能让他们推荐，那真是荣幸。&lt;/p&gt;
-&lt;p&gt;这
-      
-    
-    </summary>
-    
-    
-      <category term="推荐" scheme="https://dddreams.github.io/tags/%E6%8E%A8%E8%8D%90/"/>
     
   </entry>
   
