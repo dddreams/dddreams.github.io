@@ -167,7 +167,8 @@ div {
   color: #888; }
 
 .post {
-  padding: 25px 0 15px; }
+  padding: 25px 0 30px;
+  border-bottom: solid 1px #ddd; }
   .post .post-title {
     margin: 0;
     color: #555;
@@ -317,9 +318,9 @@ div {
       padding-right: 0.3em; }
 
 .page-navigator {
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd; */
   list-style: none;
-  margin-top: 25px;
+  margin-top: 10px;
   padding: 25px 0 0;
   font-size: 14px;
   text-align: center; }
