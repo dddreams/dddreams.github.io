@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dddreams.github.io/"/>
-  <updated>2021-12-03T07:15:24.913Z</updated>
+  <updated>2021-12-06T00:54:02.174Z</updated>
   <id>https://dddreams.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github精选-一款高颜值的Redis客户端</title>
+    <link href="https://dddreams.github.io/211204-github%E7%B2%BE%E9%80%89-%E4%B8%80%E6%AC%BE%E9%AB%98%E9%A2%9C%E5%80%BC%E7%9A%84Redis%E5%AE%A2%E6%88%B7%E7%AB%AF.html"/>
+    <id>https://dddreams.github.io/211204-github精选-一款高颜值的Redis客户端.html</id>
+    <published>2021-12-04T14:31:06.000Z</published>
+    <updated>2021-12-06T00:54:02.174Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为开发者，Redis大家都不陌生，一个开源的、高性能的、基于内存运行的键值对数据库，常用来做缓存，Session共享服务器等，进大厂面试必问的内容，公众号后台回复<code>Redis</code>领取关于 Redis 的面试资料。</p><p>好了言归正传，既然他是个数据库，那么我们在使用过程中就会和关系型数据库一样，要进行增删改查这些操作，可惜的是 Redis 官方没有提供可视化工具，便于我们管理 Redis，要对他进行操作就只能这样：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd /sur/local/redis</span><br><span class="line">./redis-cli -h 127.0.0.1 -p 6379</span><br><span class="line">127.0.0.1:6379&gt; auth 123456   # 如果设置密码</span><br><span class="line">127.0.0.1:6379&gt; </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有的 key</span></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line"><span class="meta">#</span><span class="bash"> 新增键值对</span></span><br><span class="line">127.0.0.1:6379&gt; set test 'shure'</span><br><span class="line">OK</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看某个 key 的值</span></span><br><span class="line">127.0.0.1:6379&gt; get test</span><br><span class="line">"shure"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除键值对</span></span><br><span class="line">127.0.0.1:6379&gt; del test</span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 清空单个库的数据</span></span><br><span class="line">127.0.0.1:6379&gt; select 0</span><br><span class="line">127.0.0.1:6379&gt; flushdb</span><br><span class="line"><span class="meta">#</span><span class="bash"> 清空整个库的数据</span></span><br><span class="line">127.0.0.1:6379&gt; flushall</span><br></pre></td></tr></table></figure><p>或者有时候编写脚本操作一些常用的数据，可以直接使用命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379 -a 123456 keys "login:*" |xargs redis-cli -h 127.0.0.1 -p 6379 -a 123456 del</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># </span></span></span><br><span class="line">-a 密码</span><br><span class="line">-n 指定数据库</span><br><span class="line">-h ip地址</span><br><span class="line">-p 端口</span><br></pre></td></tr></table></figure><p>命令操作起来的确很装逼，但是很繁琐，而且很容易忘记，所有就涌现出了很多第三方的客户端工具，常用的有<code>Redis Desktop Manager</code>、<code>medis</code>、<code>RedisPlus</code>、<code>FastoRedis</code>、<code>Red</code>（Mac上常用的工具）<code>Redis Insight</code>、<code>Iedis2</code>（Idea 插件）等等，而今天我要推荐这款高颜值的Redis客户端工具<code>AnotherRedisDesktopManager</code>。</p><p>先来看看他的样子</p><p><img src="https://wx2.sinaimg.cn/mw1024/9b21a2d4ly1gx286nrddfj20qw0ikdgp.jpg" alt></p><p><img src="https://wx3.sinaimg.cn/mw1024/9b21a2d4ly1gx286nmeqzj20qv0il75m.jpg" alt></p><p><img src="https://wx3.sinaimg.cn/mw1024/9b21a2d4ly1gx286np2h0j20qr0imwff.jpg" alt></p><p><img src="https://wx2.sinaimg.cn/mw1024/9b21a2d4ly1gx286nrlo2j20qu0ijq3t.jpg" alt></p><p><img src="https://wx3.sinaimg.cn/mw1024/9b21a2d4ly1gx286nubu4j20tt0jz76y.jpg" alt></p><p>有黑暗主题、可切换简体中文、新建连接支持SSH跳板机、SSH模式、集群模式、可以查看Redis状态、增删改操作方便直观，并且可以修改过期时间，数据类型，当然也可以一键切换至命令行模式，更是跨平台可以运行在Windows、Linux、Mac平台，就算加载大数据量也不会卡死。</p><p>就是这样一款高颜值，又功能强大的客户端工具，你不赶快试试？</p><p>开源地址：<a href="https://github.com/qishibo/AnotherRedisDesktopManager" target="_blank" rel="noopener">https://github.com/qishibo/AnotherRedisDesktopManager</a></p><p>下载地址：<a href="https://github.com/qishibo/AnotherRedisDesktopManager/releases" target="_blank" rel="noopener">https://github.com/qishibo/AnotherRedisDesktopManager/releases</a></p><p>国内下载：<a href="https://gitee.com/qishibo/AnotherRedisDesktopManager/releases" target="_blank" rel="noopener">https://gitee.com/qishibo/AnotherRedisDesktopManager/releases</a></p><p><img title src="https://wx2.sinaimg.cn/mw1024/9b21a2d4ly1gwri115u0kj20rx0wcwg8.jpg" alt data-align="center" width="315"></p><center>更多文章请关注微信公众号： 治恒说说</center>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;作为开发者，Redis大家都不陌生，一个开源的、高性能的、基于内存运行的键值对数据库，常用来做缓存，Session共享服务器等，进大厂面试必问的内容，公众号后台回复&lt;code&gt;Redis&lt;/code&gt;领取关于 Redis 的面试资料。&lt;/p&gt;
+&lt;p&gt;好了言归正传，既然他是个
+      
+    
+    </summary>
+    
+      <category term="Github" scheme="https://dddreams.github.io/categories/Github/"/>
+    
+    
+      <category term="Github" scheme="https://dddreams.github.io/tags/Github/"/>
+    
+      <category term="软件" scheme="https://dddreams.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Python读取Excel中的图片（二）</title>
@@ -506,32 +534,6 @@
     
     
       <category term="Spring Boot" scheme="https://dddreams.github.io/tags/Spring-Boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于个人隐私泄露，你怎么看？</title>
-    <link href="https://dddreams.github.io/180331-%E5%85%B3%E4%BA%8E%E4%B8%AA%E4%BA%BA%E9%9A%90%E7%A7%81%E6%B3%84%E9%9C%B2%EF%BC%8C%E4%BD%A0%E6%80%8E%E4%B9%88%E7%9C%8B%EF%BC%9F.html"/>
-    <id>https://dddreams.github.io/180331-关于个人隐私泄露，你怎么看？.html</id>
-    <published>2018-03-31T01:03:32.000Z</published>
-    <updated>2018-04-21T07:20:39.835Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>我们的个人隐私数据是怎么泄露的？</p></blockquote><p>去年的时候公司加入了一项健康指标考核，各团队在企业咕咚里创建了运动团队，以每个月走的步数考核员工健康，我们团队制定了每月 20 万步的指标，规定一出大家都想方设法的刷步数，有的用手摇，有的抖腿，还有的直接买了刷步神器。而在前几天咕咚突然要收费了，而且费用还不少，公司不愿花钱，所以找可以替代的应用，听同事们说有一款叫做「钉钉」的企业应用，用的人挺多，于是就下载注册体验一下，注册之后，提示获取各种权限，地理位置，消息推送通知，网络，还有通讯录，我一贯的做法是除了网络，其他都不允许，但是进入应用之后发现已经有两位朋友了，而且还是我的手机通讯录的朋友，这让我挺纳闷的，仔细一想，应该是朋友注册的时候允许通讯录的权限了，一下子对这个应用好感全无；大概浏览了几页，真不愧是跟某宝出自一家啊，上面应有尽有，你所想不到的都做上去了，然而就是没有运动计步的。</p><p>小的时候，大人们总爱看孩子的隐私，撬你上了锁的日记本，偷看你的手机短信，聊天记录，我们感觉很气愤。大人们却不这么想，“你有什么不能让我看的，不能看就是有鬼！”，我们盼望这长大，长大后就可以保护我们的隐私和心事了。</p><p>然而长大后，在这个网络时代，我们近似于裸奔。你在网上点到了贷款的广告，接下来的几天里就接到数个贷款推销的电话；你下载了一个拍照 APP ，发现它索要联系人权限，你拒绝了，然后这个 APP 就不能用了；你在某宝软件上想看一下去年的消费情况，结果发现自己不知不觉又把权限开放出去了。</p><p>前几天李彦宏在中国发展高层论坛的一次对话中说“中国人对隐私问题的态度更加开放，相对来说也没有那么敏感。如果可以用隐私换取利益、安全、或者效率，在很多情况下他们是愿意这么做的”。这段话迅速上了各大媒体的新闻标题，并遭到了网民的炮轰。然而事件过后细想时，发现李彦宏只不过是说了句大实话而已，现在的国人不就是这样吗？朋友圈里每天领优惠券，领红包的广告没少见吧，但是打开都会让你注册或者填写手机号码领取，又有多少人放弃了领红包的想法而拒绝填写自己的手机号呢？</p><p>再前几天 Facebook 数据泄露，股价暴跌，6个交易日市值缩掉了一个百度。如果这件事发生在中国，那都不算事，谁在乎那些数据呢？</p><p>我们的个人数据是怎么泄露的，是我们为了领几块钱的红包拱手相让的，还是那些流氓企业在无声无息中偷偷获取的。互联网时代，我们都忙着抢红包薅羊毛了；下一个时代，人工智能时代，隐私对我们来说还是那么无所谓么？</p><p><div style="text-align:center;margin:0;" markdown="1"><img src="../img/ddAnswer.jpg" alt="ddAnswer" style="margin:0 auto;"></div></p><p style="text-align: center;margin:0;">更多文章请关注微信公众号： zhiheng博客</p><p style="text-align: center;margin:20 0;">如果文章对你有用，转发分享、点赞赞赏才是真爱 [斜眼笑]</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;我们的个人隐私数据是怎么泄露的？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;去年的时候公司加入了一项健康指标考核，各团队在企业咕咚里创建了运动团队，以每个月走的步数考核员工健康，我们团队制定了每月 20 万步的指标，规定一出大家都想方设法的刷步数，
-      
-    
-    </summary>
-    
-    
-      <category term="杂谈" scheme="https://dddreams.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
